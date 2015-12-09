@@ -13,4 +13,5 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 <br><br>
 **Setup:** 
 Let the data be 
+
 $$ D = \{ x_i ,y_i \} $$
