@@ -55,6 +55,7 @@ HTML and CSS are our tools. Mauris a ante. Suspendisse quam sem, consequat at, c
 ## Latex
 
 $$x^2 = 4$$
+
 ## List Types
 
 ### Ordered Lists
