@@ -14,4 +14,4 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 **Setup:** 
 <br>
 Let the data be 
-\\( D = \( x_{i}, y \) \\)
+\\( D = \( x_{i}, y_{i} \) \\)
