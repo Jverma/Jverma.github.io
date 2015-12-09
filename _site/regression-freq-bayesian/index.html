@@ -169,8 +169,8 @@
       <p>We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br><br>
 <strong>Setup:</strong> 
- Let the data be \(( D= { x<em>i,y</em>i }<em>{1 \leq i \leq N} \) where each \( x</em>i  \in \mathbb{R}^n \) and \( y<em>i \in \mathbb{R} \).
-The linear regression model predicts the values of \(( y</em>i \)&#39;s as linear combinations of the features \(( x_i \)&#39;s</p>
+ Let the data be \(( D = { x<em>i,y</em>i }<em>{1 \leq i \leq N} \)) where each \(( x</em>i  \in \mathbb{R}^n \)) and \(( y<em>i \in \mathbb{R} \)).
+The linear regression model predicts the values of \(( y</em>i \))&#39;s as linear combinations of the features \(( x_i \))&#39;s</p>
 
 <p>$$ y<em>i =w</em>0 +\sum<em>j w</em>j x<em>{ij} =w</em>0 +w^T x_i $$</p>
 
@@ -189,7 +189,6 @@ We will consider <em>Maximum likelihood estimation</em> (Frequentist), <em>Maxim
 MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
 <br><br>
 <strong>Maximum Likelihood Estimation:</strong>
-<br>
 The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e. </p>
 
 <p>$$ y<em>i = w^T x</em>i + \epsilon $$</p>

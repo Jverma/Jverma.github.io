@@ -12,8 +12,8 @@ image:
 We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br><br>
 **Setup:** 
- Let the data be \\(( D= \{ x_i,y_i \}_{1 \leq i \leq N} \\) where each \\( x_i  \in \mathbb{R}^n \\) and \\( y_i \in \mathbb{R} \\).
-The linear regression model predicts the values of \\(( y_i \\)'s as linear combinations of the features \\(( x_i \\)'s
+ Let the data be \\(( D = \{ x_i,y_i \}_{1 \leq i \leq N} \\)) where each \\(( x_i  \in \mathbb{R}^n \\)) and \\(( y_i \in \mathbb{R} \\)).
+The linear regression model predicts the values of \\(( y_i \\))'s as linear combinations of the features \\(( x_i \\))'s
 
 $$ y_i =w_0 +\sum_j w_j x_{ij} =w_0 +w^T x_i $$
 
@@ -32,7 +32,6 @@ We will consider *Maximum likelihood estimation* (Frequentist), *Maximum a Poste
 MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
 <br><br>
 **Maximum Likelihood Estimation:**
-<br>
 The observed values of \\(( y_i \\))  is assumed to have Gaussian noise error i.e. 
 
 $$ y_i = w^T x_i + \epsilon $$
