@@ -12,7 +12,8 @@ image:
 We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br><br>
 **Setup:** 
- Let the data be \\(( D = \{ x_i,y_i \}_{1 \leq i \leq N} \\)) where each \\(( x_i  \in \mathbb{R}^n \\)) and \\(( y_i \in \mathbb{R} \\)).
+\\(( D = \{ x_i, y_i\}_{1 \leq i \leq N} \\))
+ <!-- Let the data be \\(( D = \{ x_i,y_i \}_{1 \leq i \leq N} \\)) where each \\(( x_i  \in \mathbb{R}^n \\)) and \\(( y_i \in \mathbb{R} \\)).
 The linear regression model predicts the values of \\(( y_i \\))'s as linear combinations of the features \\(( x_i \\))'s
 
 $$ y_i =w_0 +\sum_j w_j x_{ij} =w_0 +w^T x_i $$
@@ -98,7 +99,7 @@ $$ P(\tilde{y} | \tilde{x}, D, \sigma^2, \lambda) = \int P(\tilde{y} | w, \tilde
 These integration are often very hard to to do analytically and rely on sophisticated MCMC methods. 
  <br>
 In full Bayesian regression, we assume a prior on \\(( \sigma^2 \\)) in addition to prior on \\(( w \\)).
-
+ -->
 <!-- **Further:**
 	<li><a href="https://januverma.wordpress.com/2013/10/09/logistic-regression/">Logistic regression</a></li>
 	<li><a href="https://januverma.wordpress.com/2013/10/15/regularization-in-logistic-regression/">Regularization</a></li>
