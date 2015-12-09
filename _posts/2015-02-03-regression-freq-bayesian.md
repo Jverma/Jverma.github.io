@@ -14,4 +14,4 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 **Setup:** 
 Let the data be 
 
-$$D = \{ x_i , y_i \}$$
+$$D^2 = 4 $$
