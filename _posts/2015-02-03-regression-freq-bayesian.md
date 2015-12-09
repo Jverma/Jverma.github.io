@@ -13,5 +13,4 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 <br><br>
 **Setup:** 
 <br>
-Let the data be 
-\\( D = \( x\_{i} , y\_{i} \) \\)
+Let the data be \\( D = \( x\_{i} , y\_{i}, z \) \\)
