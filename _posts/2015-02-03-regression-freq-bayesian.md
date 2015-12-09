@@ -13,4 +13,7 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 <br><br>
 **Setup:** 
 <br>
-Let the data be \\( D = \( x\_{i} , y\_{i} \)\_{1 \leq i \leq N} \\) where each \\(( x\_{i}  \in \mathbb{R}^n \\)) and \\(( y\_{i} \in \mathbb{R} \\)).
+Let the data be \\( D = \( x\_{i} , y\_{i} \)\_{1 \leq i \leq N} \\) where each \\( x\_{i}  \in \mathbb{R}^n \\) and \\( y\_{i} \in \mathbb{R} \\).
+The linear regression model predicts the values of \\( y\_{i} \\)'s as linear combinations of the features \\( x\_{i} \\)'s
+
+$$ y\_{i} = w\_{0} + \sum\_{j} w\_{j} x\_{ij} = w\_{0} +w^T x\_{i} $$
