@@ -12,4 +12,4 @@ image:
 We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br><br>
 **Setup:** 
-Let the data be \\( D = (x_i y_i) \\)
+Let the data be \\(( D = (x_i y_i) \\))
