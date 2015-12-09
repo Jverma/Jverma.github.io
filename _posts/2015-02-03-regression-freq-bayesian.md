@@ -20,7 +20,7 @@ $$ y\_{i} = w\_{0} + \sum\_{j} w\_{j} x\_{ij} = w\_{0} +w^T x\_{i} $$
 
 Adding 1 to the vectors \\(( x\_{i} \\)) to redefine \\(( x\_i = (1,x\_i) \\)) and combining \\(( w\_0 \\)) and \\(( w\_i \\))'s into a single vector \\(( w = (w\_0, w\_1, \ldots, w\_n) \\)), this can be written as 
 
-$$ y_i = w^T x_i $$
+$$ y\_i = w^T x\_i $$
 
 The idea is to estimate the values of parameters \\(( \hat{w} \\)) from the training data and predict the \\(( y \\))-value for a new observation \\(( \tilde{x} \\)) as 
 
@@ -35,30 +35,30 @@ MLE chooses the parameters which maximize the likelihood of data given that para
 **Maximum Likelihood Estimation:**
 The observed values of \\(( y_i \\))  is assumed to have Gaussian noise error i.e. 
 
-$$ y_i = w^T x_i + \epsilon $$
+$$ y\_i = w^T x\_i + \epsilon $$
 
 where \\(( \epsilon \sim N(0,\sigma^2) \\)).
 
 The Likelihood in this case is given by
 
-$$ \mathcal{L}(D | w, \sigma) = (2 \pi \sigma^2)^{-n/2} \prod_{i=1}^{n} exp \left[ \frac{-(y_i - \hat{y}_i)^2}{2\sigma^2} \right] $$
+$$ \mathcal{L}(D | w, \sigma) = (2 \pi \sigma^2)^{-n/2} \prod\_{i=1}^{n} exp \left[ \frac{-(y\_i - \hat{y}\_i)^2}{2\sigma^2} \right] $$
 
 then the log-likelihood is given by
 
-$$ \ln(\mathcal{L}) = - \frac{n}{2} \ln(2\pi \sigma^2) -  \frac{1}{2\sigma^2} \sum_i (y_i - w^T x_i)^2 $$
+$$ \ln(\mathcal{L}) = - \frac{n}{2} \ln(2\pi \sigma^2) -  \frac{1}{2\sigma^2} \sum\_i (y\_i - w^T x\_i)^2 $$
 
 Now MLE states that the estimated value of \\(( w \\)) is given by
 
-$$w_{MLE} = argmax_w \ln(\mathcal{L}(D | w, \sigma)) $$
+$$w\_{MLE} = argmax\_w \ln(\mathcal{L}(D | w, \sigma)) $$
 
 which in this case reduces to
 <br>
-$$ w_{MLE} = argmin_w \sum_i  (y_i - w^T x_i)^2 $$
+$$ w\_{MLE} = argmin\_w \sum\_i  (y\_i - w^T x\_i)^2 $$
 <br><br>
 This is why the linear regression model is often known as *least square method*. 
 Now we differentiate with respect to \\(( w \\)) and equate the derivative to zero to get the estimate of \\(( w \\)). This can be more clearly expressed in terms of linear algebraic quantities.
  <br>
-If \\(( X = (x_1, x_2, \ldots, x_N)^T \\)), \\(( Y = (y_1, y_2, \ldots, y_N)^T \\)) and  \\(( \theta = (w_0, w_1, w_2, \ldots, w_N)^T \\)), then one can check that the MLE for \\(( \theta \\)) is 
+If \\(( X = (x\_1, x\_2, \ldots, x\_N)^T \\)), \\(( Y = (y\_1, y\_2, \ldots, y\_N)^T \\)) and  \\(( \theta = (w\_0, w\_1, w\_2, \ldots, w\_N)^T \\)), then one can check that the MLE for \\(( \theta \\)) is 
 
 $$ \hat{\theta} = (X^T X)^{-1} X^T Y $$
 
@@ -77,16 +77,16 @@ $$ P(w|D) = \frac{P(w) P(D|w)}{P(D)}$$
 
 as with MLE, we will maximize the log-posterior probability and then 
 
-$$ w_{MAP} = argmax_w \ln(P(w|d)) $$
+$$ w\_{MAP} = argmax\_w \ln(P(w|d)) $$
 
 which reduces to
 
-$$ w_{MAP} = argmin_w \sum_i (y_i - w^T x_i)^2 + \frac{\lambda}{2} w^T w $$
+$$ w\_{MAP} = argmin\_w \sum\_i (y\_i - w^T x\_i)^2 + \frac{\lambda}{2} w^T w $$
 
 Thus, the MAP estimation can be thought of as regression with regularization. 
 The MAP estimate in this case is 
 
-$$ w_{MAP} = (\lambda I + X^T X)^{-1} X^T y $$
+$$ w\_{MAP} = (\lambda I + X^T X)^{-1} X^T y $$
 
 <br><br>
 **Bayesian Regression:**
