@@ -1,6 +1,7 @@
 <p>We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br /><br />
-<strong>Setup:</strong>
+<strong>Setup:</strong> 
+<br />
  Let the data be \(( D= { x_i,y_i }_{1 \leq i \leq N} \) where each \( x_i  \in \mathbb{R}^n \) and \( y_i \in \mathbb{R} \).
 The linear regression model predicts the values of \(( y_i \)’s as linear combinations of the features \(( x_i \)’s</p>
 
@@ -17,9 +18,11 @@ The linear regression model predicts the values of \(( y_i \)’s as linear comb
 We will consider <em>Maximum likelihood estimation</em> (Frequentist), <em>Maximum a Posteriori</em> (semi-bayesian) and <em>Bayesian regression models</em>. 
 <br /><br />
 <strong>tl;dr</strong>
+<br />
 MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
 <br /><br />
 <strong>Maximum Likelihood Estimation:</strong>
+<br />
 The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e.</p>
 
 <script type="math/tex; mode=display">y_i = w^T x_i + \epsilon</script>
@@ -38,12 +41,12 @@ The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e.
 
 <script type="math/tex; mode=display">w_{MLE} = argmax_w \ln(\mathcal{L}(D | w, \sigma))</script>
 
-<p>which in this case reduces to</p>
-
-<p><script type="math/tex">w_{MLE} = argmin_w \sum_i  (y_i - w^T x_i)^2</script>
+<p>which in this case reduces to
 <br />
+<script type="math/tex">w_{MLE} = argmin_w \sum_i  (y_i - w^T x_i)^2</script>
+<br /><br />
 This is why the linear regression model is often known as <em>least square method</em>. 
-Now we differentiate with respect to $latex w$ and equate the derivative to zero to get the estimate of $latex w$. This can be more clearly expressed in terms of linear algebraic quantities.
+Now we differentiate with respect to \(( w \)) and equate the derivative to zero to get the estimate of \(( w \)). This can be more clearly expressed in terms of linear algebraic quantities.
  <br />
 If \(( X = (x_1, x_2, \ldots, x_N)^T \)), \(( Y = (y_1, y_2, \ldots, y_N)^T \)) and  \(( \theta = (w_0, w_1, w_2, \ldots, w_N)^T \)), then one can check that the MLE for \(( \theta \)) is</p>
 
@@ -52,6 +55,7 @@ If \(( X = (x_1, x_2, \ldots, x_N)^T \)), \(( Y = (y_1, y_2, \ldots, y_N)^T \)) 
 <p>Similarly  \(( \sigma^2 \)) can be estimated by differentiating the MLE with respect to  \(( \sigma^2 \)) and equation the derivative to zero. 
 <br /><br />
 <strong>Maximum a Posteriori estimation:</strong>
+<br />
  For MAP, we assume a Gaussian prior on \(( w \)) i.e 
 <script type="math/tex">w \sim N(0, \lambda^{-1} I)</script></p>
 
@@ -76,7 +80,8 @@ The MAP estimate in this case is</p>
 
 <p><br /><br />
 <strong>Bayesian Regression:</strong>
- In Bayesian regression, the Bayesian philosophy is applied. Both MLE and MAP are point estimates but in Bayesian regression, we look for predictive probability. Here we make predictions by integrating over the posterior distribution of the model parameters $latex w$. 
+<br />
+ In Bayesian regression, the Bayesian philosophy is applied. Both MLE and MAP are point estimates but in Bayesian regression, we look for predictive probability. Here we make predictions by integrating over the posterior distribution of the model parameters \(( w \)). 
 If \(( \tilde{x} \)) is a new point, we compute the probability of \(( \tilde{y} \)), the y-value corresponding to this x is given by</p>
 
 <script type="math/tex; mode=display">P(\tilde{y} | \tilde{x}, D, \sigma^2, \lambda) = \int P(\tilde{y} | w, \tilde{x}, \sigma^2 ) P(w|D, \sigma^2 , \lambda) dw</script>
