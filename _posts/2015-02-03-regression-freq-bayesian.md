@@ -33,6 +33,7 @@ We will consider *Maximum likelihood estimation* (Frequentist), *Maximum a Poste
 MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
 <br><br>
 **Maximum Likelihood Estimation:**
+<br>
 The observed values of \\(( y_i \\))  is assumed to have Gaussian noise error i.e. 
 
 $$ y\_i = w^T x\_i + \epsilon $$
