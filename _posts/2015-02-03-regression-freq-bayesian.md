@@ -13,4 +13,4 @@ We often hear there are two schools of thought in statistics - Frequentist and B
 <br><br>
 **Setup:** 
 <br>
-Let the data be \\( D = \( x\_{i} , y\_{i}, z \) \\)
+Let the data be \\( D = \( x\_{i} , y\_{i} \)\_{1 \leq i \leq N} \\) where each \\(( x\_{i}  \in \mathbb{R}^n \\)) and \\(( y\_{i} \in \mathbb{R} \\)).
