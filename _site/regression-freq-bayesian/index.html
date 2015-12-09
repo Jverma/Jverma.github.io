@@ -1,0 +1,310 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Linear Regression : Frequentist and Bayesian &#8211; Random Inferences</title>
+<meta name="description" content="Post about linear regression methods in frequentist and bayesian style.">
+<meta name="keywords" content="machine learning, data science, mathematics, statistics">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Linear Regression : Frequentist and Bayesian">
+<meta name="twitter:description" content="Post about linear regression methods in frequentist and bayesian style.">
+<meta name="twitter:site" content="@januverma">
+<meta name="twitter:creator" content="@januverma">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linear Regression : Frequentist and Bayesian">
+<meta property="og:description" content="Post about linear regression methods in frequentist and bayesian style.">
+<meta property="og:url" content="http://jverma.github.io//regression-freq-bayesian/">
+<meta property="og:site_name" content="Random Inferences">
+
+<meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+
+
+
+
+
+<link rel="canonical" href="http://jverma.github.io//regression-freq-bayesian/">
+<link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jverma.github.io//assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://jverma.github.io//assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://jverma.github.io//assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://jverma.github.io//assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://jverma.github.io//images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://jverma.github.io//images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://jverma.github.io//images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://jverma.github.io//images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://jverma.github.io//">Random Inferences</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//posts/" >Blog</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//research/" >Research</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+  <div class="image-wrap">
+  <img src=
+    
+      "http://jverma.github.io//images/sample-image-4.jpg"
+    
+  alt="Linear Regression : Frequentist and Bayesian feature image">
+  
+    <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
+  
+  </div><!-- /.image-wrap -->
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://jverma.github.io//images/IMG_20141123_115642.jpg" class="bio-photo" alt="Janu Verma bio photo">
+
+
+  <h3 itemprop="name">Janu Verma</h3>
+  <p>Research Engineer at IBM T.J. Watson Research Center.</p>
+  
+  <a href="http://twitter.com/januverma" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/janu.verma" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  
+  <a href="http://linkedin.com/in/janu-verma-b79b8823" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  <a href="http://instagram.com/jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  
+  <a href="http://github.com/Jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://jverma.github.io//regression-freq-bayesian/" rel="bookmark" title="Linear Regression : Frequentist and Bayesian">Linear Regression : Frequentist and Bayesian</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
+<br><br>
+<strong>Setup:</strong> 
+<br>
+ Let the data be \(( D= { x<em>i,y</em>i }<em>{1 \leq i \leq N} \) where each \( x</em>i  \in \mathbb{R}^n \) and \( y<em>i \in \mathbb{R} \).
+The linear regression model predicts the values of \(( y</em>i \)&#39;s as linear combinations of the features \(( x_i \)&#39;s</p>
+
+<p>$$ y<em>i =w</em>0 +\sum<em>j w</em>j x<em>{ij} =w</em>0 +w^T x_i $$</p>
+
+<p>Adding 1 to the vectors \(( x<em>i \)) to redefine \(( x</em>i = (1,x<em>i) \)) and combining \(( w</em>0 \)) and \(( w<em>i \))&#39;s into a single vector \(( w = (w</em>0, w<em>1, \ldots, w</em>n) \)), this can be written as </p>
+
+<p>$$ y_ i = w^T x_i $$</p>
+
+<p>The idea is to estimate the values of parameters \(( \hat{w} \)) from the training data and predict the \(( y \))-value for a new observation \(( \tilde{x} \)) as </p>
+
+<p>$$ \tilde{y} = \hat{w}^T \tilde{x} $$
+<br><br>
+We will consider <em>Maximum likelihood estimation</em> (Frequentist), <em>Maximum a Posteriori</em> (semi-bayesian) and <em>Bayesian regression models</em>. 
+<br><br>
+<strong>tl;dr</strong>
+<br>
+MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
+<br><br>
+<strong>Maximum Likelihood Estimation:</strong>
+<br>
+The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e. </p>
+
+<p>$$ y<em>i = w^T x</em>i + \epsilon $$</p>
+
+<p>where \(( \epsilon \sim N(0,\sigma^2) \)).</p>
+
+<p>The Likelihood in this case is given by</p>
+
+<p>$$ \mathcal{L}(D | w, \sigma) = (2 \pi \sigma^2)^{-n/2} \prod<em>{i=1}^{n} exp \left[ \frac{-(y</em>i - \hat{y}_i)^2}{2\sigma^2} \right] $$</p>
+
+<p>then the log-likelihood is given by</p>
+
+<p>$$ \ln(\mathcal{L}) = - \frac{n}{2} \ln(2\pi \sigma^2) -  \frac{1}{2\sigma^2} \sum<em>i (y</em>i - w^T x_i)^2 $$</p>
+
+<p>Now MLE states that the estimated value of \(( w \)) is given by</p>
+
+<p>$$w<em>{MLE} = argmax</em>w \ln(\mathcal{L}(D | w, \sigma)) $$</p>
+
+<p>which in this case reduces to
+<br>
+$$ w<em>{MLE} = argmin</em>w \sum<em>i  (y</em>i - w^T x<em>i)^2 $$
+<br><br>
+This is why the linear regression model is often known as <em>least square method</em>. 
+Now we differentiate with respect to \(( w \)) and equate the derivative to zero to get the estimate of \(( w \)). This can be more clearly expressed in terms of linear algebraic quantities.
+ <br>
+If \(( X = (x</em>1, x<em>2, \ldots, x</em>N)^T \)), \(( Y = (y<em>1, y</em>2, \ldots, y<em>N)^T \)) and  \(( \theta = (w</em>0, w<em>1, w</em>2, \ldots, w_N)^T \)), then one can check that the MLE for \(( \theta \)) is </p>
+
+<p>$$ \hat{\theta} = (X^T X)^{-1} X^T Y $$</p>
+
+<p>Similarly  \(( \sigma^2 \)) can be estimated by differentiating the MLE with respect to  \(( \sigma^2 \)) and equation the derivative to zero. 
+<br><br>
+<strong>Maximum a Posteriori estimation:</strong>
+<br>
+ For MAP, we assume a Gaussian prior on \(( w \)) i.e 
+$$ w \sim N(0, \lambda^{-1} I)$$</p>
+
+<p>$$ P(w) = (\frac{\lambda}{2 \pi})^{n/2} exp \left[ -\frac{\lambda}{2} w^T w \right] $$</p>
+
+<p>Then the posterior probability after we observe the training data is computed by Bayes rule as </p>
+
+<p>$$ P(w|D) = \frac{P(w) P(D|w)}{P(D)}$$</p>
+
+<p>as with MLE, we will maximize the log-posterior probability and then </p>
+
+<p>$$ w<em>{MAP} = argmax</em>w \ln(P(w|d)) $$</p>
+
+<p>which reduces to</p>
+
+<p>$$ w<em>{MAP} = argmin</em>w \sum<em>i (y</em>i - w^T x_i)^2 + \frac{\lambda}{2} w^T w $$</p>
+
+<p>Thus, the MAP estimation can be thought of as regression with regularization. 
+The MAP estimate in this case is </p>
+
+<p>$$ w_{MAP} = (\lambda I + X^T X)^{-1} X^T y $$</p>
+
+<p><br><br>
+<strong>Bayesian Regression:</strong>
+<br>
+ In Bayesian regression, the Bayesian philosophy is applied. Both MLE and MAP are point estimates but in Bayesian regression, we look for predictive probability. Here we make predictions by integrating over the posterior distribution of the model parameters \(( w \)). 
+If \(( \tilde{x} \)) is a new point, we compute the probability of \(( \tilde{y} \)), the y-value corresponding to this x is given by</p>
+
+<p>$$ P(\tilde{y} | \tilde{x}, D, \sigma^2, \lambda) = \int P(\tilde{y} | w, \tilde{x}, \sigma^2 ) P(w|D, \sigma^2 , \lambda) dw $$</p>
+
+<p>These integration are often very hard to to do analytically and rely on sophisticated MCMC methods. 
+ <br>
+In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition to prior on \(( w \)).</p>
+
+<!-- **Further:**
+    <li><a href="https://januverma.wordpress.com/2013/10/09/logistic-regression/">Logistic regression</a></li>
+    <li><a href="https://januverma.wordpress.com/2013/10/15/regularization-in-logistic-regression/">Regularization</a></li>
+    <li><a href="https://januverma.wordpress.com/2013/11/06/ad-ctr-prediction-using-logistic-regression/">CTR prediction @Google</a></li> -->
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//regression-freq-bayesian/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//regression-freq-bayesian/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//regression-freq-bayesian/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Linear Regression : Frequentist and Bayesian</strong> was published on <time datetime="2015-02-03T00:00:00-05:00">February 03, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <footer>
+    
+
+<span>&copy; 2015 Janu Verma. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://jverma.github.io//assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://jverma.github.io//assets/js/scripts.min.js"></script>
+
+
+  
+
+
+
+
+</body>
+</html>
