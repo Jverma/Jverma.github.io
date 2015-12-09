@@ -1,15 +1,14 @@
 <p>We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 <br /><br />
 <strong>Setup:</strong> 
-<br />
- Let the data be \(( D= { x_i,y_i }_{1 \leq i \leq N} \) where each \( x_i  \in \mathbb{R}^n \) and \( y_i \in \mathbb{R} \).
-The linear regression model predicts the values of \(( y_i \)’s as linear combinations of the features \(( x_i \)’s</p>
+Let the data be \(( D = { x_i ,y_i }_{1 \leq i \leq N} \)) where each \(( x_i  \in \mathbb{R}^n \)) and \(( y_i \in \mathbb{R} \)).
+The linear regression model predicts the values of \(( y_i \))’s as linear combinations of the features \(( x_i \))’s</p>
 
-<script type="math/tex; mode=display">y_i =w_0 +\sum_j w_j x_{ij} =w_0 +w^T x_i</script>
+<script type="math/tex; mode=display">y_i = w_0 + \sum_j w_j x_{ij} = w_0 +w^T x_i</script>
 
 <p>Adding 1 to the vectors \(( x_i \)) to redefine \(( x_i = (1,x_i) \)) and combining \(( w_0 \)) and \(( w_i \))’s into a single vector \(( w = (w_0, w_1, \ldots, w_n) \)), this can be written as</p>
 
-<script type="math/tex; mode=display">y_ i = w^T x_i</script>
+<script type="math/tex; mode=display">y_i = w^T x_i</script>
 
 <p>The idea is to estimate the values of parameters \(( \hat{w} \)) from the training data and predict the \(( y \))-value for a new observation \(( \tilde{x} \)) as</p>
 
@@ -22,7 +21,6 @@ We will consider <em>Maximum likelihood estimation</em> (Frequentist), <em>Maxim
 MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
 <br /><br />
 <strong>Maximum Likelihood Estimation:</strong>
-<br />
 The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e.</p>
 
 <script type="math/tex; mode=display">y_i = w^T x_i + \epsilon</script>
@@ -90,7 +88,3 @@ If \(( \tilde{x} \)) is a new point, we compute the probability of \(( \tilde{y}
  <br />
 In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition to prior on \(( w \)).</p>
 
-<!-- **Further:**
-	<li><a href="https://januverma.wordpress.com/2013/10/09/logistic-regression/">Logistic regression</a></li>
-	<li><a href="https://januverma.wordpress.com/2013/10/15/regularization-in-logistic-regression/">Regularization</a></li>
-	<li><a href="https://januverma.wordpress.com/2013/11/06/ad-ctr-prediction-using-logistic-regression/">CTR prediction @Google</a></li> -->
