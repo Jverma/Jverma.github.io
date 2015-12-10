@@ -6,7 +6,8 @@ Let's start with a simple sampling problem. Suppose we have a single variable $l
 <br>
 This is an example of [binomial distribution](http://en.wikipedia.org/wiki/Binomial_distribution). How can get a sample from this distribution?
 Simply, flip a coin. If it's head, \\( X=1 \\), else \\( X=0 \\). The following python code will generate samples from this distribution.
-```
+
+{% highlight python %}
 import random
 
 def sampler():
@@ -16,7 +17,7 @@ def sampler():
 	else:
 		X = 1
 	return X
-```
+{% endhighlight %}
 <br>
 What if you have a [multinomial distribution](http://en.wikipedia.org/wiki/Multinomial_distribution) ? Say you want to model the roll of a dice:
 <br>
