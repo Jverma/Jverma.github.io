@@ -171,10 +171,14 @@
 These theories are extremely important from a mathematical perspective. They find applications in topology of low-dimensional manifolds, representation theory, curve counting in enumerative geometry, symplectic geometry, algebraic and complex geometry etc. A complete mathematical understanding of quantum field theory is not available at present. Mathematicians (following <a href="http://www.math.upenn.edu/~blockj/scfts/segal.pdf">Segal</a>, <a href="http://www.numdam.org/item?id=PMIHES_1988__68__175_0">Atiyah</a>) have been successful in obtaining a rigorous definition of <a href="http://ncatlab.org/nlab/show/topological+quantum+field+theory">topological quantum field theories (TQFTs)</a>, a special class of QFTs.
 <br><br>
 Even though we don&#39;t understand QFTs, we can define &quot;fields&quot; which are the main ingredients of a field theory. In this post, we will define the notion of fields in classical theory. This theory is then quantized to obtain quantum field theory.
-The setup for a field theory is :
-- <strong>Spacetime</strong> - A smooth, finite dimensional manifold \( M \).
-An example of \( M \) is the <a href="http://en.wikipedia.org/wiki/Minkowski_space">Minkowaski space</a> \( M^{1,n} \). Often \( M \) is equipped with additional topological and geometric structures e.g metric, orientation, spin structure etc.
-- <strong>Fields</strong> - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)</p>
+<br>
+The setup for a field theory is :</p>
+
+<ul>
+<li><strong>Spacetime</strong> - A smooth, finite dimensional manifold \( M \). 
+An example of \( M \) is the <a href="http://en.wikipedia.org/wiki/Minkowski_space">Minkowaski space</a> \( M^{1,n} \). Often \( M \) is equipped with additional topological and geometric structures e.g metric, orientation, spin structure etc.</li>
+<li><strong>Fields</strong> - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)</li>
+</ul>
 
 <p><br><br>
 We will take the following working definition of a (classical) field.</p>
@@ -189,17 +193,19 @@ such that \( \pi(\phi(x)) = x \) for all \( x \in M \). We denote this as -
 <br>
 $$ \phi \in C^{\infty}(E) $$
 <br><br>
-<strong>Examples:</strong>
-- A <strong>real scalar field</strong> is a smooth real-valued function on \( M \).
+<strong>Examples:</strong></p>
+
+<ul>
+<li>A <strong>real scalar field</strong> is a smooth real-valued function on \( M \).
 <br>
 $$ \phi : M \rightarrow \mathbb{R} $$
-This is a section of trivial fiber bundle with fibers isomorphic to $latex \mathbb{R}$
-- A <strong>complex scalar field</strong> is a smooth complex-valued function on the spacetime.
-$$ \phi : M \rightarrow \mathbb{C} $$
-- More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
+This is a section of trivial fiber bundle with fibers isomorphic to $latex \mathbb{R}$</li>
+<li>A <strong>complex scalar field</strong> is a smooth complex-valued function on the spacetime.
+$$ \phi : M \rightarrow \mathbb{C} $$</li>
+<li>More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
 $$ \Phi : M \rightarrow X $$
-Such fields arise in <strong>sigma models</strong>. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.
-- <strong>Gauge theory</strong> - The setup for a gauge theory is a principal bundle with a connection.
+Such fields arise in <strong>sigma models</strong>. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.</li>
+<li><strong>Gauge theory</strong> - The setup for a gauge theory is a principal bundle with a connection.
 Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.
 <br>
 <strong>Defintion:</strong> A <em>connection</em> \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the <em>Lie algebra</em> of the <em>Lie group</em> \( G \).
@@ -207,15 +213,16 @@ $$ \mathcal{A} \in C^{\infty}(P, T^{<em>}P) \otimes \mathfrak{g} $$
 <br>
 We call \( \mathcal{A} \) the *gauge field</em> with gauge group \( G \). The Maxwell&#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
 <br>
-In case of <a href="http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory">Yang-Mills theory</a>, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.
-- <strong>Spinor fields</strong> - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
+In case of <a href="http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory">Yang-Mills theory</a>, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.</li>
+<li><strong>Spinor fields</strong> - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
 $$ \pi : S \rightarrow M $$
 be a <em>spinor bundle</em> on \( M \). Then the spinor fields are the sections of \( S \).
-$$ \psi : M \rightarrow S $$
-- <strong>Gravity</strong> - Let \( M \) be a <em>Riemannian manifold</em>. The fields in the theory of gravity, gravitational fields, are the <em>metrics</em> on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
-$$ g : M \rightarrow Symm^{(0,2)}(M) $$
-- <strong>Supergravity</strong> - The <em>Rarita-Schwinger field</em> in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the <em>twisted spinor bundle</em>.
-$$  \psi : M \rightarrow S \otimes T^{*}M $$</p>
+$$ \psi : M \rightarrow S $$</li>
+<li><strong>Gravity</strong> - Let \( M \) be a <em>Riemannian manifold</em>. The fields in the theory of gravity, gravitational fields, are the <em>metrics</em> on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
+$$ g : M \rightarrow Symm^{(0,2)}(M) $$</li>
+<li><strong>Supergravity</strong> - The <em>Rarita-Schwinger field</em> in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the <em>twisted spinor bundle</em>.
+$$  \psi : M \rightarrow S \otimes T^{*}M $$</li>
+</ul>
 
 <p><br><br>
 In all the field theories, there exists a natural <em>evaluation map</em>,
