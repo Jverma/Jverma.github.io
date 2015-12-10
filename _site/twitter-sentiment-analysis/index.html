@@ -1,0 +1,352 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Twitter Sentiment Analysis &#8211; Random Inferences</title>
+<meta name="description" content="Post about sentiment analyis with special example of twitter.">
+<meta name="keywords" content="machine learning, data science, text mining, NLP, Sentiment Analysis, Bayes Theorem">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Twitter Sentiment Analysis">
+<meta name="twitter:description" content="Post about sentiment analyis with special example of twitter.">
+<meta name="twitter:site" content="@januverma">
+<meta name="twitter:creator" content="@januverma">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Twitter Sentiment Analysis">
+<meta property="og:description" content="Post about sentiment analyis with special example of twitter.">
+<meta property="og:url" content="http://jverma.github.io//twitter-sentiment-analysis/">
+<meta property="og:site_name" content="Random Inferences">
+
+<meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+
+
+
+
+
+<link rel="canonical" href="http://jverma.github.io//twitter-sentiment-analysis/">
+<link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jverma.github.io//assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://jverma.github.io//assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://jverma.github.io//assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://jverma.github.io//assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://jverma.github.io//images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://jverma.github.io//images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://jverma.github.io//images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://jverma.github.io//images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://jverma.github.io//">Random Inferences</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//posts/" >Blog</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//research/" >Research</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+  <div class="image-wrap">
+  <img src=
+    
+      "http://jverma.github.io//images/sample-image-4.jpg"
+    
+  alt="Twitter Sentiment Analysis feature image">
+  
+    <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
+  
+  </div><!-- /.image-wrap -->
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://jverma.github.io//images/IMG_20141123_115642.jpg" class="bio-photo" alt="Janu Verma bio photo">
+
+
+  <h3 itemprop="name">Janu Verma</h3>
+  <p>Research Engineer at IBM T.J. Watson Research Center.</p>
+  
+  <a href="http://twitter.com/januverma" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/janu.verma" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  
+  <a href="http://linkedin.com/in/janu-verma-b79b8823" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  <a href="http://instagram.com/jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  <a href="http://januverma.tumblr.com" class="author-social" target="_blank"><i class="fa fa-fw fa-tumblr-square"></i> Tumblr</a>
+  <a href="http://github.com/Jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://jverma.github.io//twitter-sentiment-analysis/" rel="bookmark" title="Twitter Sentiment Analysis">Twitter Sentiment Analysis</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>Twitter represents a fundamentally new instrument to make social measurements. Millions of people voluntarily express opinions across any topic imaginable - this data source is incredibly valuable for both research and business. This means we can use the vast amount of data from Twitter to generate &quot;public opinion&quot; towards certain topics by aggregating the individual tweet results over time. 
+<p>
+Sentiment Analysis aims to determine how a certain person or group reacts to a specific topic. For Twitter, it works by extracting tweets containing references to the desired topic, computing the sentiment polarity and strength of each tweet and then aggregating the results for all such tweets.<br>
+</p>
+We can also track changes in the users opinion towards these topics over time, allowing us to identify the events that caused these changes. e.g the episode <em>The Rains of Castamere</em> in the TV series <em>Game of Thrones</em> had volcanic effect on the public sentiment. 
+Also we can look at the geocoded information in the tweets and analyze the relation between location and mood. 
+<br><br>
+<strong>Techniques:</strong> There are broadly two categories of sentiment analysis: 
+<br><br>
+<strong>Lexical Methods:</strong>
+<br> These techniques employ dictionaries of words annotated with their semantic polarity and sentiment strength. This is then used to calculate a score for the polarity and/or sentiment of the document. Usually this method gives high precision but low recall.
+<br><br>
+<strong>Machine Learning Methods:</strong>
+<br> Such techniques require creating a model by training the classifier with labeled examples. This means that you must first gather a dataset with examples for positive, negative and neutral classes, extract the features from the examples and then train the algorithm based on the examples. These methods are used mainly for computing the polarity of the document. 
+<br><br>
+Choice of the method heavily depends on the application, domain and language. Using lexicon based techniques with large dictionaries enables us to achieve very good results. Nevertheless they require using a lexicon, something which is not always available in all languages. 
+On the other hand Machine Learning based techniques deliver good results but they require obtaining training on labeled data.
+<br><br>
+Now I&#39;ll discuss an example of each of the above techniques. 
+<br><br>
+<strong>AFINN Model:</strong> 
+<br>
+In the <a href="http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010">AFINN model</a>, the authors have computed sentiment scores for a list of words. The sentiment of a tweet is computed based on the sentiment scores of the terms in the tweet. The sentiment of the tweet is defined to be equal to the sum of the sentiment scores for each term in the tweet. The AFINN-111 dictionary contains 2477 English words rated for valence with an integer value between -5 and 5. The words have been manually labelled by Finn Arup Neilsen in 2009-2010. Some of the words are the grammatically different versions of the same stem e.g. &quot;favorite&quot; and &quot;favorites&quot; are listed as two different words with different valence scores. 
+<br>
+An implementation of the AFINN model can be <a href="https://github.com/Jverma/Twitter-Sentiment-Analysis">found here</a>.
+<br><br>
+<strong>Naive Bayes Classifier:</strong>
+<br>
+The <a href="http://en.wikipedia.org/wiki/Naive_Bayes_classifier">Naive Bayes classifier</a>can be trained on a corpus of labeled (+ve, -ve, neutral) tweets and then employed to assign polarity to a new tweet. The features used in this model are the words or bi-grams with their frequencies in the tweet strings. You may want to keep or remove URLs, emoticons and short tokens depending on the application. 
+<br><br>
+If \( f = (f_{1}, f_{2}, \ldots, f_{n}) \) be the vector of features of a tweet ( T ), then the probability of the tweet to be +ve according to Bayes Rule is:<br>
+$$ p(+ve|f ) = ( p(f|+ve) * p(+ve) ) / p(f) $$
+<br>
+Now basic theory of probability tells us that: 
+<br>
+$$
+p(f|+ve) =  p(f_{1}, f_{2}, \ldots, f_{n} | +ve)
+$$
+<br>
+and 
+<br>
+$$ p(f) = p(f_{1}, f_{2}, \ldots, f_{n}) $$
+<br>
+The Naive Bayes asserts that all the features are independent and thus: 
+<br>
+$$ p(f) = \prod_{i} p(f_{i}) $$
+<br>
+$$ p(f|+ve) = \prod_{i} p(f_{i}|+ve) $$
+<br>
+And similarly for -ve and neutral tweets. 
+<br><br>
+Using the pre-estimated values of these probabilities, one can compute the probability of a tweet to be positive, negative and neutral. 
+Whenever a new tweet is fed to the classifier, it will predict the polarity of the tweet based on the probability of its having that polarity. 
+<br>
+An implementation of Naive Bayes classifier for classifying spam and non-spam messages can be found <a href="https://github.com/Jverma/naive-bayes">here</a>. 
+<br><br>
+Several other methods in both the categories are prevalent today. Lots of companies using sentiment analysis employ lexical methods where they create dictionaries based on their trade algorithms and the domain of the application. 
+<br>
+For machine learning based analysis, instead of Naive Bayes, one can use more sophisticated algorithms like SVMs. 
+<br><br>
+<strong>Challenges:</strong>
+<br>
+Sentiment analysis is a very useful, but there are many challenges that need to be overcome to achieve good results. The very first step in opinion mining, something which I swept under the rug so far, is that we have to identify tweets that are relevant to our topic. Tweets containing the given word can be a decent choice, although not perfect. Once we have identified tweets to be analyzed, we need to sure that the tweets DO contain sentiment. Neutral tweets can be a part of our model, but only polarized tweets tell us something subjective. Even though the tweets are polarized, we still need to make sure that the sentiment in the tweet is related to the topic we are studying. For example, suppose we are studying sentiment related to a movie Mission Impossible, then the tweet: “Tom Cruise in Mission Impossible is pathetic!”.
+<p>
+Now this tweet has a negative sentiment, but is directed at the actor rather than the movie. This is not a great example, as the sentiment of the actor and movie is related.
+<br>
+The main challenge in Sentiment analysis using lexical methods is to build a dictionary that contains words/phrases and their sentiment scores. It is very hard to do so in full generality, and often the best idea is to choose a subject and build a list for that. Thus sentiment analysis is highly domain centric, so the techniques developed for stocks may not work for movies.
+<br>
+To solve these problems, you need expertise in NLP and computational linguistics. They correspond to entity extraction, NER, and entity pattern extraction in NLP terminology.
+<br><br>
+<strong>Beyond Twitter:</strong>
+<br>
+Facebook performed an experiment to measure the effect of removing positive (or negative) posts from the people&#39;s news feeds on how positive (or negative) their own posts were in the days after these changes were made. They found that the people from whose news feeds negative posts were removed produced a larger percentage of positive words as well as a smaller percentage of negative words in their posts. The group of people from whose news feeds negative posts were removed showed similar tendencies. The procedure and results of this experiment were a paper in the Proceedings of the National Academy of Sciences. Though, I don’t subscribe to the idea of using users are subjects to a physiological experiment without their knowledge, this is a cool application of sentiment analysis subject area.
+<br><br></p>
+
+<p><strong>Resources:</strong>
+<br>
+-  Liu, Bing. &quot;Sentiment analysis and subjectivity.&quot; Handbook of natural language processing 2 (2010): 627-666.</p>
+
+<ul>
+<li><p>Liu, Bing, and Lei Zhang. &quot;A survey of opinion mining and sentiment analysis.&quot;Mining Text Data. Springer US, 2012. 415-463.</p></li>
+<li><p>Liu, Bing. &quot;Sentiment analysis and opinion mining.&quot; Synthesis Lectures on Human Language Technologies 5.1 (2012): 1-167.</p></li>
+<li><p><a href="http://www.cs.cornell.edu/home/llee/opinion-mining-sentiment-analysis-survey.html">Opinion mining and sentiment analysis</a></p></li>
+<li><p><a href="http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/">Twitter sentiment analysis using Python and NLTK</a></p></li>
+</ul>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//twitter-sentiment-analysis/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//twitter-sentiment-analysis/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//twitter-sentiment-analysis/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Twitter Sentiment Analysis</strong> was published on <time datetime="2015-02-24T00:00:00-05:00">February 24, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://jverma.github.io//debruijn-graphs/" title="de Bruijn graphs and genomic assembly">de Bruijn graphs and genomic assembly</a></li>
+    
+      <li><a href="http://jverma.github.io//gibbs-sampling/" title="Gibbs Sampling">Gibbs Sampling</a></li>
+    
+      <li><a href="http://jverma.github.io//regression-freq-bayesian/" title="Linear Regression : Frequentist and Bayesian">Linear Regression : Frequentist and Bayesian</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  
+  <footer>
+    
+
+<span>&copy; 2015 Janu Verma. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://jverma.github.io//assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://jverma.github.io//assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-71200371-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'JVerma'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</body>
+</html>

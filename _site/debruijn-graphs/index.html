@@ -5,15 +5,15 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Linear Regression : Frequentist and Bayesian &#8211; Random Inferences</title>
-<meta name="description" content="Post about linear regression methods in frequentist and bayesian style.">
+<title>de Bruijn graphs and genomic assembly &#8211; Random Inferences</title>
+<meta name="description" content="Post about gibbs sampling method.">
 <meta name="keywords" content="machine learning, data science, mathematics, statistics">
 
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="Linear Regression : Frequentist and Bayesian">
-<meta name="twitter:description" content="Post about linear regression methods in frequentist and bayesian style.">
+<meta name="twitter:title" content="de Bruijn graphs and genomic assembly">
+<meta name="twitter:description" content="Post about gibbs sampling method.">
 <meta name="twitter:site" content="@januverma">
 <meta name="twitter:creator" content="@januverma">
 
@@ -23,9 +23,9 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linear Regression : Frequentist and Bayesian">
-<meta property="og:description" content="Post about linear regression methods in frequentist and bayesian style.">
-<meta property="og:url" content="http://jverma.github.io//regression-freq-bayesian/">
+<meta property="og:title" content="de Bruijn graphs and genomic assembly">
+<meta property="og:description" content="Post about gibbs sampling method.">
+<meta property="og:url" content="http://jverma.github.io//debruijn-graphs/">
 <meta property="og:site_name" content="Random Inferences">
 
 <meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="http://jverma.github.io//regression-freq-bayesian/">
+<link rel="canonical" href="http://jverma.github.io//debruijn-graphs/">
 <link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -116,7 +116,7 @@
     
       "http://jverma.github.io//images/sample-image-4.jpg"
     
-  alt="Linear Regression : Frequentist and Bayesian feature image">
+  alt="de Bruijn graphs and genomic assembly feature image">
   
     <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
   
@@ -162,101 +162,68 @@
   <article class="post">
     <div class="headline-wrap">
       
-        <h1><a href="http://jverma.github.io//regression-freq-bayesian/" rel="bookmark" title="Linear Regression : Frequentist and Bayesian">Linear Regression : Frequentist and Bayesian</a></h1>
+        <h1><a href="http://jverma.github.io//debruijn-graphs/" rel="bookmark" title="de Bruijn graphs and genomic assembly">de Bruijn graphs and genomic assembly</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
-      <p>We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
+      <p>Current genome sequencing technology (especially NGS) can sequence only short fragments of DNA. Generally, many copies of a region are sequenced to reduce the sequencing errors. The date from such sequencers, which is in form of short DNA sequence, needs to be assembled to obtain the complete genome. One of the modern methods to assemble the reads data is to use de Bruijn graphs.
 <br><br>
-<strong>Setup:</strong> 
-<br>
-Let the data be \( D = ( x_{i} , y_{i} )_{1 \leq i \leq N} \) where each \( x_{i}  \in \mathbb{R}^n \) and \( y_{i} \in \mathbb{R} \).
-The linear regression model predicts the values of \( y_{i} \)&#39;s as linear combinations of the features \( x_{i} \)&#39;s</p>
-
-<p>$$ y_{i} = w_{0} + \sum_{j} w_{j} x_{ij} = w_{0} +w^T x_{i} $$</p>
-
-<p>Adding 1 to the vectors \(( x_{i} \)) to redefine \(( x_i = (1,x_i) \)) and combining \(( w_0 \)) and \(( w_i \))&#39;s into a single vector \(( w = (w_0, w_1, \ldots, w_n) \)), this can be written as </p>
-
-<p>$$ y_i = w^T x_i $$</p>
-
-<p>The idea is to estimate the values of parameters \(( \hat{w} \)) from the training data and predict the \(( y \))-value for a new observation \(( \tilde{x} \)) as </p>
-
-<p>$$ \tilde{y} = \hat{w}^T \tilde{x} $$
+<strong>Definition:</strong> Given a sequence of characters, it’s <strong>k−dimensional de Bruijn graph</strong> is defined as follows :
+- The nodes are all the subsequences of length k, called <em>k-mers</em>.
+- An edge between two nodes is the subsequence of length k + 1 which has the first node as prefix and the second as suffix.
 <br><br>
-We will consider <em>Maximum likelihood estimation</em> (Frequentist), <em>Maximum a Posteriori</em> (semi-bayesian) and <em>Bayesian regression models</em>. 
-<br><br>
-<strong>tl;dr</strong>
-<br>
-MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
-<br><br>
-<strong>Maximum Likelihood Estimation:</strong>
-<br>
-The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e. </p>
+e.g. For S = AGATAC, the 3-de Bruijn of S will have</p>
 
-<p>$$ y_i = w^T x_i + \epsilon $$</p>
+<ul>
+<li>nodes - AGA,GAT,ATA,TAC</li>
+<li>edges - AGAT,GATA,ATAC</li>
+</ul>
 
-<p>where \(( \epsilon \sim N(0,\sigma^2) \)).
+<p><strong>Observation:</strong> There exist \( n^k \) k-mers in an alphabet containing n characters.
 <br>
-The Likelihood in this case is given by
+This implies that for English alphabet, we have 17576 3-mers. For DNA sequences the alphabet consists of 4 nucleotides A,G,T,C and thus there are 64 possible 3-mers.
 <br>
-$$ \mathcal{L}(D | w, \sigma) = (2 \pi \sigma^2)^{-n/2} \prod_{i=1}^{n} exp \left[ \frac{-(y_i - \hat{y}_i)^2}{2\sigma^2} \right] $$
-<br>
-then the log-likelihood is given by
-<br>
-$$ \ln(\mathcal{L}) = - \frac{n}{2} \ln(2\pi \sigma^2) -  \frac{1}{2\sigma^2} \sum_i (y_i - w^T x_i)^2 $$
-<br>
-Now MLE states that the estimated value of \(( w \)) is given by
-<br>
-$$w_{MLE} = argmax_w \ln(\mathcal{L}(D | w, \sigma)) $$
-<br>
-which in this case reduces to
-<br>
-$$ w_{MLE} = argmin_w \sum_i  (y_i - w^T x_i)^2 $$
+A k-mer can appear more than one times in a de Bruijn graph with edges to different nodes.
 <br><br>
-This is why the linear regression model is often known as <em>least square method</em>. 
-Now we differentiate with respect to \(( w \)) and equate the derivative to zero to get the estimate of \(( w \)). This can be more clearly expressed in terms of linear algebraic quantities.
- <br><br>
-If \(( X = (x_1, x_2, \ldots, x_N)^T \)), \(( Y = (y_1, y_2, \ldots, y_N)^T \)) and  \(( \theta = (w_0, w_1, w_2, \ldots, w_N)^T \)), then one can check that the MLE for \(( \theta \)) is 
+<strong>Definition:</strong> A <strong>Hamiltonian path</strong> in a graph is a path that travels to every nodes exactly once.In the above example, a Hamiltonian path is given by
 <br>
-$$ \hat{\theta} = (X^T X)^{-1} X^T Y $$
-<br>
-Similarly  \(( \sigma^2 \)) can be estimated by differentiating the MLE with respect to  \(( \sigma^2 \)) and equation the derivative to zero. 
+AGA -&gt; GAT -&gt; ATA -&gt; TAC.
 <br><br>
-<strong>Maximum a Posteriori estimation:</strong>
+It is easy to convince yourself that a Hamiltonian path in a de-Brujn graph constructed from the reads data will be a candidate for genome assembly because it visits each detected k-mer. Moreover, it will be the minimum length assembly as it travels to each node exactly one.
+Unfortunately, there is no efficient algorithm to compute the Hamiltonian path in a large graph. In fact,
 <br>
- For MAP, we assume a Gaussian prior on \(( w \)) i.e 
-$$ w \sim N(0, \lambda^{-1} I)$$
+<strong>Theorem:</strong> Finding a Hamiltonian path in a graph is NP-Complete.
+<br><br>
+<strong>Definition:</strong> An <strong>Eulerian path</strong> in a graph is a path that visits each edge exactly once. In the above example, an Eulerian path is given by
 <br>
-$$ P(w) = (\frac{\lambda}{2 \pi})^{n/2} exp \left[ -\frac{\lambda}{2} w^T w \right] $$
+AGAT -&gt; GATA -&gt; ATAC
+<br><br>
+An Eulerian path in a de Bruijn graph constructed on the sequence reads will also give a reasonable genome assembly as it visits each detected k + 1-mer. On the question of existence of an Eulerian path, we have following theorem of Euler -
 <br>
-Then the posterior probability after we observe the training data is computed by Bayes rule as </p>
+<strong>Theorem:</strong> A directed connected graph (one there exists a path between any two nodes) has an Eulerian cycle if and only if the indegree (number of edges leading into the node) of each node is equal to its outdegree (number of edges leaving the node).
+<br><br>
+<strong>Lemma:</strong> de Bruijn graph has an Eulerian cycle.
+<br>
+<strong>proof:</strong> For any node, both the indegree and the outdegree are equal to the number of times the k-mer assigned node occurs in the sequence.
+<br><br>
+Having established that the de Bruijn graph has an Eulerian cycle, the next question is whether we can compute it efficiently. There are algorithms to compute the Eulerian cycle of a graph which are linear in number of edges.
+<br><br>
+<strong>Algorithm to assmeble genome:</strong></p>
 
-<p>$$ P(w|D) = \frac{P(w) P(D|w)}{P(D)}$$
-<br>
-as with MLE, we will maximize the log-posterior probability and then 
-<br>
-$$ w_{MAP} = argmax_w \ln(P(w|d)) $$
-<br>
-which reduces to</p>
-
-<p>$$ w_{MAP} = argmin_w \sum_i (y_i - w^T x_i)^2 + \frac{\lambda}{2} w^T w $$
-<br>
-Thus, the MAP estimation can be thought of as regression with regularization. 
-The MAP estimate in this case is 
-<br>
-$$ w_{MAP} = (\lambda I + X^T X)^{-1} X^T y $$</p>
+<ul>
+<li>Choose the size of k-mers.</li>
+<li>Generate all k-mers from the reads data.</li>
+<li>Build a de Bruijn graph with k-mers as nodes and connected (k + 1)-mers as edges.</li>
+<li>Compute the Eulerian path of the de Bruijn graph- This will be a candidate assmebly.</li>
+</ul>
 
 <p><br><br>
-<strong>Bayesian Regression:</strong>
-<br>
- In Bayesian regression, the Bayesian philosophy is applied. Both MLE and MAP are point estimates but in Bayesian regression, we look for predictive probability. Here we make predictions by integrating over the posterior distribution of the model parameters \(( w \)). 
-If \(( \tilde{x} \)) is a new point, we compute the probability of \(( \tilde{y} \)), the y-value corresponding to this x is given by
-<br>
-$$ P(\tilde{y} | \tilde{x}, D, \sigma^2, \lambda) = \int P(\tilde{y} | w, \tilde{x}, \sigma^2 ) P(w|D, \sigma^2 , \lambda) dw $$
-<br>
-These integration are often very hard to to do analytically and rely on sophisticated MCMC methods. 
- <br><br>
-In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition to prior on \(( w \)).</p>
+Below is an example of genome assembly using de Bruijn graphs - 
+<br><br>
+<figure>
+<img src="https://januverma.files.wordpress.com/2014/11/nbt-2023-f3.gif?w=300"/>
+<br><br>
+Most of the times, sequencing doesn’t give us all the data. We have a lot of missing data which represent gaps in the genome and in that case, it would be impossible to obtain a whole genome assembly. So we build many de Bruijn graphs and obtain Eulerian cycles. Such cycles represent contiguous sequences of nucleotides, called <strong>contigs</strong>. Sometimes we join contigs separated by gaps to obtain <strong>scaffolds</strong>.</p>
 
       <hr />
       <footer role="contentinfo">
@@ -264,17 +231,17 @@ In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition t
   <h4>Share on</h4>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//regression-freq-bayesian/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//debruijn-graphs/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//regression-freq-bayesian/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//debruijn-graphs/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://jverma.github.io//regression-freq-bayesian/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//debruijn-graphs/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
     </li>
   </ul>
 </div><!-- /.social-share -->
-        <p class="byline"><strong>Linear Regression : Frequentist and Bayesian</strong> was published on <time datetime="2015-02-03T00:00:00-05:00">February 03, 2015</time>.</p>
+        <p class="byline"><strong>de Bruijn graphs and genomic assembly</strong> was published on <time datetime="2015-05-16T00:00:00-04:00">May 16, 2015</time>.</p>
       </footer>
     </div><!-- /.article-wrap -->
   
@@ -289,11 +256,11 @@ In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition t
   <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
     <ul>
     
-      <li><a href="http://jverma.github.io//debruijn-graphs/" title="de Bruijn graphs and genomic assembly">de Bruijn graphs and genomic assembly</a></li>
-    
       <li><a href="http://jverma.github.io//gibbs-sampling/" title="Gibbs Sampling">Gibbs Sampling</a></li>
     
       <li><a href="http://jverma.github.io//twitter-sentiment-analysis/" title="Twitter Sentiment Analysis">Twitter Sentiment Analysis</a></li>
+    
+      <li><a href="http://jverma.github.io//regression-freq-bayesian/" title="Linear Regression : Frequentist and Bayesian">Linear Regression : Frequentist and Bayesian</a></li>
     
     </ul>
     <hr />

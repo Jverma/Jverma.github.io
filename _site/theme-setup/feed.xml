@@ -4,13 +4,304 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-09T17:01:05-05:00</updated>
+<updated>2015-12-10T10:03:31-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
   <uri>http://jverma.github.io//</uri>
   
 </author>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[de Bruijn graphs and genomic assembly]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//debruijn-graphs/" />
+  <id>http://jverma.github.io//debruijn-graphs</id>
+  <published>2015-05-16T00:00:00-04:00</published>
+  <updated>2015-05-16T00:00:00-04:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;Current genome sequencing technology (especially NGS) can sequence only short fragments of DNA. Generally, many copies of a region are sequenced to reduce the sequencing errors. The date from such sequencers, which is in form of short DNA sequence, needs to be assembled to obtain the complete genome. One of the modern methods to assemble the reads data is to use de Bruijn graphs.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; Given a sequence of characters, it’s &lt;strong&gt;k−dimensional de Bruijn graph&lt;/strong&gt; is defined as follows :
+- The nodes are all the subsequences of length k, called &lt;em&gt;k-mers&lt;/em&gt;.
+- An edge between two nodes is the subsequence of length k + 1 which has the first node as prefix and the second as suffix.
+&lt;br&gt;&lt;br&gt;
+e.g. For S = AGATAC, the 3-de Bruijn of S will have&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;nodes - AGA,GAT,ATA,TAC&lt;/li&gt;
+&lt;li&gt;edges - AGAT,GATA,ATAC&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;strong&gt;Observation:&lt;/strong&gt; There exist \( n^k \) k-mers in an alphabet containing n characters.
+&lt;br&gt;
+This implies that for English alphabet, we have 17576 3-mers. For DNA sequences the alphabet consists of 4 nucleotides A,G,T,C and thus there are 64 possible 3-mers.
+&lt;br&gt;
+A k-mer can appear more than one times in a de Bruijn graph with edges to different nodes.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; A &lt;strong&gt;Hamiltonian path&lt;/strong&gt; in a graph is a path that travels to every nodes exactly once.In the above example, a Hamiltonian path is given by
+&lt;br&gt;
+AGA -&amp;gt; GAT -&amp;gt; ATA -&amp;gt; TAC.
+&lt;br&gt;&lt;br&gt;
+It is easy to convince yourself that a Hamiltonian path in a de-Brujn graph constructed from the reads data will be a candidate for genome assembly because it visits each detected k-mer. Moreover, it will be the minimum length assembly as it travels to each node exactly one.
+Unfortunately, there is no efficient algorithm to compute the Hamiltonian path in a large graph. In fact,
+&lt;br&gt;
+&lt;strong&gt;Theorem:&lt;/strong&gt; Finding a Hamiltonian path in a graph is NP-Complete.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; An &lt;strong&gt;Eulerian path&lt;/strong&gt; in a graph is a path that visits each edge exactly once. In the above example, an Eulerian path is given by
+&lt;br&gt;
+AGAT -&amp;gt; GATA -&amp;gt; ATAC
+&lt;br&gt;&lt;br&gt;
+An Eulerian path in a de Bruijn graph constructed on the sequence reads will also give a reasonable genome assembly as it visits each detected k + 1-mer. On the question of existence of an Eulerian path, we have following theorem of Euler -
+&lt;br&gt;
+&lt;strong&gt;Theorem:&lt;/strong&gt; A directed connected graph (one there exists a path between any two nodes) has an Eulerian cycle if and only if the indegree (number of edges leading into the node) of each node is equal to its outdegree (number of edges leaving the node).
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Lemma:&lt;/strong&gt; de Bruijn graph has an Eulerian cycle.
+&lt;br&gt;
+&lt;strong&gt;proof:&lt;/strong&gt; For any node, both the indegree and the outdegree are equal to the number of times the k-mer assigned node occurs in the sequence.
+&lt;br&gt;&lt;br&gt;
+Having established that the de Bruijn graph has an Eulerian cycle, the next question is whether we can compute it efficiently. There are algorithms to compute the Eulerian cycle of a graph which are linear in number of edges.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Algorithm to assmeble genome:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Choose the size of k-mers.&lt;/li&gt;
+&lt;li&gt;Generate all k-mers from the reads data.&lt;/li&gt;
+&lt;li&gt;Build a de Bruijn graph with k-mers as nodes and connected (k + 1)-mers as edges.&lt;/li&gt;
+&lt;li&gt;Compute the Eulerian path of the de Bruijn graph- This will be a candidate assmebly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+Below is an example of genome assembly using de Bruijn graphs - 
+&lt;br&gt;&lt;br&gt;
+&lt;figure&gt;
+&lt;img src=&quot;https://januverma.files.wordpress.com/2014/11/nbt-2023-f3.gif?w=300&quot;/&gt;
+&lt;br&gt;&lt;br&gt;
+Most of the times, sequencing doesn’t give us all the data. We have a lot of missing data which represent gaps in the genome and in that case, it would be impossible to obtain a whole genome assembly. So we build many de Bruijn graphs and obtain Eulerian cycles. Such cycles represent contiguous sequences of nucleotides, called &lt;strong&gt;contigs&lt;/strong&gt;. Sometimes we join contigs separated by gaps to obtain &lt;strong&gt;scaffolds&lt;/strong&gt;.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//debruijn-graphs/&quot;&gt;de Bruijn graphs and genomic assembly&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on May 16, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[Gibbs Sampling]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//gibbs-sampling/" />
+  <id>http://jverma.github.io//gibbs-sampling</id>
+  <published>2015-03-24T00:00:00-04:00</published>
+  <updated>2015-03-24T00:00:00-04:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Gibbs_sampling&quot;&gt;Gibbs sampling&lt;/a&gt; is a &lt;a href=&quot;http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo&quot;&gt;Markov chain Monte Carlo&lt;/a&gt; method for sampling from a multivariate probability distribution. It has many applications in inference, &lt;a href=&quot;http://en.wikipedia.org/wiki/Bayesian_network&quot;&gt;Bayesian networks&lt;/a&gt; and machine learning. I am a bioinformatician, who needs to sample from joint distributions all the time. What motivated me to write this post is that currently I&amp;#39;m building a Bayesian network for my work, where I need to draw samples from the network. I&amp;#39;ll talk about the use of Gibbs sampling in BayesNets in another post.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s start with a simple sampling problem. Suppose we have a single variable \( X \) which takes two values:
+&lt;br&gt;&lt;br&gt;
+\( P(X =0)=0.5 \) and \( P(X =1)=0.5 \)
+&lt;br&gt;&lt;br&gt;
+This is an example of &lt;a href=&quot;http://en.wikipedia.org/wiki/Binomial_distribution&quot;&gt;binomial distribution&lt;/a&gt;. How can get a sample from this distribution?
+Simply, flip a coin. If it&amp;#39;s head, \( X=1 \), else \( X=0 \). The following python code will generate samples from this distribution.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;random&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sampler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+What if you have a &lt;a href=&quot;http://en.wikipedia.org/wiki/Multinomial_distribution&quot;&gt;multinomial distribution&lt;/a&gt; ? Say you want to model the roll of a dice:
+&lt;br&gt;
+$$ P(X = i) = 1/6 ,  i \in { 1,\ldots ,6 } $$
+&lt;br&gt;
+Divide the interval [0, 1] into 6 equal parts and select the value of \( X \) based on the interval in which a pseudo-random number falls.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sampler&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;elif&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br&gt;
+Suppose we have a multivariate distribution -
+&lt;br&gt;
+$$ P(X_1,X_2, \dots,X_n) $$
+&lt;br&gt;
+If the variables are independent of each other (i.e &lt;a href=&quot;http://en.wikipedia.org/wiki/Independence_(probability_theory)&quot;&gt;independence assumption&lt;/a&gt;, then we have
+&lt;br&gt;
+$$ P(X_1,X_2, \ldots,X_n) = \prod_{i=1}^{n} P(X_i) $$
+&lt;br&gt;
+which will be easy to sample. Draw samples from each of the \( P(X_i) \) individually and then multiply to get a sample of the joint distribution.
+&lt;br&gt;
+People who work with machine learning and data mining would recognize this assumption to be true for &lt;a href=&quot;http://en.wikipedia.org/wiki/Naive_Bayes_classifier&quot;&gt;Naive Bayes algorithm&lt;/a&gt;.
+&lt;br&gt;&lt;br&gt;
+But if the independent assumption doesn&amp;#39;t hold, the sampling problem is much harder. Gibbs sampling gives a procedure to sample from a joint probability distribution in terms of conditionals. This efficient method works under one condition:
+&lt;br&gt;
+&lt;em&gt;It is easy to sample from conditional distributions&lt;/em&gt; 
+$$ P(X_i | X_1,X_2, \ldots, X_{i-1},X_{i+1}, \ldots X_n) $$ 
+&lt;em&gt;for all&lt;/em&gt; \( X_i \)
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Algorithm:&lt;/strong&gt;
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;￼1. Specify an initial value \( x^{(0)} = (x_1 \ldots ,x_n) \)&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Iterate for \( j = 1,2,3,\ldots \)&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Pick an index \( i \) for \( 1 \leq i \leq n \) uniformly at random.&lt;/li&gt;
+&lt;li&gt; Sample \( x_i \) from \( P(X_{i} | x^{(j-1)}_{(-i)}) \)&lt;/li&gt;
+&lt;li&gt;\( x^{(j)} = (x^{(j-1)}_{(-i)}, x_{i}) \)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+The above sampling methodology generates a sequence of samples \( x^{(0)},x^{(1)},\ldots \). 
+&lt;p&gt;
+Intuitively, the relation between joint and conditional distributions play an important role in this approximation of joint distribution by conditionals.&lt;br&gt;
+&lt;br&gt;
+$$ P(X_i | X_1,X_2, \ldots, X_{i-1},X_{i+1}, \ldots X_n) = \frac{P(X_1,X_2, \ldots,X_n)}{P(X_1,X_2, \ldots, X_{i-1},X_{i+1}, \ldots X_n)} $$
+&lt;br&gt;
+More theoretically, it can be shown that this sequence forms a &lt;a href=&quot;http://en.wikipedia.org/wiki/Markov_chain&quot;&gt;Markov Chain&lt;/a&gt; over all the possible states. The &lt;em&gt;stationary state&lt;/em&gt; of this Markov chain is the sought after joint distribution \( P(X_1,X_2, \ldots,X_n) \). I&amp;#39;ll not go into the theory in this post, a curious soul can refer to other resources.
+&lt;br&gt;&lt;br&gt; 
+Gibbs sampling is a special case of the &lt;a href=&quot;http://en.wikipedia.org/wiki/Metropolis%E2%80%93Hastings_algorithm&quot;&gt;Metropolis-Hastings algorithm&lt;/a&gt;.
+&lt;br&gt;&lt;br&gt;
+A nice implementation of the basic idea of Gibbs sampling can be found on &lt;a href=&quot;http://darrenjw.wordpress.com/2011/07/16/gibbs-sampler-in-various-languages-revisited/&quot;&gt;Darren Wilkinsen&amp;#39;s blog&lt;/a&gt;. &lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//gibbs-sampling/&quot;&gt;Gibbs Sampling&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on March 24, 2015.&lt;/p&gt;
+  </content>
+</entry>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[Twitter Sentiment Analysis]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//twitter-sentiment-analysis/" />
+  <id>http://jverma.github.io//twitter-sentiment-analysis</id>
+  <published>2015-02-24T00:00:00-05:00</published>
+  <updated>2015-02-24T00:00:00-05:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;Twitter represents a fundamentally new instrument to make social measurements. Millions of people voluntarily express opinions across any topic imaginable - this data source is incredibly valuable for both research and business. This means we can use the vast amount of data from Twitter to generate &amp;quot;public opinion&amp;quot; towards certain topics by aggregating the individual tweet results over time. 
+&lt;p&gt;
+Sentiment Analysis aims to determine how a certain person or group reacts to a specific topic. For Twitter, it works by extracting tweets containing references to the desired topic, computing the sentiment polarity and strength of each tweet and then aggregating the results for all such tweets.&lt;br&gt;
+&lt;/p&gt;
+We can also track changes in the users opinion towards these topics over time, allowing us to identify the events that caused these changes. e.g the episode &lt;em&gt;The Rains of Castamere&lt;/em&gt; in the TV series &lt;em&gt;Game of Thrones&lt;/em&gt; had volcanic effect on the public sentiment. 
+Also we can look at the geocoded information in the tweets and analyze the relation between location and mood. 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Techniques:&lt;/strong&gt; There are broadly two categories of sentiment analysis: 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Lexical Methods:&lt;/strong&gt;
+&lt;br&gt; These techniques employ dictionaries of words annotated with their semantic polarity and sentiment strength. This is then used to calculate a score for the polarity and/or sentiment of the document. Usually this method gives high precision but low recall.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Machine Learning Methods:&lt;/strong&gt;
+&lt;br&gt; Such techniques require creating a model by training the classifier with labeled examples. This means that you must first gather a dataset with examples for positive, negative and neutral classes, extract the features from the examples and then train the algorithm based on the examples. These methods are used mainly for computing the polarity of the document. 
+&lt;br&gt;&lt;br&gt;
+Choice of the method heavily depends on the application, domain and language. Using lexicon based techniques with large dictionaries enables us to achieve very good results. Nevertheless they require using a lexicon, something which is not always available in all languages. 
+On the other hand Machine Learning based techniques deliver good results but they require obtaining training on labeled data.
+&lt;br&gt;&lt;br&gt;
+Now I&amp;#39;ll discuss an example of each of the above techniques. 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;AFINN Model:&lt;/strong&gt; 
+&lt;br&gt;
+In the &lt;a href=&quot;http://www2.imm.dtu.dk/pubdb/views/publication_details.php?id=6010&quot;&gt;AFINN model&lt;/a&gt;, the authors have computed sentiment scores for a list of words. The sentiment of a tweet is computed based on the sentiment scores of the terms in the tweet. The sentiment of the tweet is defined to be equal to the sum of the sentiment scores for each term in the tweet. The AFINN-111 dictionary contains 2477 English words rated for valence with an integer value between -5 and 5. The words have been manually labelled by Finn Arup Neilsen in 2009-2010. Some of the words are the grammatically different versions of the same stem e.g. &amp;quot;favorite&amp;quot; and &amp;quot;favorites&amp;quot; are listed as two different words with different valence scores. 
+&lt;br&gt;
+An implementation of the AFINN model can be &lt;a href=&quot;https://github.com/Jverma/Twitter-Sentiment-Analysis&quot;&gt;found here&lt;/a&gt;.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Naive Bayes Classifier:&lt;/strong&gt;
+&lt;br&gt;
+The &lt;a href=&quot;http://en.wikipedia.org/wiki/Naive_Bayes_classifier&quot;&gt;Naive Bayes classifier&lt;/a&gt;can be trained on a corpus of labeled (+ve, -ve, neutral) tweets and then employed to assign polarity to a new tweet. The features used in this model are the words or bi-grams with their frequencies in the tweet strings. You may want to keep or remove URLs, emoticons and short tokens depending on the application. 
+&lt;br&gt;&lt;br&gt;
+If \( f = (f_{1}, f_{2}, \ldots, f_{n}) \) be the vector of features of a tweet ( T ), then the probability of the tweet to be +ve according to Bayes Rule is:&lt;br&gt;
+$$ p(+ve|f ) = ( p(f|+ve) * p(+ve) ) / p(f) $$
+&lt;br&gt;
+Now basic theory of probability tells us that: 
+&lt;br&gt;
+$$
+p(f|+ve) =  p(f_{1}, f_{2}, \ldots, f_{n} | +ve)
+$$
+&lt;br&gt;
+and 
+&lt;br&gt;
+$$ p(f) = p(f_{1}, f_{2}, \ldots, f_{n}) $$
+&lt;br&gt;
+The Naive Bayes asserts that all the features are independent and thus: 
+&lt;br&gt;
+$$ p(f) = \prod_{i} p(f_{i}) $$
+&lt;br&gt;
+$$ p(f|+ve) = \prod_{i} p(f_{i}|+ve) $$
+&lt;br&gt;
+And similarly for -ve and neutral tweets. 
+&lt;br&gt;&lt;br&gt;
+Using the pre-estimated values of these probabilities, one can compute the probability of a tweet to be positive, negative and neutral. 
+Whenever a new tweet is fed to the classifier, it will predict the polarity of the tweet based on the probability of its having that polarity. 
+&lt;br&gt;
+An implementation of Naive Bayes classifier for classifying spam and non-spam messages can be found &lt;a href=&quot;https://github.com/Jverma/naive-bayes&quot;&gt;here&lt;/a&gt;. 
+&lt;br&gt;&lt;br&gt;
+Several other methods in both the categories are prevalent today. Lots of companies using sentiment analysis employ lexical methods where they create dictionaries based on their trade algorithms and the domain of the application. 
+&lt;br&gt;
+For machine learning based analysis, instead of Naive Bayes, one can use more sophisticated algorithms like SVMs. 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Challenges:&lt;/strong&gt;
+&lt;br&gt;
+Sentiment analysis is a very useful, but there are many challenges that need to be overcome to achieve good results. The very first step in opinion mining, something which I swept under the rug so far, is that we have to identify tweets that are relevant to our topic. Tweets containing the given word can be a decent choice, although not perfect. Once we have identified tweets to be analyzed, we need to sure that the tweets DO contain sentiment. Neutral tweets can be a part of our model, but only polarized tweets tell us something subjective. Even though the tweets are polarized, we still need to make sure that the sentiment in the tweet is related to the topic we are studying. For example, suppose we are studying sentiment related to a movie Mission Impossible, then the tweet: “Tom Cruise in Mission Impossible is pathetic!”.
+&lt;p&gt;
+Now this tweet has a negative sentiment, but is directed at the actor rather than the movie. This is not a great example, as the sentiment of the actor and movie is related.
+&lt;br&gt;
+The main challenge in Sentiment analysis using lexical methods is to build a dictionary that contains words/phrases and their sentiment scores. It is very hard to do so in full generality, and often the best idea is to choose a subject and build a list for that. Thus sentiment analysis is highly domain centric, so the techniques developed for stocks may not work for movies.
+&lt;br&gt;
+To solve these problems, you need expertise in NLP and computational linguistics. They correspond to entity extraction, NER, and entity pattern extraction in NLP terminology.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Beyond Twitter:&lt;/strong&gt;
+&lt;br&gt;
+Facebook performed an experiment to measure the effect of removing positive (or negative) posts from the people&amp;#39;s news feeds on how positive (or negative) their own posts were in the days after these changes were made. They found that the people from whose news feeds negative posts were removed produced a larger percentage of positive words as well as a smaller percentage of negative words in their posts. The group of people from whose news feeds negative posts were removed showed similar tendencies. The procedure and results of this experiment were a paper in the Proceedings of the National Academy of Sciences. Though, I don’t subscribe to the idea of using users are subjects to a physiological experiment without their knowledge, this is a cool application of sentiment analysis subject area.
+&lt;br&gt;&lt;br&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;
+&lt;br&gt;
+-  Liu, Bing. &amp;quot;Sentiment analysis and subjectivity.&amp;quot; Handbook of natural language processing 2 (2010): 627-666.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Liu, Bing, and Lei Zhang. &amp;quot;A survey of opinion mining and sentiment analysis.&amp;quot;Mining Text Data. Springer US, 2012. 415-463.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Liu, Bing. &amp;quot;Sentiment analysis and opinion mining.&amp;quot; Synthesis Lectures on Human Language Technologies 5.1 (2012): 1-167.&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.cs.cornell.edu/home/llee/opinion-mining-sentiment-analysis-survey.html&quot;&gt;Opinion mining and sentiment analysis&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/&quot;&gt;Twitter sentiment analysis using Python and NLTK&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//twitter-sentiment-analysis/&quot;&gt;Twitter Sentiment Analysis&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on February 24, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
   
@@ -30,9 +321,94 @@
     &lt;p&gt;We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
 &lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Setup:&lt;/strong&gt; 
-Let the data be &lt;/p&gt;
+&lt;br&gt;
+Let the data be \( D = ( x_{i} , y_{i} )_{1 \leq i \leq N} \) where each \( x_{i}  \in \mathbb{R}^n \) and \( y_{i} \in \mathbb{R} \).
+The linear regression model predicts the values of \( y_{i} \)&amp;#39;s as linear combinations of the features \( x_{i} \)&amp;#39;s&lt;/p&gt;
 
-&lt;p&gt;$$ D = { x&lt;em&gt;i ,y&lt;/em&gt;i } $$&lt;/p&gt;
+&lt;p&gt;$$ y_{i} = w_{0} + \sum_{j} w_{j} x_{ij} = w_{0} +w^T x_{i} $$&lt;/p&gt;
+
+&lt;p&gt;Adding 1 to the vectors \(( x_{i} \)) to redefine \(( x_i = (1,x_i) \)) and combining \(( w_0 \)) and \(( w_i \))&amp;#39;s into a single vector \(( w = (w_0, w_1, \ldots, w_n) \)), this can be written as &lt;/p&gt;
+
+&lt;p&gt;$$ y_i = w^T x_i $$&lt;/p&gt;
+
+&lt;p&gt;The idea is to estimate the values of parameters \(( \hat{w} \)) from the training data and predict the \(( y \))-value for a new observation \(( \tilde{x} \)) as &lt;/p&gt;
+
+&lt;p&gt;$$ \tilde{y} = \hat{w}^T \tilde{x} $$
+&lt;br&gt;&lt;br&gt;
+We will consider &lt;em&gt;Maximum likelihood estimation&lt;/em&gt; (Frequentist), &lt;em&gt;Maximum a Posteriori&lt;/em&gt; (semi-bayesian) and &lt;em&gt;Bayesian regression models&lt;/em&gt;. 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;tl;dr&lt;/strong&gt;
+&lt;br&gt;
+MLE chooses the parameters which maximize the likelihood of data given that parameter, MAP chooses parameters which maximize the posterior probability  of that parameter in the light of observed data and Bayesian inference computes the posterior probability distribution for the parameters given data.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Maximum Likelihood Estimation:&lt;/strong&gt;
+&lt;br&gt;
+The observed values of \(( y_i \))  is assumed to have Gaussian noise error i.e. &lt;/p&gt;
+
+&lt;p&gt;$$ y_i = w^T x_i + \epsilon $$&lt;/p&gt;
+
+&lt;p&gt;where \(( \epsilon \sim N(0,\sigma^2) \)).
+&lt;br&gt;
+The Likelihood in this case is given by
+&lt;br&gt;
+$$ \mathcal{L}(D | w, \sigma) = (2 \pi \sigma^2)^{-n/2} \prod_{i=1}^{n} exp \left[ \frac{-(y_i - \hat{y}_i)^2}{2\sigma^2} \right] $$
+&lt;br&gt;
+then the log-likelihood is given by
+&lt;br&gt;
+$$ \ln(\mathcal{L}) = - \frac{n}{2} \ln(2\pi \sigma^2) -  \frac{1}{2\sigma^2} \sum_i (y_i - w^T x_i)^2 $$
+&lt;br&gt;
+Now MLE states that the estimated value of \(( w \)) is given by
+&lt;br&gt;
+$$w_{MLE} = argmax_w \ln(\mathcal{L}(D | w, \sigma)) $$
+&lt;br&gt;
+which in this case reduces to
+&lt;br&gt;
+$$ w_{MLE} = argmin_w \sum_i  (y_i - w^T x_i)^2 $$
+&lt;br&gt;&lt;br&gt;
+This is why the linear regression model is often known as &lt;em&gt;least square method&lt;/em&gt;. 
+Now we differentiate with respect to \(( w \)) and equate the derivative to zero to get the estimate of \(( w \)). This can be more clearly expressed in terms of linear algebraic quantities.
+ &lt;br&gt;&lt;br&gt;
+If \(( X = (x_1, x_2, \ldots, x_N)^T \)), \(( Y = (y_1, y_2, \ldots, y_N)^T \)) and  \(( \theta = (w_0, w_1, w_2, \ldots, w_N)^T \)), then one can check that the MLE for \(( \theta \)) is 
+&lt;br&gt;
+$$ \hat{\theta} = (X^T X)^{-1} X^T Y $$
+&lt;br&gt;
+Similarly  \(( \sigma^2 \)) can be estimated by differentiating the MLE with respect to  \(( \sigma^2 \)) and equation the derivative to zero. 
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Maximum a Posteriori estimation:&lt;/strong&gt;
+&lt;br&gt;
+ For MAP, we assume a Gaussian prior on \(( w \)) i.e 
+$$ w \sim N(0, \lambda^{-1} I)$$
+&lt;br&gt;
+$$ P(w) = (\frac{\lambda}{2 \pi})^{n/2} exp \left[ -\frac{\lambda}{2} w^T w \right] $$
+&lt;br&gt;
+Then the posterior probability after we observe the training data is computed by Bayes rule as &lt;/p&gt;
+
+&lt;p&gt;$$ P(w|D) = \frac{P(w) P(D|w)}{P(D)}$$
+&lt;br&gt;
+as with MLE, we will maximize the log-posterior probability and then 
+&lt;br&gt;
+$$ w_{MAP} = argmax_w \ln(P(w|d)) $$
+&lt;br&gt;
+which reduces to&lt;/p&gt;
+
+&lt;p&gt;$$ w_{MAP} = argmin_w \sum_i (y_i - w^T x_i)^2 + \frac{\lambda}{2} w^T w $$
+&lt;br&gt;
+Thus, the MAP estimation can be thought of as regression with regularization. 
+The MAP estimate in this case is 
+&lt;br&gt;
+$$ w_{MAP} = (\lambda I + X^T X)^{-1} X^T y $$&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Bayesian Regression:&lt;/strong&gt;
+&lt;br&gt;
+ In Bayesian regression, the Bayesian philosophy is applied. Both MLE and MAP are point estimates but in Bayesian regression, we look for predictive probability. Here we make predictions by integrating over the posterior distribution of the model parameters \(( w \)). 
+If \(( \tilde{x} \)) is a new point, we compute the probability of \(( \tilde{y} \)), the y-value corresponding to this x is given by
+&lt;br&gt;
+$$ P(\tilde{y} | \tilde{x}, D, \sigma^2, \lambda) = \int P(\tilde{y} | w, \tilde{x}, \sigma^2 ) P(w|D, \sigma^2 , \lambda) dw $$
+&lt;br&gt;
+These integration are often very hard to to do analytically and rely on sophisticated MCMC methods. 
+ &lt;br&gt;&lt;br&gt;
+In full Bayesian regression, we assume a prior on \(( \sigma^2 \)) in addition to prior on \(( w \)).&lt;/p&gt;
 
     &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//regression-freq-bayesian/&quot;&gt;Linear Regression : Frequentist and Bayesian&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on February 03, 2015.&lt;/p&gt;
   </content>
