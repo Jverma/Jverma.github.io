@@ -86,7 +86,7 @@ Facebook performed an experiment to measure the effect of removing positive (or 
 <br><br>
 
 **Resources:**
-<br>
+
 -  Liu, Bing. "Sentiment analysis and subjectivity." Handbook of natural language processing 2 (2010): 627-666.
 
 - Liu, Bing, and Lei Zhang. "A survey of opinion mining and sentiment analysis."Mining Text Data. Springer US, 2012. 415-463.

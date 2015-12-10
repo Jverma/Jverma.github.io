@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T12:57:44-05:00</updated>
+<updated>2015-12-10T12:58:53-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -496,11 +496,10 @@ To solve these problems, you need expertise in NLP and computational linguistics
 Facebook performed an experiment to measure the effect of removing positive (or negative) posts from the people&amp;#39;s news feeds on how positive (or negative) their own posts were in the days after these changes were made. They found that the people from whose news feeds negative posts were removed produced a larger percentage of positive words as well as a smaller percentage of negative words in their posts. The group of people from whose news feeds negative posts were removed showed similar tendencies. The procedure and results of this experiment were a paper in the Proceedings of the National Academy of Sciences. Though, I don’t subscribe to the idea of using users are subjects to a physiological experiment without their knowledge, this is a cool application of sentiment analysis subject area.
 &lt;br&gt;&lt;br&gt;&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;
-&lt;br&gt;
--  Liu, Bing. &amp;quot;Sentiment analysis and subjectivity.&amp;quot; Handbook of natural language processing 2 (2010): 627-666.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Resources:&lt;/strong&gt;&lt;/p&gt;
 
 &lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Liu, Bing. &amp;quot;Sentiment analysis and subjectivity.&amp;quot; Handbook of natural language processing 2 (2010): 627-666.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Liu, Bing, and Lei Zhang. &amp;quot;A survey of opinion mining and sentiment analysis.&amp;quot;Mining Text Data. Springer US, 2012. 415-463.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;Liu, Bing. &amp;quot;Sentiment analysis and opinion mining.&amp;quot; Synthesis Lectures on Human Language Technologies 5.1 (2012): 1-167.&lt;/p&gt;&lt;/li&gt;
 &lt;li&gt;&lt;p&gt;&lt;a href=&quot;http://www.cs.cornell.edu/home/llee/opinion-mining-sentiment-analysis-survey.html&quot;&gt;Opinion mining and sentiment analysis&lt;/a&gt;&lt;/p&gt;&lt;/li&gt;
