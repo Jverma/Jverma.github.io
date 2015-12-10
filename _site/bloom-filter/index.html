@@ -5,14 +5,14 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>Bloom Filter &#8211; Random Inferences</title>
+<title>Bloom Filters &#8211; Random Inferences</title>
 <meta name="description" content="Quick introduction to bloom filter data structure.">
 <meta name="keywords" content="mathematics, computer science, data structures">
 
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="Bloom Filter">
+<meta name="twitter:title" content="Bloom Filters">
 <meta name="twitter:description" content="Quick introduction to bloom filter data structure.">
 <meta name="twitter:site" content="@januverma">
 <meta name="twitter:creator" content="@januverma">
@@ -23,7 +23,7 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Bloom Filter">
+<meta property="og:title" content="Bloom Filters">
 <meta property="og:description" content="Quick introduction to bloom filter data structure.">
 <meta property="og:url" content="http://jverma.github.io//bloom-filter/">
 <meta property="og:site_name" content="Random Inferences">
@@ -116,7 +116,7 @@
     
       "http://jverma.github.io//images/sample-image-4.jpg"
     
-  alt="Bloom Filter feature image">
+  alt="Bloom Filters feature image">
   
     <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
   
@@ -162,7 +162,7 @@
   <article class="post">
     <div class="headline-wrap">
       
-        <h1><a href="http://jverma.github.io//bloom-filter/" rel="bookmark" title="Bloom Filter">Bloom Filter</a></h1>
+        <h1><a href="http://jverma.github.io//bloom-filter/" rel="bookmark" title="Bloom Filters">Bloom Filters</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
@@ -176,17 +176,17 @@ A bloom filter supports two operations</p>
 </ul>
 
 <p>$$ Test = \begin{cases}
-        false, &amp; \text{then x is definitely not in S} \
-        true, &amp; \text{then x is probably in the set }
+        false, \text{then x is definitely not in S} \
+        true, \text{then x is probably in the set }
     \end{cases}
 $$
-<br><br>
+<br>
 A BF should also compute the <em>false positive rate</em>.</p>
 
 <p><br><br>
 <strong>Construction of a Bloom filter:</strong>
 <br>
-Consider a set \( S = {a<em>1, a</em>2, \ldots, a_n} \). Bloom filters describe membership information of \( S \) using a bit array \( V \) of length \( m \). It consists of an array of \( m \) bits, each initialized to \( 0 \). To add an item \( \theta \) to the bloom filter, \( k \) independent hash functions \( H_{1}(\theta), H_{2}(\theta), \ldots, H_{k}(\theta) \) are calculated. Each maps \( \theta \) to an integer in \( [0, m) \) and the corresponding \( h \) array bits are set to 1.
+Consider a set \( S = {a_1, a_2, \ldots, a_n} \). Bloom filters describe membership information of \( S \) using a bit array \( V \) of length \( m \). It consists of an array of \( m \) bits, each initialized to \( 0 \). To add an item \( \theta \) to the bloom filter, \( k \) independent hash functions \( H_{1}(\theta), H_{2}(\theta), \ldots, H_{k}(\theta) \) are calculated. Each maps \( \theta \) to an integer in \( [0, m) \) and the corresponding \( h \) array bits are set to 1.
 <br><br>
 To test if an item \( \alpha \) is a member, the same hash functions are applied to 
 \( \alpha \) and the corresponding values in the bitarray are checked. \( \alpha \) is a member if all corresponding bits are set to 1.
@@ -196,24 +196,23 @@ By construction, a bloom filter correctly identifies whether a element is added 
 <p><br><br>
 <strong>Example: </strong>
 <br>
-I borrowed the following example from <a href="http://kellabyte.com/2013/01/24/using-a-bloom-filter-to-reduce-expensive-operations-like-disk-io/">kellabyte</a></p>
-
-<p>A bloom starts by initializing an empty bitarray : 
+I borrowed the following example from <a href="http://kellabyte.com/2013/01/24/using-a-bloom-filter-to-reduce-expensive-operations-like-disk-io/">kellabyte</a>
+<br>
+A bloom starts by initializing an empty bitarray : 
 <figure>
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_empty_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_empty_thumb1.jpg?w=300" alt="bloomfilter_empty_thumb1" width="300" height="42" class="alignnone size-medium wp-image-883" /></a>
-<fugure></p>
-
-<p>When a new element is added, the hashes are computed and the corresponding bits are turned on :
+<fugure>
+<br><br>
+When a new element is added, the hashes are computed and the corresponding bits are turned on :
 <figure><br>
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_adding_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_adding_thumb1.jpg?w=300" alt="bloomfilter_adding_thumb1" width="300" height="129" class="alignnone size-medium wp-image-882" /></a>
-<figure></p>
-
-<p>When we query for an element, the same hashes are evaluated : 
+<figure>
+<br><br>
+When we query for an element, the same hashes are evaluated : 
 <figure> 
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_querying_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_querying_thumb1.jpg?w=300" alt="bloomfilter_querying_thumb1" width="300" height="196" class="alignnone size-medium wp-image-881" /></a>
-<figure></p>
-
-<p><br><br>
+<figure>
+<br><br>
 <strong>Optimizing a bloom filter:</strong>
 <br>
 There is a tradeoff between the size of the bitarray and the false positive rate. 
@@ -242,7 +241,7 @@ Let&#39;s try to implement a bloom filter in python following the above construc
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">hashlib</span>
 <span class="kn">from</span> <span class="nn">bitarray</span> <span class="kn">import</span> <span class="n">bitarray</span></code></pre></div>
 
-<p>We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray $latex m$ and number of hashes \( k \). </p>
+<p>We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray \( m \) and number of hashes \( k \). </p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BloomFilter</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -322,7 +321,7 @@ This completes our implementation of a bloom filter. Surely one can add more met
     </li>
   </ul>
 </div><!-- /.social-share -->
-        <p class="byline"><strong>Bloom Filter</strong> was published on <time datetime="2015-11-05T00:00:00-05:00">November 05, 2015</time>.</p>
+        <p class="byline"><strong>Bloom Filters</strong> was published on <time datetime="2015-11-05T00:00:00-05:00">November 05, 2015</time>.</p>
       </footer>
     </div><!-- /.article-wrap -->
   

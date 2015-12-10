@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Bloom Filter"
+title: "Bloom Filters"
 excerpt: "Quick introduction to bloom filter data structure."
 tags: [mathematics, computer science, data structures]
 comments: true
@@ -17,17 +17,17 @@ A bloom filter supports two operations
 - <strong>Test </strong>: checks whether a given element \\( x \\) is in the set \\( S \\) or not. Test returns a boolean value as follows 
 
 $$ Test = \begin{cases}
-		false, &amp; \text{then x is definitely not in S} \\
-		true, &amp; \text{then x is probably in the set }
+		false, \text{then x is definitely not in S} \\
+		true, \text{then x is probably in the set }
 	\end{cases}
 $$
-<br><br>
+<br>
 A BF should also compute the <em>false positive rate</em>.
 
 <br><br>
 <strong>Construction of a Bloom filter:</strong>
 <br>
-Consider a set \\( S = {a_1, a_2, \ldots, a_n} \\). Bloom filters describe membership information of \\( S \\) using a bit array \\( V \\) of length \\( m \\). It consists of an array of \\( m \\) bits, each initialized to \\( 0 \\). To add an item \\( \theta \\) to the bloom filter, \\( k \\) independent hash functions \\( H\_{1}(\theta), H\_{2}(\theta), \ldots, H\_{k}(\theta) \\) are calculated. Each maps \\( \theta \\) to an integer in \\( [0, m) \\) and the corresponding \\( h \\) array bits are set to 1.
+Consider a set \\( S = {a\_1, a\_2, \ldots, a\_n} \\). Bloom filters describe membership information of \\( S \\) using a bit array \\( V \\) of length \\( m \\). It consists of an array of \\( m \\) bits, each initialized to \\( 0 \\). To add an item \\( \theta \\) to the bloom filter, \\( k \\) independent hash functions \\( H\_{1}(\theta), H\_{2}(\theta), \ldots, H\_{k}(\theta) \\) are calculated. Each maps \\( \theta \\) to an integer in \\( [0, m) \\) and the corresponding \\( h \\) array bits are set to 1.
 <br><br>
 To test if an item \\( \alpha \\) is a member, the same hash functions are applied to 
 \\( \alpha \\) and the corresponding values in the bitarray are checked. \\( \alpha \\) is a member if all corresponding bits are set to 1.
@@ -38,22 +38,21 @@ By construction, a bloom filter correctly identifies whether a element is added 
 <strong>Example: </strong>
 <br>
 I borrowed the following example from <a href="http://kellabyte.com/2013/01/24/using-a-bloom-filter-to-reduce-expensive-operations-like-disk-io/">kellabyte</a>
-
+<br>
 A bloom starts by initializing an empty bitarray : 
 <figure>
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_empty_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_empty_thumb1.jpg?w=300" alt="bloomfilter_empty_thumb1" width="300" height="42" class="alignnone size-medium wp-image-883" /></a>
 <fugure>
-
+<br><br>
 When a new element is added, the hashes are computed and the corresponding bits are turned on :
 <figure>  
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_adding_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_adding_thumb1.jpg?w=300" alt="bloomfilter_adding_thumb1" width="300" height="129" class="alignnone size-medium wp-image-882" /></a>
 <figure>
-
+<br><br>
 When we query for an element, the same hashes are evaluated : 
 <figure> 
 <a href="https://januverma.files.wordpress.com/2015/06/bloomfilter_querying_thumb1.jpg"><img src="https://januverma.files.wordpress.com/2015/06/bloomfilter_querying_thumb1.jpg?w=300" alt="bloomfilter_querying_thumb1" width="300" height="196" class="alignnone size-medium wp-image-881" /></a>
 <figure>
-
 <br><br>
 <strong>Optimizing a bloom filter:</strong>
 <br>
@@ -84,7 +83,7 @@ import hashlib
 from bitarray import bitarray
 {% endhighlight %}
 
-We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray $latex m$ and number of hashes \\( k \\). 
+We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray \\( m \\) and number of hashes \\( k \\). 
 {% highlight python %}
 class BloomFilter():
 	"""
