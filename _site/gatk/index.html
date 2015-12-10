@@ -171,23 +171,24 @@
 <strong>Find Active Regions:</strong>
 <br> 
 First step in HalplotypeCaller procedure is to find the regions of high activity. These are the genomic regions which have strong evidence for variation. Each position is assigned a raw <strong>activity score</strong> which is the probability that the position contains a variant. This probability is calculated using the <strong>reference-confidence model</strong> (see Appendix). The raw profile thus obtained is then smoothened by copying the activity score over to the adjacent regions and then spreading out using a Gaussian kernel. Finally, the active regions are obtained as the ones containing positions with high-enough activity score.
-Mathematically, for each position \( i \): 
-    - Assign score \( P(i,variant) \) which is the probability of \( i \) being a variant.
-    - For each \( j \) in the interval around \( i \) of radius \( r \leq 50bp \) 
-    <br>
-    $$ P(j,variant) = P(j,variant) + P(i,variant)$$ 
-Here \( r \) is equal to the number of high quality soft-clipped bases that immediately follow or precede \( i \).
+Mathematically, for each position \( i \):</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">- Assign score \\( P(i,variant) \\) which is the probability of \\( i \\) being a variant.
+- For each \\( j \\) in the interval around \\( i \\) of radius \\( r \leq 50bp \\) 
+$$ P(j,variant) = P(j,variant) + P(i,variant)$$ 
+</code></pre></div>
+<p>Here \( r \) is equal to the number of high quality soft-clipped bases that immediately follow or precede \( i \).
     - The profile score is spread out using Gaussian kernel upto 50bp. The score of \( i \) after spreading is denoted \( score_i \)
 <br><br><br>
-Then the active regions are computed as follows :
-    - Final profile score of site i is given by 
-    <br>
-    $$ FinalScore_i = \sum_{k}score_k $$
-    <br>
-    where \( k \) runs over all the positions which contribute to the score of i as in previous step.
-    - Cut the genome at points where the final profile score goes from active to non-active regions by choosing a activity threshold.&lt;
-    - Trimm the not-so-important bps from the regions obtained in the previous step.
-<br><br>
+Then the active regions are computed as follows :</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">- Final profile score of site i is given by 
+&lt;br&gt;
+$$ FinalScore\_i = \sum\_{k}score\_k $$
+&lt;br&gt;
+where \\( k \\) runs over all the positions which contribute to the score of i as in previous step.
+- Cut the genome at points where the final profile score goes from active to non-active regions by choosing a activity threshold.&lt;
+- Trimm the not-so-important bps from the regions obtained in the previous step.
+</code></pre></div>
+<p><br><br>
 <strong>Local assembly of the active regions:</strong>
 <br>
 In this step the active regions are re-assembled de novo by building a <a href="http://jverma.github.io//debruijn-graphs/">de Bruijn</a> type graph of the reference genome.
@@ -200,12 +201,13 @@ In this step the active regions are re-assembled de novo by building a <a href="
 <p><br><br><br>
 <strong>Identify Haplotypes:</strong> 
 <br>
-After the re-assembly graph is constructed and pruned, the halpotypes are extracted as :
-    - For each edge \( e \) in the graph, let \( i \)be the source vertex of \( e \). Compute transition probability of \( e \).
-    <br>
-    $$ Prob(e) = W[e]/OutDegree(i) $$
-    <br>
-where \( W[e] \) is the weight of the edge and \( OutDegree(i) \) is the out degree of \( i \).
+After the re-assembly graph is constructed and pruned, the halpotypes are extracted as :</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">- For each edge \\( e \\) in the graph, let \\( i \\)be the source vertex of \\( e \\). Compute transition probability of \\( e \\).
+&lt;br&gt;
+$$ Prob(e) = W[e]/OutDegree(i) $$
+&lt;br&gt;
+</code></pre></div>
+<p>where \( W[e] \) is the weight of the edge and \( OutDegree(i) \) is the out degree of \( i \).
     - For each path \( p \) in the graph, compute its likelihood score as 
     <br>
  $$latex Lik(p) = \prod_{e \in p} Prob(e) $$ 
@@ -216,11 +218,10 @@ The product is over all the edges in the path \( p \).</li>
 <br><br><br>
 <strong>Compute haplotype likelihoods:</strong> 
 <br>
-In the previous step, we computed a set of potential halpotypes. This set of sites gives a super-set of what will eventually be called-variants. The next step in GATK pipeline is to compute the evidence of existence of a haplotype given the data. For each haplotype H -
-<ul>
-    - Align each data read against H using <strong><a href="http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/">PairHMM</a></strong> and compute the likelihood of observing the read given the halpotype. Thus we obtain \( P(read|H) \)for all reads.
-    - Mariginalize the per-read likelihoods of halpotypes over alleles to get the per-read likelihoods for each allele, \( P(read|A) \) for each allele A and read. For a given site, we list all the alleles observed in the data. Then, for each read, we look at the haplotypes that support each allele; we select the haplotype that has the highest likelihood for that read, and we write that likelihood in the new table. And that’s it! For a given allele, the total likelihood will be the product of all the per-read likeli be the variants.</p>
-
+In the previous step, we computed a set of potential halpotypes. This set of sites gives a super-set of what will eventually be called-variants. The next step in GATK pipeline is to compute the evidence of existence of a haplotype given the data. For each haplotype H,</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">- Align each data read against H using &lt;strong&gt;&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/&quot;&gt;PairHMM&lt;/a&gt;&lt;/strong&gt; and compute the likelihood of observing the read given the halpotype. Thus we obtain \\( P(read|H) \\)for all reads.
+- Mariginalize the per-read likelihoods of halpotypes over alleles to get the per-read likelihoods for each allele, \\( P(read|A) \\) for each allele A and read. For a given site, we list all the alleles observed in the data. Then, for each read, we look at the haplotypes that support each allele; we select the haplotype that has the highest likelihood for that read, and we write that likelihood in the new table. And that’s it! For a given allele, the total likelihood will be the product of all the per-read likeli be the variants.
+</code></pre></div>
 <p><br><br><br>
 <strong>Bayesian Genotyper:</strong> 
 <br>
