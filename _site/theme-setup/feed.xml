@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T12:09:38-05:00</updated>
+<updated>2015-12-10T12:49:34-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -67,23 +67,25 @@ $$ \phi : M \rightarrow \mathbb{C} $$&lt;/li&gt;
 $$ \Phi : M \rightarrow X $$
 Such fields arise in &lt;strong&gt;sigma models&lt;/strong&gt;. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Gauge theory&lt;/strong&gt; - The setup for a gauge theory is a principal bundle with a connection.
-Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.
-&lt;br&gt;
+Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;
 &lt;strong&gt;Defintion:&lt;/strong&gt; A &lt;em&gt;connection&lt;/em&gt; \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the &lt;em&gt;Lie algebra&lt;/em&gt; of the &lt;em&gt;Lie group&lt;/em&gt; \( G \).
-$$ \mathcal{A} \in C^{\infty}(P, T^{&lt;em&gt;}P) \otimes \mathfrak{g} $$
+&lt;br&gt;
+$$ \mathcal{A} \in C^{\infty}(P, T^{&lt;em&gt;}P) \times \mathfrak{g} $$
 &lt;br&gt;
 We call \( \mathcal{A} \) the *gauge field&lt;/em&gt; with gauge group \( G \). The Maxwell&amp;#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
 &lt;br&gt;
-In case of &lt;a href=&quot;http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory&quot;&gt;Yang-Mills theory&lt;/a&gt;, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Spinor fields&lt;/strong&gt; - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
+In case of &lt;a href=&quot;http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory&quot;&gt;Yang-Mills theory&lt;/a&gt;, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.
+- &lt;strong&gt;Spinor fields&lt;/strong&gt; - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
 $$ \pi : S \rightarrow M $$
 be a &lt;em&gt;spinor bundle&lt;/em&gt; on \( M \). Then the spinor fields are the sections of \( S \).
-$$ \psi : M \rightarrow S $$&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Gravity&lt;/strong&gt; - Let \( M \) be a &lt;em&gt;Riemannian manifold&lt;/em&gt;. The fields in the theory of gravity, gravitational fields, are the &lt;em&gt;metrics&lt;/em&gt; on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
-$$ g : M \rightarrow Symm^{(0,2)}(M) $$&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Supergravity&lt;/strong&gt; - The &lt;em&gt;Rarita-Schwinger field&lt;/em&gt; in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the &lt;em&gt;twisted spinor bundle&lt;/em&gt;.
-$$  \psi : M \rightarrow S \otimes T^{*}M $$&lt;/li&gt;
-&lt;/ul&gt;
+$$ \psi : M \rightarrow S $$
+- &lt;strong&gt;Gravity&lt;/strong&gt; - Let \( M \) be a &lt;em&gt;Riemannian manifold&lt;/em&gt;. The fields in the theory of gravity, gravitational fields, are the &lt;em&gt;metrics&lt;/em&gt; on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
+$$ g : M \rightarrow Symm^{(0,2)}(M) $$
+- &lt;strong&gt;Supergravity&lt;/strong&gt; - The &lt;em&gt;Rarita-Schwinger field&lt;/em&gt; in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the &lt;em&gt;twisted spinor bundle&lt;/em&gt;.
+$$  \psi : M \rightarrow S \otimes T^{*}M $$&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;br&gt;
 In all the field theories, there exists a natural &lt;em&gt;evaluation map&lt;/em&gt;,
