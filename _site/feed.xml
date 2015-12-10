@@ -4,13 +4,89 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T12:58:53-05:00</updated>
+<updated>2015-12-10T15:17:49-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
   <uri>http://jverma.github.io//</uri>
   
 </author>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[Community Detection in networks]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//community-in-graphs/" />
+  <id>http://jverma.github.io//community-in-graphs</id>
+  <published>2015-10-14T00:00:00-04:00</published>
+  <updated>2015-10-14T00:00:00-04:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;An important question about a social, biological or economical network is to identify &lt;em&gt;communities&lt;/em&gt;. A &lt;strong&gt;community&lt;/strong&gt; is a subset of nodes which are &amp;#39;more&amp;#39; connected to each other than the members of the other subsets. There are various methods to do this, we will use &lt;a href=&quot;http://en.wikipedia.org/wiki/Girvan%E2%80%93Newman_algorithm&quot;&gt;&lt;strong&gt;Girvan-Newman algorithm&lt;/strong&gt;. &lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+Consider the following graph G (forgive poor visuals!)
+&lt;figure&gt;
+&lt;a href=&quot;https://januverma.files.wordpress.com/2014/08/graph.png&quot;&gt;&lt;img class=&quot;alignnone  wp-image-259&quot; src=&quot;http://januverma.files.wordpress.com/2014/08/graph.png?w=300&quot; alt=&quot;graph&quot; width=&quot;448&quot; height=&quot;340&quot; /&gt;&lt;/a&gt;
+&lt;/figure&gt;
+G has 7 nodes labeled A,B,C,D,E,F,G and there are edges between some of them. We want to extract communities in the graph.
+&lt;br&gt;&lt;br&gt;
+GN algorithm works by finding the edges which are &amp;#39;between&amp;#39; communities and then progressively removing these edges from the original graph.
+&lt;br&gt;
+How do we decide which edges are most likely to be between communities ?
+&lt;br&gt;
+Girvan and Newman defined the &lt;strong&gt;edge betweenness&lt;/strong&gt; of an edge \( (u,v) \) as the number of shortest paths between pairs of vertices that run along it i.e number of nodes \( x \) and \( y \) such that the edge \( (u,v) \) lies on the shortest path between \( x \) and \( y \).
+&lt;br&gt;
+This extends the notion of node betweenness to edges.
+&lt;br&gt;&lt;br&gt;
+If there are more than one shortest path between \( x \) and \( y \), then the contribution of \( (x,y) \) to the betweenness of \( (u,v) \) is equal to the fraction of the shortest paths that include \( (u,v) \).
+&lt;br&gt;&lt;br&gt;
+If a network contains communities that are only loosely connected by a few inter-community edges, then all shortest paths between different communities must go along one of these few edges. Thus, the edges connecting communities will have high edge betweenness. By removing these edges, we separate groups from one another and so reveal the underlying community structure of the graph.
+&lt;br&gt;&lt;br&gt;
+The algorithm&amp;#39;s steps for community detection are -&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The betweenness of all existing edges in the network is calculated first.&lt;/li&gt;
+&lt;li&gt;The edge with the highest betweenness is removed.&lt;/li&gt;
+&lt;li&gt;The betweenness of all edges affected by the removal is recalculated.&lt;/li&gt;
+&lt;li&gt;Steps 2 and 3 are repeated until some stopping criterion is fulfilled.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+Let&amp;#39;s apply GN algorithm on our graph. For our graph (( G \), we can calculate the betweenness for all the edges -&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;AB: 5&lt;/li&gt;
+&lt;li&gt;AC: 1&lt;/li&gt;
+&lt;li&gt;BC: 5&lt;/li&gt;
+&lt;li&gt;BD: 12&lt;/li&gt;
+&lt;li&gt;DE: 4.5&lt;/li&gt;
+&lt;li&gt;DG: 4.5&lt;/li&gt;
+&lt;li&gt;EF: 1.5&lt;/li&gt;
+&lt;li&gt;DF: 4&lt;/li&gt;
+&lt;li&gt;GF: 1.5&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+As we can see in the graph that there are two shortest path between E and G, one going through D and the other through F. Thus each of the edges DE, EF, DG, GF are credited with half a shortest path.
+&lt;br&gt;
+Clearly the edge BD has the highest betweenness. So removing leaves us with two communities.&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://januverma.files.wordpress.com/2014/08/graph1.png&quot;&gt;&lt;img class=&quot;alignnone  wp-image-267&quot; src=&quot;http://januverma.files.wordpress.com/2014/08/graph1.png?w=300&quot; alt=&quot;graph1&quot; width=&quot;484&quot; height=&quot;368&quot; /&gt;&lt;/a&gt;
+&lt;br&gt;&lt;br&gt;
+If we interpret the graph as a friendship network in a class, then A,B,C and D,E,F,G are two groups of friends. BD is the only interlocutor!
+&lt;br&gt;
+We can go further and re-calculate the betweenness for all the edges in the graph and remove edges accordingly.
+&lt;br&gt;&lt;br&gt;
+An implementation of GN algorithm in python can be found &lt;a href=&quot;https://github.com/Jverma/TextGraphics/blob/master/TextGraphics/Analysis/communityDetection.py&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//community-in-graphs/&quot;&gt;Community Detection in networks&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on October 14, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
   
