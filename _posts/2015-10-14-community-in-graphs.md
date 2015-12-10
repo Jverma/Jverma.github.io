@@ -18,9 +18,9 @@ Consider the following graph G (forgive poor visuals!)
 G has 7 nodes labeled A,B,C,D,E,F,G and there are edges between some of them. We want to extract communities in the graph.
 <br><br>
 GN algorithm works by finding the edges which are 'between' communities and then progressively removing these edges from the original graph.
-<br>
+<br><br>
 How do we decide which edges are most likely to be between communities ?
-<br>
+<br><br>
 Girvan and Newman defined the <strong>edge betweenness</strong> of an edge \\( (u,v) \\) as the number of shortest paths between pairs of vertices that run along it i.e number of nodes \\( x \\) and \\( y \\) such that the edge \\( (u,v) \\) lies on the shortest path between \\( x \\) and \\( y \\).
 <br>
 This extends the notion of node betweenness to edges.
