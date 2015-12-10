@@ -87,9 +87,9 @@ from bitarray import bitarray
 We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray $latex m$ and number of hashes \\( k \\). 
 {% highlight python %}
 class BloomFilter():
-	&quot;&quot;&quot;
+	"""
 	Implements a bloom filter.
-	&quot;&quot;&quot;
+	"""
 	def __init__(self, m ,k):
 		self.m = m
 		self.k = k
@@ -97,19 +97,19 @@ class BloomFilter():
 		self.length = 0
 {% endhighlight %}
 <br>
-As we discussed above a bloom filter computes $latex k$ hashes for each element. Let's create these hash functions using python library <em>hashlib</em> which comes with base package. 
+As we discussed above a bloom filter computes \\( k \\) hashes for each element. Let's create these hash functions using python library <em>hashlib</em> which comes with base package. 
 
 {% highlight python %}
 def hash_functions(self, key):
-	&quot;&quot;&quot;
+	"""
 	Build k hash functions.
 	Map key to an integer in [0,m).
-	&quot;&quot;&quot;
+	"""
 	h = hashlib.new('md5')
 	h.update(str(key))
 	x = long(h.hexdigest(),16)
 	for i in xrange(self.k):
-		if (x &lt; self.m):
+		if (x < self.m):
 			h.update('.')
 			x = long(h.hexdigest(),16)
 		x,y = divmod(x, self.m)
@@ -119,9 +119,9 @@ def hash_functions(self, key):
 Now we are ready to add elements to the bloom filter. 
 {% highlight python %}
 def add(self, element):
-	&quot;&quot;&quot;
+	"""
 	Add an element.
-	&quot;&quot;&quot;
+	"""
 	self.length += 1
 	for i in self.hash_functions(element):
 		self.bfArray[i] = 1
@@ -131,9 +131,9 @@ def add(self, element):
 The following method will check for membership.
 {% highlight python %}
 def contains(self, element):
-	&quot;&quot;&quot;
+	"""
 	Checks if an element is present in the bloom filter.
-	&quot;&quot;&quot;
+	"""
 	return all(self.bfArray[i] for i in self.hash_functions(element))
 {% endhighlight %}
 <br>

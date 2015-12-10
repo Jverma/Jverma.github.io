@@ -245,9 +245,9 @@ Let&#39;s try to implement a bloom filter in python following the above construc
 <p>We will write a class called <em>BloomFilter</em>. This takes two arguments - size of the bitarray $latex m$ and number of hashes \( k \). </p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">class</span> <span class="nc">BloomFilter</span><span class="p">():</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
-    <span class="n">Implements</span> <span class="n">a</span> <span class="n">bloom</span> <span class="nb">filter</span><span class="o">.</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Implements a bloom filter.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">m</span> <span class="p">,</span><span class="n">k</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">m</span> <span class="o">=</span> <span class="n">m</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">k</span> <span class="o">=</span> <span class="n">k</span>
@@ -255,18 +255,18 @@ Let&#39;s try to implement a bloom filter in python following the above construc
         <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">=</span> <span class="mi">0</span></code></pre></div>
 
 <p><br>
-As we discussed above a bloom filter computes $latex k$ hashes for each element. Let&#39;s create these hash functions using python library <em>hashlib</em> which comes with base package. </p>
+As we discussed above a bloom filter computes \( k \) hashes for each element. Let&#39;s create these hash functions using python library <em>hashlib</em> which comes with base package. </p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">hash_functions</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key</span><span class="p">):</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
-    <span class="n">Build</span> <span class="n">k</span> <span class="nb">hash</span> <span class="n">functions</span><span class="o">.</span>
-    <span class="n">Map</span> <span class="n">key</span> <span class="n">to</span> <span class="n">an</span> <span class="n">integer</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">m</span><span class="p">)</span><span class="o">.</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Build k hash functions.</span>
+<span class="sd">   Map key to an integer in [0,m).</span>
+<span class="sd">   &quot;&quot;&quot;</span>
     <span class="n">h</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s">&#39;md5&#39;</span><span class="p">)</span>
     <span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
     <span class="n">x</span> <span class="o">=</span> <span class="nb">long</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">k</span><span class="p">):</span>
-        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&amp;</span><span class="n">lt</span><span class="p">;</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">):</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">):</span>
             <span class="n">h</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s">&#39;.&#39;</span><span class="p">)</span>
             <span class="n">x</span> <span class="o">=</span> <span class="nb">long</span><span class="p">(</span><span class="n">h</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">(),</span><span class="mi">16</span><span class="p">)</span>
         <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="nb">divmod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">m</span><span class="p">)</span>
@@ -276,9 +276,9 @@ As we discussed above a bloom filter computes $latex k$ hashes for each element.
 Now we are ready to add elements to the bloom filter. </p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
-    <span class="n">Add</span> <span class="n">an</span> <span class="n">element</span><span class="o">.</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Add an element.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">length</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_functions</span><span class="p">(</span><span class="n">element</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">bfArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
@@ -288,9 +288,9 @@ Now we are ready to add elements to the bloom filter. </p>
 The following method will check for membership.</p>
 
 <div class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">element</span><span class="p">):</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
-    <span class="n">Checks</span> <span class="k">if</span> <span class="n">an</span> <span class="n">element</span> <span class="ow">is</span> <span class="n">present</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">bloom</span> <span class="nb">filter</span><span class="o">.</span>
-    <span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span><span class="o">&amp;</span><span class="n">quot</span><span class="p">;</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">   Checks if an element is present in the bloom filter.</span>
+<span class="sd">   &quot;&quot;&quot;</span>
     <span class="k">return</span> <span class="nb">all</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">bfArray</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">hash_functions</span><span class="p">(</span><span class="n">element</span><span class="p">))</span></code></pre></div>
 
 <p><br>
