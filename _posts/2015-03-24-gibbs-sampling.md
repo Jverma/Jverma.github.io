@@ -24,7 +24,7 @@ What if you have a [multinomial distribution](http://en.wikipedia.org/wiki/Multi
 $$ latex P(X = i) = 1/6 ,  i \in 1,\ldots ,6$$
 <br>
 Divide the interval [0, 1] into 6 equal parts and select the value of \\( X \\) based on the interval in which a pseudo-random number falls.
-```
+```python
 def sampler():
     r = random.random()
     if (r < float(1)/6):
