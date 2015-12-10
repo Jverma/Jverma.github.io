@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T12:50:55-05:00</updated>
+<updated>2015-12-10T12:53:27-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -73,7 +73,7 @@ Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.&lt;/li&gt;
 &lt;p&gt;&lt;br&gt;
 &lt;strong&gt;Defintion:&lt;/strong&gt; A &lt;em&gt;connection&lt;/em&gt; \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the &lt;em&gt;Lie algebra&lt;/em&gt; of the &lt;em&gt;Lie group&lt;/em&gt; \( G \).
 &lt;br&gt;
-$$ \mathcal{A} \in C^{\infty}(P, T^{a}P) \otimes \mathfrak{g} $$
+$$ \mathcal{A} \in C^{\infty}(P, T^{*}P) \otimes \mathfrak{g} $$
 &lt;br&gt;
 We call \( \mathcal{A} \) the &lt;em&gt;gauge field&lt;/em&gt; with gauge group \( G \). The Maxwell&amp;#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
 &lt;br&gt;
