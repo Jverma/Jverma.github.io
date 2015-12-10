@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T10:32:16-05:00</updated>
+<updated>2015-12-10T10:38:04-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -32,57 +32,60 @@
 &lt;strong&gt;Find Active Regions:&lt;/strong&gt;
 &lt;br&gt; 
 First step in HalplotypeCaller procedure is to find the regions of high activity. These are the genomic regions which have strong evidence for variation. Each position is assigned a raw &lt;strong&gt;activity score&lt;/strong&gt; which is the probability that the position contains a variant. This probability is calculated using the &lt;strong&gt;reference-confidence model&lt;/strong&gt; (see Appendix). The raw profile thus obtained is then smoothened by copying the activity score over to the adjacent regions and then spreading out using a Gaussian kernel. Finally, the active regions are obtained as the ones containing positions with high-enough activity score.
-Mathematically, for each position \( i \):&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;- Assign score \\( P(i,variant) \\) which is the probability of \\( i \\) being a variant.
-- For each \\( j \\) in the interval around \\( i \\) of radius \\( r \leq 50bp \\) 
+Mathematically, for each position \( i \)&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Assign score \( P(i,variant) \) which is the probability of \( i \) being a variant.&lt;/li&gt;
+&lt;li&gt;For each \( j \) in the interval around \( i \) of radius \( r \leq 50bp \) 
 $$ P(j,variant) = P(j,variant) + P(i,variant)$$ 
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Here \( r \) is equal to the number of high quality soft-clipped bases that immediately follow or precede \( i \).
-    - The profile score is spread out using Gaussian kernel upto 50bp. The score of \( i \) after spreading is denoted \( score_i \)
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+Here \( r \) is equal to the number of high quality soft-clipped bases that immediately follow or precede \( i \).&lt;/li&gt;
+&lt;li&gt;The profile score is spread out using Gaussian kernel upto 50bp. The score of \( i \) after spreading is denoted \( score_i \)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 Then the active regions are computed as follows :&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;- Final profile score of site i is given by 
-&amp;lt;br&amp;gt;
-$$ FinalScore\_i = \sum\_{k}score\_k $$
-&amp;lt;br&amp;gt;
-where \\( k \\) runs over all the positions which contribute to the score of i as in previous step.
-- Cut the genome at points where the final profile score goes from active to non-active regions by choosing a activity threshold.&amp;lt;
-- Trimm the not-so-important bps from the regions obtained in the previous step.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Final profile score of site i is given by 
+$$ FinalScore_i = \sum_{k}score_k $$
+where \( k \) runs over all the positions which contribute to the score of i as in previous step.&lt;/li&gt;
+&lt;li&gt;Cut the genome at points where the final profile score goes from active to non-active regions by choosing a activity threshold.&amp;lt;&lt;/li&gt;
+&lt;li&gt;Trimm the not-so-important bps from the regions obtained in the previous step.&lt;/li&gt;
+&lt;/ul&gt;
+
 &lt;p&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Local assembly of the active regions:&lt;/strong&gt;
 &lt;br&gt;
-In this step the active regions are re-assembled de novo by building a &lt;a href=&quot;http://jverma.github.io//debruijn-graphs/&quot;&gt;de Bruijn&lt;/a&gt; type graph of the reference genome.
-    - Build a deBruijn graph \( (G) \) of the reference sequence.
-    - Initialize a weight hashtable \( (W) \) with edges as keys with weight 0.
-    - Build a hashtable \( (UniqNodes) \) of unique k-mers (nodes) of the graph with their positions in the graph.
-    - For each read, look for its k-mers in \( UniqNodes \). If for a k-mer, there is a match and the \( k−1 \)-mer is in \( W \), increase the weight of the edge by 1. If a k-mer is not in the hashtable, we append it to the hashtable and add a new node in \( G \).
-    - Prune the graph by throwing out the paths in the graph with weights below a threshold.&lt;/p&gt;
+In this step the active regions are re-assembled de novo by building a &lt;a href=&quot;http://jverma.github.io//debruijn-graphs/&quot;&gt;de Bruijn&lt;/a&gt; type graph of the reference genome.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Build a deBruijn graph \( (G) \) of the reference sequence.&lt;/li&gt;
+&lt;li&gt;Initialize a weight hashtable \( (W) \) with edges as keys with weight 0.&lt;/li&gt;
+&lt;li&gt;Build a hashtable \( (UniqNodes) \) of unique k-mers (nodes) of the graph with their positions in the graph.&lt;/li&gt;
+&lt;li&gt;For each read, look for its k-mers in \( UniqNodes \). If for a k-mer, there is a match and the \( k−1 \)-mer is in \( W \), increase the weight of the edge by 1. If a k-mer is not in the hashtable, we append it to the hashtable and add a new node in \( G \).&lt;/li&gt;
+&lt;li&gt;Prune the graph by throwing out the paths in the graph with weights below a threshold.&lt;/li&gt;
+&lt;/ul&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Identify Haplotypes:&lt;/strong&gt; 
 &lt;br&gt;
-After the re-assembly graph is constructed and pruned, the halpotypes are extracted as :&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;- For each edge \\( e \\) in the graph, let \\( i \\)be the source vertex of \\( e \\). Compute transition probability of \\( e \\).
-&amp;lt;br&amp;gt;
+After the re-assembly graph is constructed and pruned, the halpotypes are extracted as :
+- For each edge \( e \) in the graph, let \( i \)be the source vertex of \( e \). Compute transition probability of \( e \).
 $$ Prob(e) = W[e]/OutDegree(i) $$
-&amp;lt;br&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;where \( W[e] \) is the weight of the edge and \( OutDegree(i) \) is the out degree of \( i \).
-    - For each path \( p \) in the graph, compute its likelihood score as 
-    &lt;br&gt;
- $$latex Lik(p) = \prod_{e \in p} Prob(e) $$ 
- &lt;br&gt;
-The product is over all the edges in the path \( p \).&lt;/li&gt;
-    - Select \( N \) paths with the highest likelihood scores. These are our potential Haplotypes.
-    - Align each halpotype to the reference genome and compute a &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2723002/&quot;&gt;CIGAR&lt;/a&gt; string for the haplotype.
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+where \( W[e] \) is the weight of the edge and \( OutDegree(i) \) is the out degree of \( i \).
+- For each path \( p \) in the graph, compute its likelihood score as 
+$$latex Lik(p) = \prod_{e \in p} Prob(e) $$ 
+The product is over all the edges in the path \( p \).
+- Select \( N \) paths with the highest likelihood scores. These are our potential Haplotypes.
+- Align each halpotype to the reference genome and compute a &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2723002/&quot;&gt;CIGAR&lt;/a&gt; string for the haplotype.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Compute haplotype likelihoods:&lt;/strong&gt; 
 &lt;br&gt;
-In the previous step, we computed a set of potential halpotypes. This set of sites gives a super-set of what will eventually be called-variants. The next step in GATK pipeline is to compute the evidence of existence of a haplotype given the data. For each haplotype H,&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;- Align each data read against H using &amp;lt;strong&amp;gt;&amp;lt;a href=&amp;quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/&amp;quot;&amp;gt;PairHMM&amp;lt;/a&amp;gt;&amp;lt;/strong&amp;gt; and compute the likelihood of observing the read given the halpotype. Thus we obtain \\( P(read|H) \\)for all reads.
-- Mariginalize the per-read likelihoods of halpotypes over alleles to get the per-read likelihoods for each allele, \\( P(read|A) \\) for each allele A and read. For a given site, we list all the alleles observed in the data. Then, for each read, we look at the haplotypes that support each allele; we select the haplotype that has the highest likelihood for that read, and we write that likelihood in the new table. And that’s it! For a given allele, the total likelihood will be the product of all the per-read likeli be the variants.
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+In the previous step, we computed a set of potential halpotypes. This set of sites gives a super-set of what will eventually be called-variants. The next step in GATK pipeline is to compute the evidence of existence of a haplotype given the data. For each haplotype H,
+- Align each data read against H using &lt;strong&gt;&lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2766791/&quot;&gt;PairHMM&lt;/a&gt;&lt;/strong&gt; and compute the likelihood of observing the read given the halpotype. Thus we obtain \( P(read|H) \)for all reads.
+- Mariginalize the per-read likelihoods of halpotypes over alleles to get the per-read likelihoods for each allele, \( P(read|A) \) for each allele A and read. For a given site, we list all the alleles observed in the data. Then, for each read, we look at the haplotypes that support each allele; we select the haplotype that has the highest likelihood for that read, and we write that likelihood in the new table. And that’s it! For a given allele, the total likelihood will be the product of all the per-read likeli be the variants.&lt;/p&gt;
+
 &lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Bayesian Genotyper:&lt;/strong&gt; 
 &lt;br&gt;
@@ -94,20 +97,27 @@ here \( P(G) \) is the prior probability of the genotype \( G \). GATK uses a fl
 &lt;br&gt;
 $$ P(D|G) = \prod_j \left( \frac{P(D_j|H_1)}{2} + \frac{P(D_j|H_2)}{2} \right) $$
 &lt;br&gt;
-where \( G = H_{1}H_{2} \) i.e. there are exactly two haplotypes (&lt;em&gt;diploid assumption&lt;/em&gt;). What remains to be figured out is \( P(D_{j}|H_{k}) \), which is the per-read likelihood of the of the haplotype \( H&lt;em&gt;k \) aggregated over all the reads supporting the halpotype.This is exactly what we computed in the previous step. We assign genotype as :
-    - Compute \( P(G_{i}|D) \) for all possible genotypes \( G&lt;/em&gt;i \).
-    - The predicted genotype is the one with maximum likelihood i.e. 
-    $$ argmax_{G_{i}} [P(Gi|D)] $$ 
-&lt;br&gt;&lt;br&gt;&lt;br&gt;
+where \( G = H_{1}H_{2} \) i.e. there are exactly two haplotypes (&lt;em&gt;diploid assumption&lt;/em&gt;). What remains to be figured out is \( P(D_{j}|H_{k}) \), which is the per-read likelihood of the of the haplotype \( H_k \) aggregated over all the reads supporting the halpotype.This is exactly what we computed in the previous step. We assign genotype as :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Compute \( P(G_{i}|D) \) for all possible genotypes \( G_i \).&lt;/li&gt;
+&lt;li&gt;The predicted genotype is the one with maximum likelihood i.e. 
+$$ argmax_{G_{i}} [P(Gi|D)] $$ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Appendix - Reference Confidence Model:&lt;/strong&gt; 
 &lt;br&gt;
-The reference confidence model computes the probability of occurrence of a variant at each position on the genome.
-    - Align the reads to the reference genome.
-    - At each position, estimate the probability that some non-reference allele is segregating at that position.
-    - The estimate of the probability that there is a variant at position i is given by : 
-    &lt;br&gt;
-$$ P(i, variant) = \text{Number of reads with reference base}/\text{Number of reads with non-reference base} $$ 
-&lt;br&gt;&lt;br&gt;
+The reference confidence model computes the probability of occurrence of a variant at each position on the genome.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Align the reads to the reference genome.&lt;/li&gt;
+&lt;li&gt;At each position, estimate the probability that some non-reference allele is segregating at that position.&lt;/li&gt;
+&lt;li&gt;The estimate of the probability that there is a variant at position i is given by : 
+$$ P(i, variant) = \text{Number of reads with reference base}/\text{Number of reads with non-reference base} $$ &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Implementation:&lt;/strong&gt; 
 &lt;br&gt;
 A BASH script which implements the GATK variant calling pipeline using HaplotypeCaller can be found &lt;a href=&quot;https://github.com/Jverma/GATK-pipeline&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
