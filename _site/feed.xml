@@ -4,13 +4,92 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T10:40:40-05:00</updated>
+<updated>2015-12-10T12:00:03-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
   <uri>http://jverma.github.io//</uri>
   
 </author>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[What do physicists mean by field theory]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//qft/" />
+  <id>http://jverma.github.io//qft</id>
+  <published>2015-08-03T00:00:00-04:00</published>
+  <updated>2015-08-03T00:00:00-04:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Quantum_field_theory&quot;&gt;Quantum field theories (QFTs)&lt;/a&gt; are the main objects of study for a theoretical physicist, more so for those specializing in high energy physics. The standard model of particle physics is built on the framework of QFTs. Each of the fundamental particle (fermion or boson) is described by a QFT.
+&lt;br&gt;
+These theories are extremely important from a mathematical perspective. They find applications in topology of low-dimensional manifolds, representation theory, curve counting in enumerative geometry, symplectic geometry, algebraic and complex geometry etc. A complete mathematical understanding of quantum field theory is not available at present. Mathematicians (following &lt;a href=&quot;http://www.math.upenn.edu/~blockj/scfts/segal.pdf&quot;&gt;Segal&lt;/a&gt;, &lt;a href=&quot;http://www.numdam.org/item?id=PMIHES_1988__68__175_0&quot;&gt;Atiyah&lt;/a&gt;) have been successful in obtaining a rigorous definition of &lt;a href=&quot;http://ncatlab.org/nlab/show/topological+quantum+field+theory&quot;&gt;topological quantum field theories (TQFTs)&lt;/a&gt;, a special class of QFTs.
+&lt;br&gt;&lt;br&gt;
+Even though we don&amp;#39;t understand QFTs, we can define &amp;quot;fields&amp;quot; which are the main ingredients of a field theory. In this post, we will define the notion of fields in classical theory. This theory is then quantized to obtain quantum field theory.
+The setup for a field theory is :
+- &lt;strong&gt;Spacetime&lt;/strong&gt; - A smooth, finite dimensional manifold \( M \).
+An example of \( M \) is the &lt;a href=&quot;http://en.wikipedia.org/wiki/Minkowski_space&quot;&gt;Minkowaski space&lt;/a&gt; \( M^{1,n} \). Often \( M \) is equipped with additional topological and geometric structures e.g metric, orientation, spin structure etc.
+- &lt;strong&gt;Fields&lt;/strong&gt; - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+We will take the following working definition of a (classical) field.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition:&lt;/strong&gt; A &lt;em&gt;field&lt;/em&gt; is a smooth &lt;a href=&quot;http://en.wikipedia.org/wiki/Section_%28fiber_bundle%29&quot;&gt;section&lt;/a&gt; of a &lt;em&gt;fiber bundle&lt;/em&gt; over \( M \)
+&lt;br&gt;&lt;br&gt;
+Let \( \pi : E \rightarrow M \) be a fiber bundle over \( M \), then a field is a smooth map
+&lt;br&gt;
+$$ \phi : M \rightarrow E $$
+&lt;br&gt;
+such that \( \pi(\phi(x)) = x \) for all \( x \in M \). We denote this as -
+&lt;br&gt;
+$$ \phi \in C^{\infty}(E) $$
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Examples:&lt;/strong&gt;
+- A &lt;strong&gt;real scalar field&lt;/strong&gt; is a smooth real-valued function on \( M \).
+&lt;br&gt;
+$$ \phi : M \rightarrow \mathbb{R} $$
+This is a section of trivial fiber bundle with fibers isomorphic to $latex \mathbb{R}$
+- A &lt;strong&gt;complex scalar field&lt;/strong&gt; is a smooth complex-valued function on the spacetime.
+$$ \phi : M \rightarrow \mathbb{C} $$
+- More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
+$$ \Phi : M \rightarrow X $$
+Such fields arise in &lt;strong&gt;sigma models&lt;/strong&gt;. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.
+- &lt;strong&gt;Gauge theory&lt;/strong&gt; - The setup for a gauge theory is a principal bundle with a connection.
+Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.
+&lt;br&gt;
+&lt;strong&gt;Defintion:&lt;/strong&gt; A &lt;em&gt;connection&lt;/em&gt; \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the &lt;em&gt;Lie algebra&lt;/em&gt; of the &lt;em&gt;Lie group&lt;/em&gt; \( G \).
+$$ \mathcal{A} \in C^{\infty}(P, T^{&lt;em&gt;}P) \otimes \mathfrak{g} $$
+&lt;br&gt;
+We call \( \mathcal{A} \) the *gauge field&lt;/em&gt; with gauge group \( G \). The Maxwell&amp;#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
+&lt;br&gt;
+In case of &lt;a href=&quot;http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory&quot;&gt;Yang-Mills theory&lt;/a&gt;, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.
+- &lt;strong&gt;Spinor fields&lt;/strong&gt; - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
+$$ \pi : S \rightarrow M $$
+be a &lt;em&gt;spinor bundle&lt;/em&gt; on \( M \). Then the spinor fields are the sections of \( S \).
+$$ \psi : M \rightarrow S $$
+- &lt;strong&gt;Gravity&lt;/strong&gt; - Let \( M \) be a &lt;em&gt;Riemannian manifold&lt;/em&gt;. The fields in the theory of gravity, gravitational fields, are the &lt;em&gt;metrics&lt;/em&gt; on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
+$$ g : M \rightarrow Symm^{(0,2)}(M) $$
+- &lt;strong&gt;Supergravity&lt;/strong&gt; - The &lt;em&gt;Rarita-Schwinger field&lt;/em&gt; in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the &lt;em&gt;twisted spinor bundle&lt;/em&gt;.
+$$  \psi : M \rightarrow S \otimes T^{*}M $$&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+In all the field theories, there exists a natural &lt;em&gt;evaluation map&lt;/em&gt;,
+&lt;br&gt;
+$$ eval : \mathcal{F} \times M \rightarrow E $$
+given by
+&lt;br&gt;
+$$  (\phi, x) \rightarrow \phi(x) $$
+This post is full of mathematical (differential geometric, to be more accurate) jargon. The idea was to give a quick introduction of field theory to mathematicians (geometers). &lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//qft/&quot;&gt;What do physicists mean by field theory&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on August 03, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
   
@@ -42,7 +121,7 @@ Here \( r \) is equal to the number of high quality soft-clipped bases that imme
 &lt;li&gt;The profile score is spread out using Gaussian kernel upto 50bp. The score of \( i \) after spreading is denoted \( score_i \)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
 Then the active regions are computed as follows :&lt;/p&gt;
 
 &lt;ul&gt;

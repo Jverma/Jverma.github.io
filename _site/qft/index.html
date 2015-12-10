@@ -5,15 +5,15 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
 <head>
 <meta charset="utf-8">
-<title>de Bruijn graphs and genomic assembly &#8211; Random Inferences</title>
-<meta name="description" content="Post about gibbs sampling method.">
-<meta name="keywords" content="machine learning, data science, mathematics, statistics">
+<title>What do physicists mean by field theory &#8211; Random Inferences</title>
+<meta name="description" content="Mathematical (geometric) defintion of a classical field theory">
+<meta name="keywords" content="mathematics, theoretical physics, mathematical physics, differential geometry">
 
 
 
 <!-- Twitter Cards -->
-<meta name="twitter:title" content="de Bruijn graphs and genomic assembly">
-<meta name="twitter:description" content="Post about gibbs sampling method.">
+<meta name="twitter:title" content="What do physicists mean by field theory">
+<meta name="twitter:description" content="Mathematical (geometric) defintion of a classical field theory">
 <meta name="twitter:site" content="@januverma">
 <meta name="twitter:creator" content="@januverma">
 
@@ -23,9 +23,9 @@
 <!-- Open Graph -->
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="de Bruijn graphs and genomic assembly">
-<meta property="og:description" content="Post about gibbs sampling method.">
-<meta property="og:url" content="http://jverma.github.io//debruijn-graphs/">
+<meta property="og:title" content="What do physicists mean by field theory">
+<meta property="og:description" content="Mathematical (geometric) defintion of a classical field theory">
+<meta property="og:url" content="http://jverma.github.io//qft/">
 <meta property="og:site_name" content="Random Inferences">
 
 <meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
@@ -35,7 +35,7 @@
 
 
 
-<link rel="canonical" href="http://jverma.github.io//debruijn-graphs/">
+<link rel="canonical" href="http://jverma.github.io//qft/">
 <link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
 
 <!-- http://t.co/dKP3o1e -->
@@ -116,7 +116,7 @@
     
       "http://jverma.github.io//images/sample-image-4.jpg"
     
-  alt="de Bruijn graphs and genomic assembly feature image">
+  alt="What do physicists mean by field theory feature image">
   
     <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
   
@@ -162,68 +162,69 @@
   <article class="post">
     <div class="headline-wrap">
       
-        <h1><a href="http://jverma.github.io//debruijn-graphs/" rel="bookmark" title="de Bruijn graphs and genomic assembly">de Bruijn graphs and genomic assembly</a></h1>
+        <h1><a href="http://jverma.github.io//qft/" rel="bookmark" title="What do physicists mean by field theory">What do physicists mean by field theory</a></h1>
       
     </div><!--/ .headline-wrap -->
     <div class="article-wrap">
-      <p>Current genome sequencing technology (especially NGS) can sequence only short fragments of DNA. Generally, many copies of a region are sequenced to reduce the sequencing errors. The date from such sequencers, which is in form of short DNA sequence, needs to be assembled to obtain the complete genome. One of the modern methods to assemble the reads data is to use de Bruijn graphs.
-<br><br>
-<strong>Definition:</strong> Given a sequence of characters, it’s <strong>k−dimensional de Bruijn graph</strong> is defined as follows :
-- The nodes are all the subsequences of length k, called <em>k-mers</em>.
-- An edge between two nodes is the subsequence of length k + 1 which has the first node as prefix and the second as suffix.
-<br><br>
-e.g. For S = AGATAC, the 3-de Bruijn of S will have</p>
-
-<ul>
-<li>nodes - AGA,GAT,ATA,TAC</li>
-<li>edges - AGAT,GATA,ATAC</li>
-</ul>
-
-<p><strong>Observation:</strong> There exist \( n^k \) k-mers in an alphabet containing n characters.
+      <p><a href="http://en.wikipedia.org/wiki/Quantum_field_theory">Quantum field theories (QFTs)</a> are the main objects of study for a theoretical physicist, more so for those specializing in high energy physics. The standard model of particle physics is built on the framework of QFTs. Each of the fundamental particle (fermion or boson) is described by a QFT.
 <br>
-This implies that for English alphabet, we have 17576 3-mers. For DNA sequences the alphabet consists of 4 nucleotides A,G,T,C and thus there are 64 possible 3-mers.
-<br>
-A k-mer can appear more than one times in a de Bruijn graph with edges to different nodes.
+These theories are extremely important from a mathematical perspective. They find applications in topology of low-dimensional manifolds, representation theory, curve counting in enumerative geometry, symplectic geometry, algebraic and complex geometry etc. A complete mathematical understanding of quantum field theory is not available at present. Mathematicians (following <a href="http://www.math.upenn.edu/~blockj/scfts/segal.pdf">Segal</a>, <a href="http://www.numdam.org/item?id=PMIHES_1988__68__175_0">Atiyah</a>) have been successful in obtaining a rigorous definition of <a href="http://ncatlab.org/nlab/show/topological+quantum+field+theory">topological quantum field theories (TQFTs)</a>, a special class of QFTs.
 <br><br>
-<strong>Definition:</strong> A <strong>Hamiltonian path</strong> in a graph is a path that travels to every nodes exactly once.In the above example, a Hamiltonian path is given by
-<br>
-AGA -&gt; GAT -&gt; ATA -&gt; TAC.
-<br><br>
-It is easy to convince yourself that a Hamiltonian path in a de-Brujn graph constructed from the reads data will be a candidate for genome assembly because it visits each detected k-mer. Moreover, it will be the minimum length assembly as it travels to each node exactly one.
-Unfortunately, there is no efficient algorithm to compute the Hamiltonian path in a large graph. In fact,
-<br>
-<strong>Theorem:</strong> Finding a Hamiltonian path in a graph is NP-Complete.
-<br><br>
-<strong>Definition:</strong> An <strong>Eulerian path</strong> in a graph is a path that visits each edge exactly once. In the above example, an Eulerian path is given by
-<br>
-AGAT -&gt; GATA -&gt; ATAC
-<br><br>
-An Eulerian path in a de Bruijn graph constructed on the sequence reads will also give a reasonable genome assembly as it visits each detected k + 1-mer. On the question of existence of an Eulerian path, we have following theorem of Euler -
-<br>
-<strong>Theorem:</strong> A directed connected graph (one there exists a path between any two nodes) has an Eulerian cycle if and only if the indegree (number of edges leading into the node) of each node is equal to its outdegree (number of edges leaving the node).
-<br><br>
-<strong>Lemma:</strong> de Bruijn graph has an Eulerian cycle.
-<br>
-<strong>proof:</strong> For any node, both the indegree and the outdegree are equal to the number of times the k-mer assigned node occurs in the sequence.
-<br><br>
-Having established that the de Bruijn graph has an Eulerian cycle, the next question is whether we can compute it efficiently. There are algorithms to compute the Eulerian cycle of a graph which are linear in number of edges.
-<br><br>
-<strong>Algorithm to assmeble genome:</strong></p>
-
-<ul>
-<li>Choose the size of k-mers.</li>
-<li>Generate all k-mers from the reads data.</li>
-<li>Build a de Bruijn graph with k-mers as nodes and connected (k + 1)-mers as edges.</li>
-<li>Compute the Eulerian path of the de Bruijn graph- This will be a candidate assmebly.</li>
-</ul>
+Even though we don&#39;t understand QFTs, we can define &quot;fields&quot; which are the main ingredients of a field theory. In this post, we will define the notion of fields in classical theory. This theory is then quantized to obtain quantum field theory.
+The setup for a field theory is :
+- <strong>Spacetime</strong> - A smooth, finite dimensional manifold \( M \).
+An example of \( M \) is the <a href="http://en.wikipedia.org/wiki/Minkowski_space">Minkowaski space</a> \( M^{1,n} \). Often \( M \) is equipped with additional topological and geometric structures e.g metric, orientation, spin structure etc.
+- <strong>Fields</strong> - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)</p>
 
 <p><br><br>
-Below is an example of genome assembly using de Bruijn graphs - 
+We will take the following working definition of a (classical) field.</p>
+
+<p><strong>Definition:</strong> A <em>field</em> is a smooth <a href="http://en.wikipedia.org/wiki/Section_%28fiber_bundle%29">section</a> of a <em>fiber bundle</em> over \( M \)
 <br><br>
-<figure>
-<img src="https://januverma.files.wordpress.com/2014/11/nbt-2023-f3.gif?w=300"/>
+Let \( \pi : E \rightarrow M \) be a fiber bundle over \( M \), then a field is a smooth map
+<br>
+$$ \phi : M \rightarrow E $$
+<br>
+such that \( \pi(\phi(x)) = x \) for all \( x \in M \). We denote this as -
+<br>
+$$ \phi \in C^{\infty}(E) $$
 <br><br>
-Most of the times, sequencing doesn’t give us all the data. We have a lot of missing data which represent gaps in the genome and in that case, it would be impossible to obtain a whole genome assembly. So we build many de Bruijn graphs and obtain Eulerian cycles. Such cycles represent contiguous sequences of nucleotides, called <strong>contigs</strong>. Sometimes we join contigs separated by gaps to obtain <strong>scaffolds</strong>.</p>
+<strong>Examples:</strong>
+- A <strong>real scalar field</strong> is a smooth real-valued function on \( M \).
+<br>
+$$ \phi : M \rightarrow \mathbb{R} $$
+This is a section of trivial fiber bundle with fibers isomorphic to $latex \mathbb{R}$
+- A <strong>complex scalar field</strong> is a smooth complex-valued function on the spacetime.
+$$ \phi : M \rightarrow \mathbb{C} $$
+- More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
+$$ \Phi : M \rightarrow X $$
+Such fields arise in <strong>sigma models</strong>. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.
+- <strong>Gauge theory</strong> - The setup for a gauge theory is a principal bundle with a connection.
+Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.
+<br>
+<strong>Defintion:</strong> A <em>connection</em> \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the <em>Lie algebra</em> of the <em>Lie group</em> \( G \).
+$$ \mathcal{A} \in C^{\infty}(P, T^{<em>}P) \otimes \mathfrak{g} $$
+<br>
+We call \( \mathcal{A} \) the *gauge field</em> with gauge group \( G \). The Maxwell&#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
+<br>
+In case of <a href="http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory">Yang-Mills theory</a>, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.
+- <strong>Spinor fields</strong> - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
+$$ \pi : S \rightarrow M $$
+be a <em>spinor bundle</em> on \( M \). Then the spinor fields are the sections of \( S \).
+$$ \psi : M \rightarrow S $$
+- <strong>Gravity</strong> - Let \( M \) be a <em>Riemannian manifold</em>. The fields in the theory of gravity, gravitational fields, are the <em>metrics</em> on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
+$$ g : M \rightarrow Symm^{(0,2)}(M) $$
+- <strong>Supergravity</strong> - The <em>Rarita-Schwinger field</em> in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the <em>twisted spinor bundle</em>.
+$$  \psi : M \rightarrow S \otimes T^{*}M $$</p>
+
+<p><br><br>
+In all the field theories, there exists a natural <em>evaluation map</em>,
+<br>
+$$ eval : \mathcal{F} \times M \rightarrow E $$
+given by
+<br>
+$$  (\phi, x) \rightarrow \phi(x) $$
+This post is full of mathematical (differential geometric, to be more accurate) jargon. The idea was to give a quick introduction of field theory to mathematicians (geometers). </p>
 
       <hr />
       <footer role="contentinfo">
@@ -231,17 +232,17 @@ Most of the times, sequencing doesn’t give us all the data. We have a lot of m
   <h4>Share on</h4>
   <ul>
     <li>
-      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//debruijn-graphs/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//qft/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
     </li>
     <li>
-      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//debruijn-graphs/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//qft/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
     </li>
     <li>
-      <a href="https://plus.google.com/share?url=http://jverma.github.io//debruijn-graphs/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//qft/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
     </li>
   </ul>
 </div><!-- /.social-share -->
-        <p class="byline"><strong>de Bruijn graphs and genomic assembly</strong> was published on <time datetime="2015-05-16T00:00:00-04:00">May 16, 2015</time>.</p>
+        <p class="byline"><strong>What do physicists mean by field theory</strong> was published on <time datetime="2015-08-03T00:00:00-04:00">August 03, 2015</time>.</p>
       </footer>
     </div><!-- /.article-wrap -->
   
@@ -256,9 +257,9 @@ Most of the times, sequencing doesn’t give us all the data. We have a lot of m
   <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
     <ul>
     
-      <li><a href="http://jverma.github.io//qft/" title="What do physicists mean by field theory">What do physicists mean by field theory</a></li>
-    
       <li><a href="http://jverma.github.io//gatk/" title="How GATK Haplotypecaller works">How GATK Haplotypecaller works</a></li>
+    
+      <li><a href="http://jverma.github.io//debruijn-graphs/" title="de Bruijn graphs and genomic assembly">de Bruijn graphs and genomic assembly</a></li>
     
       <li><a href="http://jverma.github.io//gibbs-sampling/" title="Gibbs Sampling">Gibbs Sampling</a></li>
     
