@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Gibbs Sampling"
+excerpt: "Post about gibbs sampling method."
+tags: [machine learning, data science, mathematics, statistics]
+comments: true
+image:
+  feature: sample-image-4.jpg
+  credit: WeGraphics
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+---
 [Gibbs sampling](http://en.wikipedia.org/wiki/Gibbs_sampling) is a [Markov chain Monte Carlo](http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo) method for sampling from a multivariate probability distribution. It has many applications in inference, [Bayesian networks](http://en.wikipedia.org/wiki/Bayesian_network) and machine learning. I am a bioinformatician, who needs to sample from joint distributions all the time. What motivated me to write this post is that currently I'm building a Bayesian network for my work, where I need to draw samples from the network. I'll talk about the use of Gibbs sampling in BayesNets in another post.
 
 Let's start with a simple sampling problem. Suppose we have a single variable $latex X$ which takes two values:
