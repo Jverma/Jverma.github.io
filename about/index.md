@@ -9,7 +9,7 @@ image:
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
 ---
-I am a Research Engineer at [**IBM T J Watson Research Center**](http://www.research.ibm.com) in New York , where I work in the [**HealthCare and Analytics Research Group**](http://www.research.ibm.com/healthcare/) . Previously, I was a Quantitative Researcher in the [**Buckler Lab @ Cornell University**](http://www.maizegenetics.net), where I worked on the problems in bioinformatics and genomics.
+I am a Research Engineer at [**IBM T J Watson Research Center**](http://www.research.ibm.com) in New York , where I work in the [**HealthCare Analytics Research Group**](http://www.research.ibm.com/healthcare/) . Previously, I was a Quantitative Researcher in the [**Buckler Lab @ Cornell University**](http://www.maizegenetics.net), where I worked on the problems in bioinformatics and genomics.
 <br><br>
 My research interests are in mathematics, machine learning, data visualization, Human Computer Interaction and computational sciences (physics, biology).
 <br><br>
