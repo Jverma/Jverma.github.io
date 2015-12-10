@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-10T12:53:27-05:00</updated>
+<updated>2015-12-10T12:57:44-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -28,7 +28,7 @@
   </author>
   <content type="html">
     &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Quantum_field_theory&quot;&gt;Quantum field theories (QFTs)&lt;/a&gt; are the main objects of study for a theoretical physicist, more so for those specializing in high energy physics. The standard model of particle physics is built on the framework of QFTs. Each of the fundamental particle (fermion or boson) is described by a QFT.
-&lt;br&gt;
+&lt;br&gt;&lt;br&gt;
 These theories are extremely important from a mathematical perspective. They find applications in topology of low-dimensional manifolds, representation theory, curve counting in enumerative geometry, symplectic geometry, algebraic and complex geometry etc. A complete mathematical understanding of quantum field theory is not available at present. Mathematicians (following &lt;a href=&quot;http://www.math.upenn.edu/~blockj/scfts/segal.pdf&quot;&gt;Segal&lt;/a&gt;, &lt;a href=&quot;http://www.numdam.org/item?id=PMIHES_1988__68__175_0&quot;&gt;Atiyah&lt;/a&gt;) have been successful in obtaining a rigorous definition of &lt;a href=&quot;http://ncatlab.org/nlab/show/topological+quantum+field+theory&quot;&gt;topological quantum field theories (TQFTs)&lt;/a&gt;, a special class of QFTs.
 &lt;br&gt;&lt;br&gt;
 Even though we don&amp;#39;t understand QFTs, we can define &amp;quot;fields&amp;quot; which are the main ingredients of a field theory. In this post, we will define the notion of fields in classical theory. This theory is then quantized to obtain quantum field theory.
@@ -41,10 +41,10 @@ An example of \( M \) is the &lt;a href=&quot;http://en.wikipedia.org/wiki/Minko
 &lt;li&gt;&lt;strong&gt;Fields&lt;/strong&gt; - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;br&gt;&lt;br&gt;
-We will take the following working definition of a (classical) field.&lt;/p&gt;
-
-&lt;p&gt;&lt;strong&gt;Definition:&lt;/strong&gt; A &lt;em&gt;field&lt;/em&gt; is a smooth &lt;a href=&quot;http://en.wikipedia.org/wiki/Section_%28fiber_bundle%29&quot;&gt;section&lt;/a&gt; of a &lt;em&gt;fiber bundle&lt;/em&gt; over \( M \)
+&lt;p&gt;&lt;br&gt;
+We will take the following working definition of a (classical) field.
+&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; A &lt;em&gt;field&lt;/em&gt; is a smooth &lt;a href=&quot;http://en.wikipedia.org/wiki/Section_%28fiber_bundle%29&quot;&gt;section&lt;/a&gt; of a &lt;em&gt;fiber bundle&lt;/em&gt; over \( M \)
 &lt;br&gt;&lt;br&gt;
 Let \( \pi : E \rightarrow M \) be a fiber bundle over \( M \), then a field is a smooth map
 &lt;br&gt;
@@ -60,13 +60,13 @@ $$ \phi \in C^{\infty}(E) $$
 &lt;li&gt;A &lt;strong&gt;real scalar field&lt;/strong&gt; is a smooth real-valued function on \( M \).
 &lt;br&gt;
 $$ \phi : M \rightarrow \mathbb{R} $$
-This is a section of trivial fiber bundle with fibers isomorphic to $latex \mathbb{R}$&lt;/li&gt;
+This is a section of trivial fiber bundle with fibers isomorphic to \( \mathbb{R} \).&lt;/li&gt;
 &lt;li&gt;A &lt;strong&gt;complex scalar field&lt;/strong&gt; is a smooth complex-valued function on the spacetime.
 $$ \phi : M \rightarrow \mathbb{C} $$&lt;/li&gt;
 &lt;li&gt;More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
 $$ \Phi : M \rightarrow X $$
-Such fields arise in &lt;strong&gt;sigma models&lt;/strong&gt;. The \( \sigma \) - models, with target manifold \( X \) a Calabi-Yau or a Kahler manifold, are of particular interest to mathematicians.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Gauge theory&lt;/strong&gt; - The setup for a gauge theory is a principal bundle with a connection.
+Such fields arise in &lt;strong&gt;sigma models&lt;/strong&gt;. The \( \sigma \) - models, with target manifold \( X \) a &lt;em&gt;Calabi-Yau&lt;/em&gt; or a &lt;em&gt;Kahler manifold&lt;/em&gt;, are of particular interest to mathematicians.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gauge theory&lt;/strong&gt; - The setup for a gauge theory is a &lt;em&gt;principal bundle&lt;/em&gt; with a &lt;em&gt;connection&lt;/em&gt;.
 Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.&lt;/li&gt;
 &lt;/ul&gt;
 
@@ -77,7 +77,7 @@ $$ \mathcal{A} \in C^{\infty}(P, T^{*}P) \otimes \mathfrak{g} $$
 &lt;br&gt;
 We call \( \mathcal{A} \) the &lt;em&gt;gauge field&lt;/em&gt; with gauge group \( G \). The Maxwell&amp;#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
 &lt;br&gt;
-In case of &lt;a href=&quot;http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory&quot;&gt;Yang-Mills theory&lt;/a&gt;, the gauge group is $latex SU(n)$ and thus the fields are the connections on the $latex SU(n)$- principal bundles over the spacetime manifold.
+In case of &lt;a href=&quot;http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory&quot;&gt;Yang-Mills theory&lt;/a&gt;, the gauge group is \( SU(n) \) and thus the fields are the connections on the \( SU(n) \)- principal bundles over the spacetime manifold.
 - &lt;strong&gt;Spinor fields&lt;/strong&gt; - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
 $$ \pi : S \rightarrow M $$
 be a &lt;em&gt;spinor bundle&lt;/em&gt; on \( M \). Then the spinor fields are the sections of \( S \).
