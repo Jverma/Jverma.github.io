@@ -13,7 +13,7 @@ Some projects that I have worked on :
 
 - [**TextGraphics**](http://jverma.github.io/TextGraphics/) : TextGraphics is a python module for graphical methods in text mining. 
 - [**fastAQ**](http://jverma.github.io/fastAQ/): fastAQ is a super lightweight package written in python for working with FASTA/FASTQ sequences.
-- [**QuadForms**](https://github.com/Jverma/QuadForms): Computes the distribution function for a linear combination of \\( \chi^{2} \\) variables.
+- [**QuadForms**](https://github.com/Jverma/QuadForms): Computes the distribution function for a linear combination of \\( \chi \\) variables.
 - [**HDF5 to JSON COnverter**](https://github.com/Jverma/HDF5-to-JSON-converter)
 - [**GFF Parser**](https://github.com/Jverma/GFF-Parser): Script to parse and extract relvant information from a genomic feature file.
 - [**NetworkxD3**](https://github.com/Jverma/NetworkxD3): D3 JavaScript networkx graphs. It renders *networkx* graphs into HTML pages containing D3 visualization.
