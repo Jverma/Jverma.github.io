@@ -19,7 +19,6 @@ Some projects that I have worked on :
 - [**NetworkxD3**](https://github.com/Jverma/NetworkxD3): D3 JavaScript networkx graphs. It renders *networkx* graphs into HTML pages containing D3 visualization.
 
 <br><br>
-<br><br>
 A full list of my public codes can be found on my [**GitHub page**](https://github.com/Jverma).
 <br><br>
 My data visualization portfolio (using D3.js) can be found at [**bl.ocks**](http://bl.ocks.org/Jverma).
