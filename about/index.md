@@ -24,3 +24,5 @@ I am a voracious reader and an avid traveler. I hang out at the local coffee sho
 I spend a lot of time on [**Quora**](https://www.quora.com/Janu-Verma-2) consuming contents on a various topics. I answer questions related to Bioinformatics, String Theory, advance Mathematics (Differential Geometry) and Machine Learning. Feel free to ask me questions!
 <br><br>
 Random Inferences stems from my explorations in mathematics, machine learning, data visualization, and computational genomics.
+<br><br>
+My [old blog on wordpress](https://januverma.wordpress.com/) has some posts which are not transferred here. 
