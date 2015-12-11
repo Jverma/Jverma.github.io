@@ -36,12 +36,15 @@
     <loc>http://jverma.github.io//about/</loc>
   </url>
   <url>
+    <loc>http://jverma.github.io//</loc>
+  </url>
+  <url>
     <loc>http://jverma.github.io//theme-setup/</loc>
   </url>
   <url>
-    <loc>http://jverma.github.io//posts/</loc>
+    <loc>http://jverma.github.io//Code/</loc>
   </url>
   <url>
-    <loc>http://jverma.github.io//</loc>
+    <loc>http://jverma.github.io//posts/</loc>
   </url>
 </urlset>
