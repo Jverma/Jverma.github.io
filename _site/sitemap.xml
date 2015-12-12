@@ -33,6 +33,9 @@
     <lastmod>2015-02-03T00:00:00-05:00</lastmod>
   </url>
   <url>
+    <loc>http://jverma.github.io//research/</loc>
+  </url>
+  <url>
     <loc>http://jverma.github.io//about/</loc>
   </url>
   <url>
@@ -42,9 +45,9 @@
     <loc>http://jverma.github.io//theme-setup/</loc>
   </url>
   <url>
-    <loc>http://jverma.github.io//Code/</loc>
+    <loc>http://jverma.github.io//posts/</loc>
   </url>
   <url>
-    <loc>http://jverma.github.io//posts/</loc>
+    <loc>http://jverma.github.io//Code/</loc>
   </url>
 </urlset>
