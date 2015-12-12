@@ -4,10 +4,10 @@ title: Code
 tags: [about, Jekyll, theme, responsive]
 modified: 2014-08-08T20:53:07.573882-04:00
 comments: true
-image:
+<!-- image:
   feature: File-Dec-12-1-55-04-PM.png
   credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/ -->
 ---
 Some projects that I have worked on : 
 
