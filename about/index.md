@@ -4,10 +4,10 @@ title: About
 tags: [about, Jekyll, theme, responsive]
 modified: 2014-08-08T20:53:07.573882-04:00
 comments: true
-image:
+<!-- image:
   feature: sample-image-2.jpg
   credit: WeGraphics
-  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/
+  creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/ -->
 ---
 I am a Research Engineer at [**IBM T J Watson Research Center**](http://www.research.ibm.com) in New York , where I work in the [**HealthCare Analytics Research Group**](http://www.research.ibm.com/healthcare/) . Previously, I was a Quantitative Researcher in the [**Buckler Lab @ Cornell University**](http://www.maizegenetics.net), where I worked on the problems in bioinformatics and genomics.
 <br><br>
