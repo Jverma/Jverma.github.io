@@ -11,11 +11,6 @@ comments: true
 ---
 My research revolves around mathematics, machine learning with applications in sciences, and data visualization.
 
-# Mathematics and Theoretical Physics
-
-- **Black Holes**: For my masters I studied black holes in higher dimensions and the holography principle (AdS/CFT). I submitted a dissertation at University of Cambridge on these topics.
-- **Calabi-Yau manifolds**: For my PhD studies, I focussed on Calabi-Yau manifolds and their mirror symmetry. I studied Donaldson-Thomas invariants of CY manifolds and their relation with black holes in string theory.
-
 
 # Computational Biology
 
@@ -27,6 +22,12 @@ My research revolves around mathematics, machine learning with applications in s
 
 - **Non linear matter power spectrum**: Studied the applicability of machine learning predictive modeling to estimate the matter power spectrum. [Paper](http://arxiv.org/abs/1507.04622) is under review at Monthly Notices of the Royal Astronomical Society. 
 
+# Mathematics and Theoretical Physics
+
+- **Black Holes**: For my masters I studied black holes in higher dimensions and the holography principle (AdS/CFT). I submitted a dissertation at University of Cambridge on these topics.
+- **Calabi-Yau manifolds**: For my PhD studies, I focussed on Calabi-Yau manifolds and their mirror symmetry. I studied Donaldson-Thomas invariants of CY manifolds and their relation with black holes in string theory.
+
+<br><br>
 # Other fun projects
 
 - [**Saransh**](https://www.math.ksu.edu/~jv291/summarize/): It is a text summarization webapp. Used text mining techniques like tf-idf vectors, graphical algorithms, and statistical NLP methods to extract most informative sentences from the text.
