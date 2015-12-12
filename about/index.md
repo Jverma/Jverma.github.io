@@ -13,7 +13,7 @@ I am a Research Engineer at [**IBM T J Watson Research Center**](http://www.rese
 <br><br>
 My research interests are in mathematics, machine learning, data visualization, Human Computer Interaction and computational sciences (physics, biology).
 <br><br>
-I was born and raised in Northern India. I hold a Masters in Theoretical Physics from [University of Cambridge](https://www.cam.ac.uk) in the UK, where I studied string theory and black holes in higher dimensions. I dropped out from mathematics PhD program (after 3 years) at [Kansas State University](https://www.ksu.edu)". At K-State, I studied Donaldson-Thomas Invariants and their wall crossing phenomenon. I worked with [Yan Soibelman](http://www.math.ksu.edu/~soibel/).
+I was born and raised in Northern India. I hold a Masters in Theoretical Physics from [University of Cambridge](https://www.cam.ac.uk) in the UK, where I studied string theory and black holes in higher dimensions. I dropped out from mathematics PhD program (after 3 years) at [Kansas State University](https://www.ksu.edu). At K-State, I studied Donaldson-Thomas Invariants and their wall crossing phenomenon. I worked with [Yan Soibelman](http://www.math.ksu.edu/~soibel/).
 <br><br>
 It was at K-State that I started exploring machine learning and data science. I took courses in machine learning, information retrieval, text mining and worked at [Machine Learning and Bioinformatics Lab, K-State](http://people.cis.ksu.edu/~dcaragea/mlb/doku.php).
 <br><br>
