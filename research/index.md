@@ -16,7 +16,7 @@ My research revolves around mathematics, machine learning with applications in s
 
 - [**TASSEL**]((http://www.maizegenetics.net/#!tassel/c17q9)): TASSEL is a software package (JAVA) to evaluate traits associations, evolutionary patterns, and linkage disequilibrium. I implementated a machine learning based data imputa- tion module, linear algberaic operations (e.g. SVD), weighted mixed linear model for GWAS, and a trie based retrival system for barcodes in GBS pipeline. 
 - **Cassava Genetic Load project**: This project is funded by Gates Foundation. I implemented, evaluated, and compared pipelines for calling variants, and genome assembly. The prelimanary results from my work were presented at Plant and Anomal Genomics, 2015. Work is in progress to build the next generation HapMap for Cassava. Paper under preparation.
-- [**Visualizing genomic annotations**](https://github.com/Jverma/Visualizing-genome-annotations)**: Built a framework for creating D3 JavaScrpt interactive visualtion of genome feature file (gff). It creates an interactive, collapsible, tree for a chosen segment of genome, with mouseover features.
+- [**Visualizing genomic annotations**](https://github.com/Jverma/Visualizing-genome-annotations): Built a framework for creating D3 JavaScrpt interactive visualtion of genome feature file (gff). It creates an interactive, collapsible, tree for a chosen segment of genome, with mouseover features.
 
 # Cosmology
 
