@@ -4,13 +4,116 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-12T14:56:48-05:00</updated>
+<updated>2015-12-12T19:09:28-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
   <uri>http://jverma.github.io//</uri>
   
 </author>
+
+
+  
+
+<entry>
+  <title type="html"><![CDATA[Manifold learning: Introduction]]></title>
+  <link rel="alternate" type="text/html" href="http://jverma.github.io//manifold-learning/" />
+  <id>http://jverma.github.io//manifold-learning</id>
+  <published>2015-12-12T00:00:00-05:00</published>
+  <updated>2015-12-12T00:00:00-05:00</updated>
+  <author>
+    <name>Janu Verma</name>
+    <uri>http://jverma.github.io/</uri>
+    
+  </author>
+  <content type="html">
+    &lt;p&gt;&lt;strong&gt;Manifold learning&lt;/strong&gt; is one of the most popular approaches to dimensional reduction. The idea is that the data which seems to be high dimensional e.g. with thousands of features, actually lies on a low dimensional manifold embedded in the ambient (high dimensional) Euclidean space. The goal of the manifold learning techniques is to &amp;#39;learn&amp;#39; the low dimensional manifold.
+&lt;br&gt;&lt;br&gt;
+The manifold learning methods provide a way to extract the underlying parameters of the data, which are much lesser in number that the original dimension, and can explain the intricacies of the data. The assumption is that the data lies along a low-dimensional manifold which describes the underlying parameters and the ambient high-dimensional space is the &lt;em&gt;feature space&lt;/em&gt;.
+&lt;br&gt;&lt;br&gt;
+The main applications of dimensional reduction are as follows :&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Feature Selection:&lt;/strong&gt; In cases when we have a very large number of features, a lot of them are irrelevant or misleading. This can lead to overfitting (variance) or underfitting (bias) in our model. Also too many features make the algorithm very slow and it may take a lot of time to converge. Dimensional reduction techniques are used to vastly reduce the number of features.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Visualization:&lt;/strong&gt; If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.- &lt;strong&gt;Discovery of latent pattern in data:&lt;/strong&gt; Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &amp;#39;dog&amp;#39;, the documents containing word &amp;#39;dog&amp;#39; will be retrieved, but the documents which are related to `dog&amp;#39;, and use synonyms of &amp;#39;dog&amp;#39; e.g. &amp;#39;canine&amp;#39; etc., but don&amp;#39;t contain &amp;#39;dog&amp;#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &amp;#39;dog&amp;#39; and &amp;#39;canine&amp;#39; documents are very close to each other. This method is called &lt;em&gt;Latent Semantic Analysis&lt;/em&gt;, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is &lt;em&gt;population stratification&lt;/em&gt; in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+Before we delve into manifold learning methods, let&amp;#39;s review the simplest dimensional reduction method, called PCA which is a linear method and later we will generalize manifold learning as non-linear extension of PCA.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Principal Component Analysis:  &lt;/strong&gt;
+&lt;br&gt;
+PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \( D = { x_1,x_2,...,x_n } \) where each \( x_i \in \mathbb{R}^m \) is a &lt;em&gt;feature vector&lt;/em&gt;. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a &lt;em&gt;linear subspace&lt;/em&gt; of the feature space (\( \mathbb{R}^m \) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
+&lt;br&gt;&lt;br&gt;
+More accurately, PCA solves the following optimization problem :
+&lt;br&gt;
+&lt;em&gt;Given a matrix whose rows are m−dimensioanl data points -
+&lt;br&gt;&lt;br&gt;
+ \) X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  \)
+&lt;br&gt;&lt;br&gt;
+Find \( Y \subset \mathbb{R}^m \) such that the data along this subspace has maximum variance.&lt;/em&gt;
+&lt;br&gt;
+A solution of such optimization problem is obtained to computing the &lt;em&gt;Singular Value Decomposition&lt;/em&gt; (SVD) of X.
+&lt;br&gt;&lt;br&gt;
+PCA has been very successful in a lot of dimensional reduction tasks. For example latent semantic analysis mentioned earlier uses PCA, population structure in the genetic data from different geographical locations can be inferred using PCA etc.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+Despite it’s popularity, PCA has some obvious shortcomings, most notably is the assumption that data lie on a linear subspace. Consider the data that lie along a curled plane, e.g. a &lt;em&gt;swiss roll&lt;/em&gt; embedded in 3-dimensional Euclidean space.
+&lt;figure&gt;
+&lt;img class=&quot;alignnone  wp-image-1045&quot; src=&quot;https://januverma.files.wordpress.com/2015/12/file-dec-06-6-32-46-pm.png&quot; alt=&quot;File Dec 06, 6 32 46 PM.png&quot; width=&quot;632&quot; height=&quot;473&quot; /&gt;
+&lt;/figure&gt;
+&lt;br&gt;
+It is clearly 2-dimensional embedded in 3-dimensional Euclidean, but is not a linear subspace. PCA would not be able to correctly decipher the underlying structure. The swiss roll is actually a 2-dimensional submanifold of the Euclidean space. This and many such example ask for a more general framework for dimensional reduction where we disband the linear subspace requirement (as in PCA) to capture the non-linearities in the dataset.
+&lt;br&gt;&lt;br&gt;
+Manifold learning can be thought of a non-linear generalization of PCA, where the data in no longer assumed to lie on a &lt;em&gt;linear subspace&lt;/em&gt;. Instead we assume that the data lie on a low-dimensional manifold embedded in the feature space.
+&lt;br&gt;&lt;br&gt;
+Next we will develop the mathematical machinery from differential topology and geometry which is required to understand the notion of manifolds.
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Basics of Geometry:  &lt;/strong&gt;
+&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; Let \( U \subset \mathbb{R}^{n} \) and \( V \subset \mathbb{R}^{k} \) be open sets, and \( f : U \rightarrow V \) be a function. Then \( f \) is &lt;strong&gt;smooth&lt;/strong&gt; if all of the partial derivatives of \( f \) are continous. i.e. for any \( m \)
+\( \frac{\partial^{m}f}{\partial x_i \ldots \partial x_m} \hspace{5mm} \text{is smooth}. \)
+&lt;br&gt;&lt;br&gt;
+We have not rigorously defined open sets in a &lt;em&gt;topological space&lt;/em&gt; (e.g. \( \mathbb{R}^{n} \), intuitively they are extensions of open intervals on real line. And we don&amp;#39;t need the notion of continuity of a function in its full glory. In this article, we are restricting to sets in Euclidean spaces.
+&lt;br&gt;&lt;br&gt;
+Smoothness of a function can be extended to arbitrary sets (not necessarily open) as follows.
+&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; Let \( X \subset \mathbb{R}^{n} \) and \( Y \subset \mathbb{R}^{k} \) be arbitrary subsets. A function \( f : X \rightarrow Y \) is &lt;strong&gt;smooth&lt;/strong&gt; if for each \( x \in X \), there exists an open neighborhood \( U \subset \mathbb{R}^n \) and a smooth function \( F: U \rightarrow \mathbb{R}^k \) that coincides with \( f \) on \( U \cap X \).
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; A function
+\( f : X \rightarrow Y \) is a  &lt;strong&gt;homeomorphism&lt;/strong&gt; if it is a &lt;em&gt;bijection&lt;/em&gt; of sets with both \( f \) and \( f^{-1} \) continous. A homeomorphism is called a&lt;strong&gt; diffeomorphism&lt;/strong&gt; if both \( f \) and
+\( f^{-1} \) are smooth.
+&lt;br&gt;&lt;br&gt;
+Equipped with this terminology, we are now ready to define a manifold. &lt;em&gt;A manifold is a topological space which is locally diffeomorphic to some Euclidean space.&lt;/em&gt; To be more precise,
+&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Definition:&lt;/strong&gt; Let \( M \subset \mathbb{R}^{n} \), then \( M \) is a &lt;strong&gt;smooth manifold&lt;/strong&gt; of &lt;strong&gt;dimension d&lt;/strong&gt; if for each \( x \in M \), there exists an open neighborhood \( U \) containing \( x \) and a diffeomorphism \( f: U \rightarrow V \) where \( V \subset \mathbb{R}^{d} \) plus some compatibility conditions.
+&lt;br&gt;
+These open neighborhoods are called the &lt;strong&gt;coordinate patches&lt;/strong&gt; and the diffeomorphisms are called &lt;strong&gt;coordinate charts&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;Some abstract non-sense:&lt;/strong&gt;
+&lt;br&gt;
+Based on previous discussions, we need to move to the next general &lt;em&gt;category&lt;/em&gt; of &lt;em&gt;spaces&lt;/em&gt; (The notion of space is intentionally left ambiguous). To extract linear subspaces, e.g. in PCA, we work in the category of vector spaces over the &lt;em&gt;field&lt;/em&gt; of real numbers. These spaces are &lt;em&gt;globally flat&lt;/em&gt; (no &lt;em&gt;curvature&lt;/em&gt;). In fact, all the datasets we would encounter will be subsets of Euclidean spaces  \( \mathbb{R}^n \)). The next step in abstraction is to lift to the category of  &lt;em&gt;locally flat spaces &lt;/em&gt;i.e. the spaces which look like vector spaces locally. Mathematically this is the category of smooth real manifolds &lt;em&gt;embedded&lt;/em&gt; in \( \mathbb{R}^n \) and it includes vector spaces over reals as a &lt;em&gt;subcategory&lt;/em&gt;. In the same spirit, we look for &lt;em&gt;submanifold embeddings&lt;/em&gt; of original data manifold.
+&lt;br&gt;&lt;br&gt;
+Every real vector space is a real manifold.
+For more curious, there is a more general category of spaces called &lt;em&gt;topological spaces &lt;/em&gt;and there is a very active of research called &lt;strong&gt;&lt;em&gt;topological data analysis&lt;/em&gt;&lt;/strong&gt;, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
+Schematically,
+&lt;br&gt;&lt;br&gt;
+$$ Vect&lt;em&gt;{\mathbb{R}} \subset Manifolds&lt;/em&gt;{\mathbb{R}} \subset Top_{\mathbb{R}} $$&lt;/p&gt;
+
+&lt;p&gt;&lt;br&gt;&lt;br&gt;
+&lt;strong&gt;PCA as manifold learning:&lt;/strong&gt;
+Every d-dimensional vector space \( V \) over the field of reals is isomorphic to the Euclidean space \( \mathbb{R}^{d} \). And is thus trivially a smooth manifold with a single &lt;em&gt;coordinate chart&lt;/em&gt;
+&lt;br&gt;
+$$ Identity : V \rightarrow \mathbb{R}^d $$
+&lt;br&gt;
+It can be seen that the linear subspaces of \( V \) are the submanifolds. If the data actually lies along a linear subspace of the feature space, the manifold learning methods will recover the linear subspace as the sought after submanifold embedding. The results will be very similar to what you will obtain by applying PCA. Thus PCA is the simplest type of manifold learning.
+&lt;br&gt;&lt;br&gt;
+In future posts, we will talk about various manifold learning methods. &lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://jverma.github.io//manifold-learning/&quot;&gt;Manifold learning: Introduction&lt;/a&gt; was originally published by Janu Verma at &lt;a href=&quot;http://jverma.github.io/&quot;&gt;Random Inferences&lt;/a&gt; on December 12, 2015.&lt;/p&gt;
+  </content>
+</entry>
 
 
   
