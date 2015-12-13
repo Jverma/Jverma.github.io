@@ -1,0 +1,340 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>What do physicists mean by field theory &#8211; Random Inferences</title>
+<meta name="description" content="Mathematical (geometric) defintion of a classical field theory">
+<meta name="keywords" content="mathematics, theoretical physics, mathematical physics, differential geometry">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="What do physicists mean by field theory">
+<meta name="twitter:description" content="Mathematical (geometric) defintion of a classical field theory">
+<meta name="twitter:site" content="@januverma">
+<meta name="twitter:creator" content="@januverma">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What do physicists mean by field theory">
+<meta property="og:description" content="Mathematical (geometric) defintion of a classical field theory">
+<meta property="og:url" content="http://jverma.github.io//qft/">
+<meta property="og:site_name" content="Random Inferences">
+
+<meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+
+
+
+
+
+<link rel="canonical" href="http://jverma.github.io//qft/">
+<link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jverma.github.io//assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://jverma.github.io//assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://jverma.github.io//assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://jverma.github.io//assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://jverma.github.io//images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://jverma.github.io//images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://jverma.github.io//images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://jverma.github.io//images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://jverma.github.io//">Random Inferences</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//posts/" >Blog</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//research/" >Research</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//Code/" >Code</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+  <div class="image-wrap">
+  <img src=
+    
+      "http://jverma.github.io//images/sample-image-4.jpg"
+    
+  alt="What do physicists mean by field theory feature image">
+  
+    <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
+  
+  </div><!-- /.image-wrap -->
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://jverma.github.io//images/IMG_20141123_115642.jpg" class="bio-photo" alt="Janu Verma bio photo">
+
+
+  <h3 itemprop="name">Janu Verma</h3>
+  <p>Research Engineer at IBM T.J. Watson Research Center.</p>
+  <a href="mailto:j.verma5@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+  <a href="http://twitter.com/januverma" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/janu.verma" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  
+  <a href="http://linkedin.com/in/janu-verma-b79b8823" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  <a href="http://instagram.com/jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  <a href="http://januverma.tumblr.com" class="author-social" target="_blank"><i class="fa fa-fw fa-tumblr-square"></i> Tumblr</a>
+  <a href="http://github.com/Jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://jverma.github.io//qft/" rel="bookmark" title="What do physicists mean by field theory">What do physicists mean by field theory</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p><a href="http://en.wikipedia.org/wiki/Quantum_field_theory">Quantum field theories (QFTs)</a> are the main objects of study for a theoretical physicist, more so for those specializing in high energy physics. The standard model of particle physics is built on the framework of QFTs. Each of the fundamental particle (fermion or boson) is described by a QFT.
+<br><br>
+These theories are extremely important from a mathematical perspective. They find applications in topology of low-dimensional manifolds, representation theory, curve counting in enumerative geometry, symplectic geometry, algebraic and complex geometry etc. A complete mathematical understanding of quantum field theory is not available at present. Mathematicians (following <a href="http://www.math.upenn.edu/~blockj/scfts/segal.pdf">Segal</a>, <a href="http://www.numdam.org/item?id=PMIHES_1988__68__175_0">Atiyah</a>) have been successful in obtaining a rigorous definition of <a href="http://ncatlab.org/nlab/show/topological+quantum+field+theory">topological quantum field theories (TQFTs)</a>, a special class of QFTs.
+<br><br>
+Even though we don&#39;t understand QFTs, we can define &quot;fields&quot; which are the main ingredients of a field theory. In this post, we will define the notion of fields in classical theory. This theory is then quantized to obtain quantum field theory.
+<br>
+The setup for a field theory is :</p>
+
+<ul>
+<li><strong>Spacetime</strong> - A smooth, finite dimensional manifold \( M \). 
+An example of \( M \) is the <a href="http://en.wikipedia.org/wiki/Minkowski_space">Minkowaski space</a> \( M^{1,n} \). Often \( M \) is equipped with additional topological and geometric structures e.g metric, orientation, spin structure etc.</li>
+<li><strong>Fields</strong> - Variables of the field theory, in most cases a space of fields \( \mathcal{F} \)</li>
+</ul>
+
+<p><br>
+We will take the following working definition of a (classical) field.
+<br>
+<strong>Definition:</strong> A <em>field</em> is a smooth <a href="http://en.wikipedia.org/wiki/Section_%28fiber_bundle%29">section</a> of a <em>fiber bundle</em> over \( M \)
+<br><br>
+Let \( \pi : E \rightarrow M \) be a fiber bundle over \( M \), then a field is a smooth map
+<br>
+$$ \phi : M \rightarrow E $$
+<br>
+such that \( \pi(\phi(x)) = x \) for all \( x \in M \). We denote this as -
+<br>
+$$ \phi \in C^{\infty}(E) $$
+<br><br>
+<strong>Examples:</strong></p>
+
+<ul>
+<li>A <strong>real scalar field</strong> is a smooth real-valued function on \( M \).
+<br>
+$$ \phi : M \rightarrow \mathbb{R} $$
+This is a section of trivial fiber bundle with fibers isomorphic to \( \mathbb{R} \).</li>
+<li>A <strong>complex scalar field</strong> is a smooth complex-valued function on the spacetime.
+$$ \phi : M \rightarrow \mathbb{C} $$</li>
+<li>More generally, we can consider \( X \)- valued smooth function, where \( X \) is another smooth manifold.
+$$ \Phi : M \rightarrow X $$
+Such fields arise in <strong>sigma models</strong>. The \( \sigma \) - models, with target manifold \( X \) a <em>Calabi-Yau</em> or a <em>Kahler manifold</em>, are of particular interest to mathematicians.</li>
+<li><strong>Gauge theory</strong> - The setup for a gauge theory is a <em>principal bundle</em> with a <em>connection</em>.
+Let \( \pi : P \rightarrow M \) be a principal \( G \) - bundle.</li>
+</ul>
+
+<p><br>
+<strong>Defintion:</strong> A <em>connection</em> \( \mathcal{A} \) on \( P \) is a \( \mathfrak{g} \) - valued 1-form, where \( \mathfrak{g} \) is the <em>Lie algebra</em> of the <em>Lie group</em> \( G \).
+<br>
+$$ \mathcal{A} \in C^{\infty}(P, T^{*}P) \otimes \mathfrak{g} $$
+<br>
+We call \( \mathcal{A} \) the <em>gauge field</em> with gauge group \( G \). The Maxwell&#39;s theory of electromagnetism is given by a circle bundle over the Minkowaski space where the electromagnetic potential is the connection.
+<br>
+In case of <a href="http://en.wikipedia.org/wiki/Yang%E2%80%93Mills_theory">Yang-Mills theory</a>, the gauge group is \( SU(n) \) and thus the fields are the connections on the \( SU(n) \)- principal bundles over the spacetime manifold.
+- <strong>Spinor fields</strong> - These theories are more complex than the others and require more structure as they encode the behavior of fermions. Let $latex M$ be equipped with a spinor structure, and let
+$$ \pi : S \rightarrow M $$
+be a <em>spinor bundle</em> on \( M \). Then the spinor fields are the sections of \( S \).
+$$ \psi : M \rightarrow S $$
+- <strong>Gravity</strong> - Let \( M \) be a <em>Riemannian manifold</em>. The fields in the theory of gravity, gravitational fields, are the <em>metrics</em> on \( M \). A metric \( g \) is a symmetric \( (0,2) \)-forms on \( M \).
+$$ g : M \rightarrow Symm^{(0,2)}(M) $$
+- <strong>Supergravity</strong> - The <em>Rarita-Schwinger field</em> in supergravity theories, which describe a spin-\( 3/2 \) field, is given by a section of the <em>twisted spinor bundle</em>.
+$$  \psi : M \rightarrow S \otimes T^{*}M $$</p>
+
+<p><br><br>
+In all the field theories, there exists a natural <em>evaluation map</em>,
+<br>
+$$ eval : \mathcal{F} \times M \rightarrow E $$
+given by
+<br>
+$$  (\phi, x) \rightarrow \phi(x) $$
+This post is full of mathematical (differential geometric, to be more accurate) jargon. The idea was to give a quick introduction of field theory to mathematicians (geometers). </p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//qft/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//qft/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//qft/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>What do physicists mean by field theory</strong> was published on <time datetime="2015-08-03T00:00:00-04:00">August 03, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://jverma.github.io//manifold-learning/" title="Manifold learning: Introduction">Manifold learning: Introduction</a></li>
+    
+      <li><a href="http://jverma.github.io//bloom-filter/" title="Bloom Filters">Bloom Filters</a></li>
+    
+      <li><a href="http://jverma.github.io//community-in-graphs/" title="Community Detection in networks">Community Detection in networks</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  
+  <footer>
+    
+
+<span>&copy; 2015 Janu Verma. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://jverma.github.io//assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://jverma.github.io//assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-71200371-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'JVerma'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</body>
+</html>

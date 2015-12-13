@@ -1,0 +1,346 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Manifold learning: Introduction &#8211; Random Inferences</title>
+<meta name="description" content="First post in the series on manifold learning techniques.">
+<meta name="keywords" content="mathematics, machine learning, data mining, data science, differential geometry">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Manifold learning: Introduction">
+<meta name="twitter:description" content="First post in the series on manifold learning techniques.">
+<meta name="twitter:site" content="@januverma">
+<meta name="twitter:creator" content="@januverma">
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://jverma.github.io//images/default-thumb.png">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Manifold learning: Introduction">
+<meta property="og:description" content="First post in the series on manifold learning techniques.">
+<meta property="og:url" content="http://jverma.github.io//manifold-learning/">
+<meta property="og:site_name" content="Random Inferences">
+
+<meta property="og:image" content="http://jverma.github.io//images/default-thumb.png">
+
+
+
+
+
+
+<link rel="canonical" href="http://jverma.github.io//manifold-learning/">
+<link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jverma.github.io//assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://jverma.github.io//assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://jverma.github.io//assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://jverma.github.io//assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://jverma.github.io//images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://jverma.github.io//images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://jverma.github.io//images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://jverma.github.io//images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://jverma.github.io//">Random Inferences</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//posts/" >Blog</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//research/" >Research</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//Code/" >Code</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://jverma.github.io//images/IMG_20141123_115642.jpg" class="bio-photo" alt="Janu Verma bio photo">
+
+
+  <h3 itemprop="name">Janu Verma</h3>
+  <p>Research Engineer at IBM T.J. Watson Research Center.</p>
+  <a href="mailto:j.verma5@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+  <a href="http://twitter.com/januverma" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/janu.verma" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  
+  <a href="http://linkedin.com/in/janu-verma-b79b8823" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  <a href="http://instagram.com/jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  <a href="http://januverma.tumblr.com" class="author-social" target="_blank"><i class="fa fa-fw fa-tumblr-square"></i> Tumblr</a>
+  <a href="http://github.com/Jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://jverma.github.io//manifold-learning/" rel="bookmark" title="Manifold learning: Introduction">Manifold learning: Introduction</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p><strong>Manifold learning</strong> is one of the most popular approaches to dimensional reduction. The idea is that the data which seems to be high dimensional e.g. with thousands of features, actually lies on a low dimensional manifold embedded in the ambient (high dimensional) Euclidean space. The goal of the manifold learning techniques is to &#39;learn&#39; the low dimensional manifold.
+<br><br>
+The manifold learning methods provide a way to extract the underlying parameters of the data, which are much lesser in number that the original dimension, and can explain the intricacies of the data. The assumption is that the data lies along a low-dimensional manifold which describes the underlying parameters and the ambient high-dimensional space is the <em>feature space</em>.
+<br><br>
+The main applications of dimensional reduction are as follows :</p>
+
+<ul>
+<li><strong>Feature Selection:</strong> In cases when we have a very large number of features, a lot of them are irrelevant or misleading. This can lead to overfitting (variance) or underfitting (bias) in our model. Also too many features make the algorithm very slow and it may take a lot of time to converge. Dimensional reduction techniques are used to vastly reduce the number of features.</li>
+<li><strong>Data Visualization:</strong> If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.</li>
+<li><strong>Discovery of latent pattern in data:</strong> Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &#39;dog&#39;, the documents containing word &#39;dog&#39; will be retrieved, but the documents which are related to `dog&#39;, and use synonyms of &#39;dog&#39; e.g. &#39;canine&#39; etc., but don&#39;t contain &#39;dog&#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &#39;dog&#39; and &#39;canine&#39; documents are very close to each other. This method is called <em>Latent Semantic Analysis</em>, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is <em>population stratification</em> in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.</li>
+</ul>
+
+<p><br><br>
+Before we delve into manifold learning methods, let&#39;s review the simplest dimensional reduction method, called PCA which is a linear method and later we will generalize manifold learning as non-linear extension of PCA.
+<br><br>
+<strong>Principal Component Analysis:  </strong>
+<br>
+PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \( D = { x_1,x_2,...,x_n } \) where each \( x_i \in \mathbb{R}^m \) is a <em>feature vector</em>. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a <em>linear subspace</em> of the feature space (\( \mathbb{R}^m \) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
+<br><br>
+More accurately, PCA solves the following optimization problem :
+<br>
+<em>Given a matrix whose rows are m−dimensioanl data points -
+<br><br>
+ $$ X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  $$
+<br><br>
+Find \( Y \subset \mathbb{R}^m \) such that the data along this subspace has maximum variance.</em>
+<br>
+A solution of such optimization problem is obtained to computing the <em>Singular Value Decomposition</em> (SVD) of X.
+<br><br>
+PCA has been very successful in a lot of dimensional reduction tasks. For example latent semantic analysis mentioned earlier uses PCA, population structure in the genetic data from different geographical locations can be inferred using PCA etc.</p>
+
+<p><br><br>
+Despite it’s popularity, PCA has some obvious shortcomings, most notably is the assumption that data lie on a linear subspace. Consider the data that lie along a curled plane, e.g. a <em>swiss roll</em> embedded in 3-dimensional Euclidean space.
+<figure>
+<img class="alignnone  wp-image-1045" src="https://januverma.files.wordpress.com/2015/12/file-dec-06-6-32-46-pm.png" alt="File Dec 06, 6 32 46 PM.png" width="632" height="473" />
+</figure>
+<br>
+It is clearly 2-dimensional embedded in 3-dimensional Euclidean, but is not a linear subspace. PCA would not be able to correctly decipher the underlying structure. The swiss roll is actually a 2-dimensional submanifold of the Euclidean space. This and many such example ask for a more general framework for dimensional reduction where we disband the linear subspace requirement (as in PCA) to capture the non-linearities in the dataset.
+<br><br>
+Manifold learning can be thought of a non-linear generalization of PCA, where the data in no longer assumed to lie on a <em>linear subspace</em>. Instead we assume that the data lie on a low-dimensional manifold embedded in the feature space.
+<br><br>
+Next we will develop the mathematical machinery from differential topology and geometry which is required to understand the notion of manifolds.
+<br><br>
+<strong>Basics of Geometry:  </strong>
+<br>
+<strong>Definition:</strong> Let \( U \subset \mathbb{R}^{n} \) and \( V \subset \mathbb{R}^{k} \) be open sets, and \( f : U \rightarrow V \) be a function. Then \( f \) is <strong>smooth</strong> if all of the partial derivatives of \( f \) are continous. i.e. for any \( m \)
+\( \frac{\partial^{m}f}{\partial x_i \ldots \partial x_m} \hspace{5mm} \text{is smooth}. \)
+<br><br>
+We have not rigorously defined open sets in a <em>topological space</em> (e.g. \( \mathbb{R}^{n} \), intuitively they are extensions of open intervals on real line. And we don&#39;t need the notion of continuity of a function in its full glory. In this article, we are restricting to sets in Euclidean spaces.
+<br><br>
+Smoothness of a function can be extended to arbitrary sets (not necessarily open) as follows.
+<br>
+<strong>Definition:</strong> Let \( X \subset \mathbb{R}^{n} \) and \( Y \subset \mathbb{R}^{k} \) be arbitrary subsets. A function \( f : X \rightarrow Y \) is <strong>smooth</strong> if for each \( x \in X \), there exists an open neighborhood \( U \subset \mathbb{R}^n \) and a smooth function \( F: U \rightarrow \mathbb{R}^k \) that coincides with \( f \) on \( U \cap X \).
+<br><br>
+<strong>Definition:</strong> A function
+\( f : X \rightarrow Y \) is a  <strong>homeomorphism</strong> if it is a <em>bijection</em> of sets with both \( f \) and \( f^{-1} \) continous. A homeomorphism is called a<strong> diffeomorphism</strong> if both \( f \) and
+\( f^{-1} \) are smooth.
+<br><br>
+Equipped with this terminology, we are now ready to define a manifold. <em>A manifold is a topological space which is locally diffeomorphic to some Euclidean space.</em> To be more precise,
+<br><br>
+<strong>Definition:</strong> Let \( M \subset \mathbb{R}^{n} \), then \( M \) is a <strong>smooth manifold</strong> of <strong>dimension d</strong> if for each \( x \in M \), there exists an open neighborhood \( U \) containing \( x \) and a diffeomorphism \( f: U \rightarrow V \) where \( V \subset \mathbb{R}^{d} \) plus some compatibility conditions.
+<br>
+These open neighborhoods are called the <strong>coordinate patches</strong> and the diffeomorphisms are called <strong>coordinate charts</strong>.</p>
+
+<p><br><br>
+<strong>Some abstract non-sense:</strong>
+<br>
+Based on previous discussions, we need to move to the next general <em>category</em> of <em>spaces</em> (The notion of space is intentionally left ambiguous). To extract linear subspaces, e.g. in PCA, we work in the category of vector spaces over the <em>field</em> of real numbers. These spaces are <em>globally flat</em> (no <em>curvature</em>). In fact, all the datasets we would encounter will be subsets of Euclidean spaces  \( \mathbb{R}^n \)). The next step in abstraction is to lift to the category of  <em>locally flat spaces </em>i.e. the spaces which look like vector spaces locally. Mathematically this is the category of smooth real manifolds <em>embedded</em> in \( \mathbb{R}^n \) and it includes vector spaces over reals as a <em>subcategory</em>. In the same spirit, we look for <em>submanifold embeddings</em> of original data manifold.
+<br><br>
+Every real vector space is a real manifold.
+For more curious, there is a more general category of spaces called <em>topological spaces </em>and there is a very active of research called <strong><em>topological data analysis</em></strong>, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
+Schematically,
+<br><br>
+$$ Vect_{\mathbb{R}} \subset Manifolds_{\mathbb{R}} \subset Top_{\mathbb{R}} $$</p>
+
+<p><br><br>
+<strong>PCA as manifold learning:</strong>
+<br>
+Every d-dimensional vector space \( V \) over the field of reals is isomorphic to the Euclidean space \( \mathbb{R}^{d} \). And is thus trivially a smooth manifold with a single <em>coordinate chart</em>
+<br>
+$$ Identity : V \rightarrow \mathbb{R}^d $$
+<br>
+It can be seen that the linear subspaces of \( V \) are the submanifolds. If the data actually lies along a linear subspace of the feature space, the manifold learning methods will recover the linear subspace as the sought after submanifold embedding. The results will be very similar to what you will obtain by applying PCA. Thus PCA is the simplest type of manifold learning.
+<br><br>
+In future posts, we will talk about various manifold learning methods. </p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//manifold-learning/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//manifold-learning/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//manifold-learning/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Manifold learning: Introduction</strong> was published on <time datetime="2015-12-12T00:00:00-05:00">December 12, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://jverma.github.io//bloom-filter/" title="Bloom Filters">Bloom Filters</a></li>
+    
+      <li><a href="http://jverma.github.io//community-in-graphs/" title="Community Detection in networks">Community Detection in networks</a></li>
+    
+      <li><a href="http://jverma.github.io//qft/" title="What do physicists mean by field theory">What do physicists mean by field theory</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  
+  <footer>
+    
+
+<span>&copy; 2015 Janu Verma. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://jverma.github.io//assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://jverma.github.io//assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-71200371-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'JVerma'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</body>
+</html>

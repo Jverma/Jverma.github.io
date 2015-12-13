@@ -1,0 +1,328 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Community Detection in networks &#8211; Random Inferences</title>
+<meta name="description" content="Discussion on the Girvan-Newman method for extracting communities in a network graph.">
+<meta name="keywords" content="mathematics, graph theory, theoretical physics, mathematical physics">
+
+
+
+<!-- Twitter Cards -->
+<meta name="twitter:title" content="Community Detection in networks">
+<meta name="twitter:description" content="Discussion on the Girvan-Newman method for extracting communities in a network graph.">
+<meta name="twitter:site" content="@januverma">
+<meta name="twitter:creator" content="@januverma">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Community Detection in networks">
+<meta property="og:description" content="Discussion on the Girvan-Newman method for extracting communities in a network graph.">
+<meta property="og:url" content="http://jverma.github.io//community-in-graphs/">
+<meta property="og:site_name" content="Random Inferences">
+
+<meta property="og:image" content="http://jverma.github.io//images/sample-image-4.jpg">
+
+
+
+
+
+
+<link rel="canonical" href="http://jverma.github.io//community-in-graphs/">
+<link href="http://jverma.github.io//feed.xml" type="application/atom+xml" rel="alternate" title="Random Inferences Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://jverma.github.io//assets/css/main.css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- HTML5 Shiv and Media Query Support -->
+<!--[if lt IE 9]>
+	<script src="http://jverma.github.io//assets/js/vendor/html5shiv.min.js"></script>
+	<script src="http://jverma.github.io//assets/js/vendor/respond.min.js"></script>
+<![endif]-->
+
+<!-- Modernizr -->
+<script src="http://jverma.github.io//assets/js/vendor/modernizr-2.7.1.custom.min.js"></script>
+
+<link href='//fonts.googleapis.com/css?family=PT+Sans+Narrow:400,700%7CPT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://jverma.github.io//favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://jverma.github.io//images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://jverma.github.io//images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://jverma.github.io//images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://jverma.github.io//images/apple-touch-icon-144x144-precomposed.png">
+
+</head>
+
+<body class="post">
+  <script type="text/javascript"
+    src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!--[if lt IE 9]><div class="browser-upgrade alert alert-info">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</div><![endif]-->
+
+<div class="navigation-wrapper">
+	<div class="site-name">
+		<a href="http://jverma.github.io//">Random Inferences</a>
+	</div><!-- /.site-name -->
+	<div class="top-navigation">
+		<nav role="navigation" id="site-nav" class="nav">
+		    <ul>
+		        
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//about/" >About</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//posts/" >Blog</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//research/" >Research</a></li>
+				
+				    
+				        
+				    
+				    <li><a href="http://jverma.github.io//Code/" >Code</a></li>
+				
+		    </ul>
+		</nav>
+	</div><!-- /.top-navigation -->
+</div><!-- /.navigation-wrapper -->
+
+
+  <div class="image-wrap">
+  <img src=
+    
+      "http://jverma.github.io//images/sample-image-4.jpg"
+    
+  alt="Community Detection in networks feature image">
+  
+    <span class="image-credit">Photo Credit: <a href="http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/">WeGraphics</a></span>
+  
+  </div><!-- /.image-wrap -->
+
+
+<div id="main" role="main">
+  <div class="article-author-side">
+    
+
+
+<div itemscope itemtype="http://schema.org/Person">
+
+
+	<img src="http://jverma.github.io//images/IMG_20141123_115642.jpg" class="bio-photo" alt="Janu Verma bio photo">
+
+
+  <h3 itemprop="name">Janu Verma</h3>
+  <p>Research Engineer at IBM T.J. Watson Research Center.</p>
+  <a href="mailto:j.verma5@gmail.com" class="author-social" target="_blank"><i class="fa fa-fw fa-envelope-square"></i> Email</a>
+  <a href="http://twitter.com/januverma" class="author-social" target="_blank"><i class="fa fa-fw fa-twitter-square"></i> Twitter</a>
+  <a href="http://facebook.com/janu.verma" class="author-social" target="_blank"><i class="fa fa-fw fa-facebook-square"></i> Facebook</a>
+  
+  <a href="http://linkedin.com/in/janu-verma-b79b8823" class="author-social" target="_blank"><i class="fa fa-fw fa-linkedin-square"></i> LinkedIn</a>
+  
+  <a href="http://instagram.com/jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-instagram"></i> Instagram</a>
+  <a href="http://januverma.tumblr.com" class="author-social" target="_blank"><i class="fa fa-fw fa-tumblr-square"></i> Tumblr</a>
+  <a href="http://github.com/Jverma" class="author-social" target="_blank"><i class="fa fa-fw fa-github"></i> Github</a>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+</div>
+
+  </div>
+  <article class="post">
+    <div class="headline-wrap">
+      
+        <h1><a href="http://jverma.github.io//community-in-graphs/" rel="bookmark" title="Community Detection in networks">Community Detection in networks</a></h1>
+      
+    </div><!--/ .headline-wrap -->
+    <div class="article-wrap">
+      <p>An important question about a social, biological or economical network is to identify <em>communities</em>. A <strong>community</strong> is a subset of nodes which are &#39;more&#39; connected to each other than the members of the other subsets. There are various methods to do this, we will use <a href="http://en.wikipedia.org/wiki/Girvan%E2%80%93Newman_algorithm"><strong>Girvan-Newman algorithm</strong>. </a>
+<br><br>
+Consider the following graph G (forgive poor visuals!)
+<figure>
+<a href="https://januverma.files.wordpress.com/2014/08/graph.png"><img class="alignnone  wp-image-259" src="http://januverma.files.wordpress.com/2014/08/graph.png?w=300" alt="graph" width="448" height="340" /></a>
+</figure>
+G has 7 nodes labeled A,B,C,D,E,F,G and there are edges between some of them. We want to extract communities in the graph.
+<br><br>
+GN algorithm works by finding the edges which are &#39;between&#39; communities and then progressively removing these edges from the original graph.
+<br><br>
+How do we decide which edges are most likely to be between communities ?
+<br><br>
+Girvan and Newman defined the <strong>edge betweenness</strong> of an edge \( (u,v) \) as the number of shortest paths between pairs of vertices that run along it i.e number of nodes \( x \) and \( y \) such that the edge \( (u,v) \) lies on the shortest path between \( x \) and \( y \).
+<br>
+This extends the notion of node betweenness to edges.
+<br><br>
+If there are more than one shortest path between \( x \) and \( y \), then the contribution of \( (x,y) \) to the betweenness of \( (u,v) \) is equal to the fraction of the shortest paths that include \( (u,v) \).
+<br><br>
+If a network contains communities that are only loosely connected by a few inter-community edges, then all shortest paths between different communities must go along one of these few edges. Thus, the edges connecting communities will have high edge betweenness. By removing these edges, we separate groups from one another and so reveal the underlying community structure of the graph.
+<br><br>
+The algorithm&#39;s steps for community detection are -</p>
+
+<ol>
+<li>The betweenness of all existing edges in the network is calculated first.</li>
+<li>The edge with the highest betweenness is removed.</li>
+<li>The betweenness of all edges affected by the removal is recalculated.</li>
+<li>Steps 2 and 3 are repeated until some stopping criterion is fulfilled.</li>
+</ol>
+
+<p><br><br>
+Let&#39;s apply GN algorithm on our graph. For our graph (( G \), we can calculate the betweenness for all the edges -</p>
+
+<ul>
+<li>AB: 5</li>
+<li>AC: 1</li>
+<li>BC: 5</li>
+<li>BD: 12</li>
+<li>DE: 4.5</li>
+<li>DG: 4.5</li>
+<li>EF: 1.5</li>
+<li>DF: 4</li>
+<li>GF: 1.5</li>
+</ul>
+
+<p><br><br>
+As we can see in the graph that there are two shortest path between E and G, one going through D and the other through F. Thus each of the edges DE, EF, DG, GF are credited with half a shortest path.
+<br>
+Clearly the edge BD has the highest betweenness. So removing leaves us with two communities.</p>
+
+<p><a href="https://januverma.files.wordpress.com/2014/08/graph1.png"><img class="alignnone  wp-image-267" src="http://januverma.files.wordpress.com/2014/08/graph1.png?w=300" alt="graph1" width="484" height="368" /></a>
+<br><br>
+If we interpret the graph as a friendship network in a class, then A,B,C and D,E,F,G are two groups of friends. BD is the only interlocutor!
+<br>
+We can go further and re-calculate the betweenness for all the edges in the graph and remove edges accordingly.
+<br><br>
+An implementation of GN algorithm in python can be found <a href="https://github.com/Jverma/TextGraphics/blob/master/TextGraphics/Analysis/communityDetection.py">here</a>.</p>
+
+      <hr />
+      <footer role="contentinfo">
+        <div class="social-share">
+  <h4>Share on</h4>
+  <ul>
+    <li>
+      <a href="https://twitter.com/intent/tweet?text=http://jverma.github.io//community-in-graphs/" class="twitter" title="Share on Twitter"><i class="fa fa-twitter"></i><span> Twitter</span></a>
+    </li>
+    <li>
+      <a href="https://www.facebook.com/sharer/sharer.php?u=http://jverma.github.io//community-in-graphs/" class="facebook" title="Share on Facebook"><i class="fa fa-facebook"></i><span> Facebook</span></a>
+    </li>
+    <li>
+      <a href="https://plus.google.com/share?url=http://jverma.github.io//community-in-graphs/" class="google-plus" title="Share on Google Plus"><i class="fa fa-google-plus"></i><span> Google+</span></a>
+    </li>
+  </ul>
+</div><!-- /.social-share -->
+        <p class="byline"><strong>Community Detection in networks</strong> was published on <time datetime="2015-10-14T00:00:00-04:00">October 14, 2015</time>.</p>
+      </footer>
+    </div><!-- /.article-wrap -->
+  
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+  
+  </article>
+</div><!-- /#main -->
+
+<div class="footer-wrap">
+  
+  <div class="related-articles">
+  <h4>You might also enjoy <small class="pull-right">(<a href="http://jverma.github.io//posts/">View all posts</a>)</small></h4>
+    <ul>
+    
+      <li><a href="http://jverma.github.io//manifold-learning/" title="Manifold learning: Introduction">Manifold learning: Introduction</a></li>
+    
+      <li><a href="http://jverma.github.io//bloom-filter/" title="Bloom Filters">Bloom Filters</a></li>
+    
+      <li><a href="http://jverma.github.io//qft/" title="What do physicists mean by field theory">What do physicists mean by field theory</a></li>
+    
+    </ul>
+    <hr />
+  </div><!-- /.related-articles -->
+  
+  <footer>
+    
+
+<span>&copy; 2015 Janu Verma. Powered by <a href="http://jekyllrb.com" rel="nofollow">Jekyll</a> using the <a href="http://mademistakes.com/minimal-mistakes/" rel="nofollow">Minimal Mistakes</a> theme.</span>
+
+  </footer>
+</div><!-- /.footer-wrap -->
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://jverma.github.io//assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script src="http://jverma.github.io//assets/js/scripts.min.js"></script>
+
+<!-- Asynchronous Google Analytics snippet -->
+<script>
+  var _gaq = _gaq || [];
+  var pluginUrl =
+ '//www.google-analytics.com/plugins/ga/inpage_linkid.js';
+  _gaq.push(['_require', 'inpage_linkid', pluginUrl]);
+  _gaq.push(['_setAccount', 'UA-71200371-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+  
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'JVerma'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+    }());
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+
+
+
+
+</body>
+</html>
