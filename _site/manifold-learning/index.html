@@ -168,7 +168,8 @@ The main applications of dimensional reduction are as follows :</p>
 
 <ul>
 <li><strong>Feature Selection:</strong> In cases when we have a very large number of features, a lot of them are irrelevant or misleading. This can lead to overfitting (variance) or underfitting (bias) in our model. Also too many features make the algorithm very slow and it may take a lot of time to converge. Dimensional reduction techniques are used to vastly reduce the number of features.</li>
-<li><strong>Data Visualization:</strong> If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.- <strong>Discovery of latent pattern in data:</strong> Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &#39;dog&#39;, the documents containing word &#39;dog&#39; will be retrieved, but the documents which are related to `dog&#39;, and use synonyms of &#39;dog&#39; e.g. &#39;canine&#39; etc., but don&#39;t contain &#39;dog&#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &#39;dog&#39; and &#39;canine&#39; documents are very close to each other. This method is called <em>Latent Semantic Analysis</em>, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is <em>population stratification</em> in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.</li>
+<li><strong>Data Visualization:</strong> If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.</li>
+<li><strong>Discovery of latent pattern in data:</strong> Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &#39;dog&#39;, the documents containing word &#39;dog&#39; will be retrieved, but the documents which are related to `dog&#39;, and use synonyms of &#39;dog&#39; e.g. &#39;canine&#39; etc., but don&#39;t contain &#39;dog&#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &#39;dog&#39; and &#39;canine&#39; documents are very close to each other. This method is called <em>Latent Semantic Analysis</em>, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is <em>population stratification</em> in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.</li>
 </ul>
 
 <p><br><br>
@@ -182,7 +183,7 @@ More accurately, PCA solves the following optimization problem :
 <br>
 <em>Given a matrix whose rows are m−dimensioanl data points -
 <br><br>
- \) X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  \)
+ $$ X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  $$
 <br><br>
 Find \( Y \subset \mathbb{R}^m \) such that the data along this subspace has maximum variance.</em>
 <br>
@@ -232,10 +233,11 @@ Every real vector space is a real manifold.
 For more curious, there is a more general category of spaces called <em>topological spaces </em>and there is a very active of research called <strong><em>topological data analysis</em></strong>, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
 Schematically,
 <br><br>
-$$ Vect<em>{\mathbb{R}} \subset Manifolds</em>{\mathbb{R}} \subset Top_{\mathbb{R}} $$</p>
+$$ Vect_{\mathbb{R}} \subset Manifolds_{\mathbb{R}} \subset Top_{\mathbb{R}} $$</p>
 
 <p><br><br>
 <strong>PCA as manifold learning:</strong>
+<br>
 Every d-dimensional vector space \( V \) over the field of reals is isomorphic to the Euclidean space \( \mathbb{R}^{d} \). And is thus trivially a smooth manifold with a single <em>coordinate chart</em>
 <br>
 $$ Identity : V \rightarrow \mathbb{R}^d $$

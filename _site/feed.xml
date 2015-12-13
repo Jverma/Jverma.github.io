@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-12T19:09:28-05:00</updated>
+<updated>2015-12-12T19:12:20-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -35,7 +35,8 @@ The main applications of dimensional reduction are as follows :&lt;/p&gt;
 
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Feature Selection:&lt;/strong&gt; In cases when we have a very large number of features, a lot of them are irrelevant or misleading. This can lead to overfitting (variance) or underfitting (bias) in our model. Also too many features make the algorithm very slow and it may take a lot of time to converge. Dimensional reduction techniques are used to vastly reduce the number of features.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Data Visualization:&lt;/strong&gt; If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.- &lt;strong&gt;Discovery of latent pattern in data:&lt;/strong&gt; Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &amp;#39;dog&amp;#39;, the documents containing word &amp;#39;dog&amp;#39; will be retrieved, but the documents which are related to `dog&amp;#39;, and use synonyms of &amp;#39;dog&amp;#39; e.g. &amp;#39;canine&amp;#39; etc., but don&amp;#39;t contain &amp;#39;dog&amp;#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &amp;#39;dog&amp;#39; and &amp;#39;canine&amp;#39; documents are very close to each other. This method is called &lt;em&gt;Latent Semantic Analysis&lt;/em&gt;, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is &lt;em&gt;population stratification&lt;/em&gt; in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Data Visualization:&lt;/strong&gt; If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Discovery of latent pattern in data:&lt;/strong&gt; Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to &amp;#39;dog&amp;#39;, the documents containing word &amp;#39;dog&amp;#39; will be retrieved, but the documents which are related to `dog&amp;#39;, and use synonyms of &amp;#39;dog&amp;#39; e.g. &amp;#39;canine&amp;#39; etc., but don&amp;#39;t contain &amp;#39;dog&amp;#39; in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where &amp;#39;dog&amp;#39; and &amp;#39;canine&amp;#39; documents are very close to each other. This method is called &lt;em&gt;Latent Semantic Analysis&lt;/em&gt;, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is &lt;em&gt;population stratification&lt;/em&gt; in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.&lt;/li&gt;
 &lt;/ul&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;br&gt;
@@ -49,7 +50,7 @@ More accurately, PCA solves the following optimization problem :
 &lt;br&gt;
 &lt;em&gt;Given a matrix whose rows are m−dimensioanl data points -
 &lt;br&gt;&lt;br&gt;
- \) X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  \)
+ $$ X = (x_1,x_2,\ldots,x_n)^T \in \mathbb{R}^{n \times m}  $$
 &lt;br&gt;&lt;br&gt;
 Find \( Y \subset \mathbb{R}^m \) such that the data along this subspace has maximum variance.&lt;/em&gt;
 &lt;br&gt;
@@ -99,10 +100,11 @@ Every real vector space is a real manifold.
 For more curious, there is a more general category of spaces called &lt;em&gt;topological spaces &lt;/em&gt;and there is a very active of research called &lt;strong&gt;&lt;em&gt;topological data analysis&lt;/em&gt;&lt;/strong&gt;, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
 Schematically,
 &lt;br&gt;&lt;br&gt;
-$$ Vect&lt;em&gt;{\mathbb{R}} \subset Manifolds&lt;/em&gt;{\mathbb{R}} \subset Top_{\mathbb{R}} $$&lt;/p&gt;
+$$ Vect_{\mathbb{R}} \subset Manifolds_{\mathbb{R}} \subset Top_{\mathbb{R}} $$&lt;/p&gt;
 
 &lt;p&gt;&lt;br&gt;&lt;br&gt;
 &lt;strong&gt;PCA as manifold learning:&lt;/strong&gt;
+&lt;br&gt;
 Every d-dimensional vector space \( V \) over the field of reals is isomorphic to the Euclidean space \( \mathbb{R}^{d} \). And is thus trivially a smooth manifold with a single &lt;em&gt;coordinate chart&lt;/em&gt;
 &lt;br&gt;
 $$ Identity : V \rightarrow \mathbb{R}^d $$

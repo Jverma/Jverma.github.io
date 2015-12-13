@@ -16,7 +16,8 @@ The manifold learning methods provide a way to extract the underlying parameters
 The main applications of dimensional reduction are as follows :
 
 - <strong>Feature Selection:</strong> In cases when we have a very large number of features, a lot of them are irrelevant or misleading. This can lead to overfitting (variance) or underfitting (bias) in our model. Also too many features make the algorithm very slow and it may take a lot of time to converge. Dimensional reduction techniques are used to vastly reduce the number of features.
-- <strong>Data Visualization:</strong> If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.- <strong>Discovery of latent pattern in data:</strong> Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to 'dog', the documents containing word 'dog' will be retrieved, but the documents which are related to `dog', and use synonyms of 'dog' e.g. 'canine' etc., but don't contain 'dog' in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where 'dog' and 'canine' documents are very close to each other. This method is called <em>Latent Semantic Analysis</em>, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is <em>population stratification</em> in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.
+- <strong>Data Visualization:</strong> If the data is very high dimensional, we cannot get an intuitive idea of what the data looks like. Dimensional reduction to two or three meaningful features provides a great way to visualize the data.
+- <strong>Discovery of latent pattern in data:</strong> Dimensional reduction can also unveil some hidden structure in the data. For example, suppose we are building a search engine for text articles. The user submits a query and the system should return a list of documents most relevant to the query. A classical approach is the so called vector space model, where we represent each document as a vector based on the words contained in the document. Such a representation is very high dimensional. If the user asks for results related to 'dog', the documents containing word 'dog' will be retrieved, but the documents which are related to `dog', and use synonyms of 'dog' e.g. 'canine' etc., but don't contain 'dog' in high enough frequency will not be returned. A strategy to resolve this problem is to use dimensionality reduction to compute a more realistic representation of the documents, where 'dog' and 'canine' documents are very close to each other. This method is called <em>Latent Semantic Analysis</em>, and can be interpreted as a representation of documents in terms of topics as opposed to words. Another such example is <em>population stratification</em> in computation genomics, when the population of interest includes subgroups of individuals that are on average more related to each other than the other members of the population.
 
 <br><br>
 Before we delve into manifold learning methods, let's review the simplest dimensional reduction method, called PCA which is a linear method and later we will generalize manifold learning as non-linear extension of PCA.
@@ -29,7 +30,7 @@ More accurately, PCA solves the following optimization problem :
 <br>
 <em>Given a matrix whose rows are m−dimensioanl data points -
 <br><br>
- \\) X = (x\_1,x\_2,\ldots,x\_n)^T \in \mathbb{R}^{n \times m}  \\)
+ $$ X = (x\_1,x\_2,\ldots,x\_n)^T \in \mathbb{R}^{n \times m}  $$
 <br><br>
 Find \\( Y \subset \mathbb{R}^m \\) such that the data along this subspace has maximum variance.</em>
 <br>
@@ -79,10 +80,11 @@ Every real vector space is a real manifold.
 For more curious, there is a more general category of spaces called <em>topological spaces </em>and there is a very active of research called <strong><em>topological data analysis</em></strong>, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
 Schematically,
 <br><br>
-$$ Vect_{\mathbb{R}} \subset Manifolds_{\mathbb{R}} \subset Top_{\mathbb{R}} $$
+$$ Vect\_{\mathbb{R}} \subset Manifolds\_{\mathbb{R}} \subset Top\_{\mathbb{R}} $$
 
 <br><br>
 **PCA as manifold learning:**
+<br>
 Every d-dimensional vector space \\( V \\) over the field of reals is isomorphic to the Euclidean space \\( \mathbb{R}^{d} \\). And is thus trivially a smooth manifold with a single *coordinate chart*
 <br>
 $$ Identity : V \rightarrow \mathbb{R}^d $$
