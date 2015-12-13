@@ -29,7 +29,7 @@ owner:
   name: Janu Verma
   avatar: IMG_20141123_115642.jpg
   bio: "Research Engineer at IBM T.J. Watson Research Center."
-  email:
+  email: j.verma5@gmail.com
   disqus-shortname: JVerma
   twitter: januverma
   facebook: janu.verma
@@ -56,7 +56,7 @@ owner:
   weibo: #username
   flickr: #username
   codepen: #username
-  quora: Janu-Verma-2
+
 
 include: [".htaccess"]
 exclude: ["lib", "config.rb", "Capfile", "config", "log", "Rakefile", "Rakefile.rb", "tmp", "less", "*.sublime-project", "*.sublime-workspace", "test", "spec", "Gruntfile.js", "package.json", "node_modules", "Gemfile", "Gemfile.lock", "LICENSE", "README.md"]

@@ -4,12 +4,12 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-12T19:12:20-05:00</updated>
+<updated>2015-12-13T13:49:06-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
   <uri>http://jverma.github.io//</uri>
-  
+  <email>j.verma5@gmail.com</email>
 </author>
 
 
@@ -24,7 +24,7 @@
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;&lt;strong&gt;Manifold learning&lt;/strong&gt; is one of the most popular approaches to dimensional reduction. The idea is that the data which seems to be high dimensional e.g. with thousands of features, actually lies on a low dimensional manifold embedded in the ambient (high dimensional) Euclidean space. The goal of the manifold learning techniques is to &amp;#39;learn&amp;#39; the low dimensional manifold.
@@ -129,7 +129,7 @@ In future posts, we will talk about various manifold learning methods. &lt;/p&gt
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;A &lt;strong&gt;Bloom filter&lt;/strong&gt; is a compact data structure which is used to test membership of an element in a set. It is built by constructing a probablistic representation of the set, which can be queried for membership. A BF is designed for speed and effciency. The trade off for this efficiency is that a Bloom filter is probabilistic, in the sense that it tells us that the element is either definitely not in the set or may be in the set. Thus we can have some false positives i.e. the elements which are not in the set but the BF computes postive probability of it being in the set.
@@ -287,7 +287,7 @@ This completes our implementation of a bloom filter. Surely one can add more met
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;An important question about a social, biological or economical network is to identify &lt;em&gt;communities&lt;/em&gt;. A &lt;strong&gt;community&lt;/strong&gt; is a subset of nodes which are &amp;#39;more&amp;#39; connected to each other than the members of the other subsets. There are various methods to do this, we will use &lt;a href=&quot;http://en.wikipedia.org/wiki/Girvan%E2%80%93Newman_algorithm&quot;&gt;&lt;strong&gt;Girvan-Newman algorithm&lt;/strong&gt;. &lt;/a&gt;
@@ -363,7 +363,7 @@ An implementation of GN algorithm in python can be found &lt;a href=&quot;https:
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Quantum_field_theory&quot;&gt;Quantum field theories (QFTs)&lt;/a&gt; are the main objects of study for a theoretical physicist, more so for those specializing in high energy physics. The standard model of particle physics is built on the framework of QFTs. Each of the fundamental particle (fermion or boson) is described by a QFT.
@@ -451,7 +451,7 @@ This post is full of mathematical (differential geometric, to be more accurate) 
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;&lt;a href=&quot;https://www.broadinstitute.org/gatk/&quot;&gt;Genome Analysis Toolkit (GATK)&lt;/a&gt; is one of the most popular bioinformatics softwares which provides functionality to perform variant discovery and genotyping. It has a strong emphasis on data quality assurance as well. The &lt;a href=&quot;https://www.broadinstitute.org/gatk/gatkdocs/org_broadinstitute_gatk_tools_walkers_haplotypecaller_HaplotypeCaller.php&quot;&gt;HaplotypeCaller&lt;/a&gt; is the main variant calling algorithm in GATK. It calls SNPs and indels simultaneously using local de novo assembly and a Bayesian statistical model. The HalpotypeCaller algorithm works in following steps : 
@@ -571,7 +571,7 @@ A BASH script which implements the GATK variant calling pipeline using Haplotype
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;Current genome sequencing technology (especially NGS) can sequence only short fragments of DNA. Generally, many copies of a region are sequenced to reduce the sequencing errors. The date from such sequencers, which is in form of short DNA sequence, needs to be assembled to obtain the complete genome. One of the modern methods to assemble the reads data is to use de Bruijn graphs.
@@ -649,7 +649,7 @@ Most of the times, sequencing doesn’t give us all the data. We have a lot of m
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/Gibbs_sampling&quot;&gt;Gibbs sampling&lt;/a&gt; is a &lt;a href=&quot;http://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo&quot;&gt;Markov chain Monte Carlo&lt;/a&gt; method for sampling from a multivariate probability distribution. It has many applications in inference, &lt;a href=&quot;http://en.wikipedia.org/wiki/Bayesian_network&quot;&gt;Bayesian networks&lt;/a&gt; and machine learning. I am a bioinformatician, who needs to sample from joint distributions all the time. What motivated me to write this post is that currently I&amp;#39;m building a Bayesian network for my work, where I need to draw samples from the network. I&amp;#39;ll talk about the use of Gibbs sampling in BayesNets in another post.&lt;/p&gt;
@@ -757,7 +757,7 @@ A nice implementation of the basic idea of Gibbs sampling can be found on &lt;a 
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;Twitter represents a fundamentally new instrument to make social measurements. Millions of people voluntarily express opinions across any topic imaginable - this data source is incredibly valuable for both research and business. This means we can use the vast amount of data from Twitter to generate &amp;quot;public opinion&amp;quot; towards certain topics by aggregating the individual tweet results over time. 
@@ -861,7 +861,7 @@ Facebook performed an experiment to measure the effect of removing positive (or 
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
-    
+    <email>j.verma5@gmail.com</email>
   </author>
   <content type="html">
     &lt;p&gt;We often hear there are two schools of thought in statistics - Frequentist and Bayesian. A the very fundamental level the difference in these two approaches stems from the way they interpret probability. For a frequentist, probability is defined in terms of limiting frequency of occurrence of an event while a bayesian statistician defines probability as the degree of disbelief on the occurrence of an event. This post in not about the philosophical aspects of the debate. Rather we will study an example from frequentist and bayesian methods. The example we will consider is the linear regression model. 
