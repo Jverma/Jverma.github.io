@@ -7,4 +7,3 @@ tags: [Jekyll, theme, responsive, blog, template]
   credit: WeGraphics
   creditlink: http://wegraphics.net/downloads/free-ultimate-blurred-background-pack/ -->
 ---
-Subscribe 
