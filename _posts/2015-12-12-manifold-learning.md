@@ -87,7 +87,7 @@ $$ Vect\_{\mathbb{R}} \subset Manifolds\_{\mathbb{R}} \subset Top\_{\mathbb{R}} 
 <br>
 Consider the data set containing \\( n \\) points
 <br>
-$$ D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} $$  
+$$ D = \\{ x\_1, x\_2, \ldots, x\_n \\} \subset \mathbb{R}^{D} $$  
 <br>
 Manifold learning assumes that the data points lie in the \\( D \\)-dimensional Euclidean space only superficially, and they are actually points on a low dimensional manifold embedded in \\( \mathbb{R}^{D} \\) i.e. each \\( x\_i \in M^{d} \\), where \\( M \\) is a \\( d \\)-dimensional manifold. Recall the definition of a manifold, what this means that for each data point \\(x\_i \\), there is a coordinate patch \\(U\_i \\) and a coordinate chart \\(f\_i \\) such that
 <br>
@@ -95,7 +95,7 @@ $$ f\_i : U\_i \simeq V\_i \subset \mathbb{R}^{d} $$
 <br>
 We also assume that the coordinate charts are all same i.e. each \\(f\_i = f).Then the problem of 'learning' the embedded manifold can be translated as finding the images of the data points under the coordinate charts \\( f \\). 
 <br>
-*Given \\(D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)*
+Given \\(D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)
 <br><br>
 It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \\( k \\) which characterizes the size of the nighborhood. The \\( k \\)-neighborhood of a data point \\( x \\) can be defined as the set of \\( k \\)-nearest neighbors of \\( x \\).
 <br><br>
