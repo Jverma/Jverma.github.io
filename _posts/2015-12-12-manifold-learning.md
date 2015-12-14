@@ -24,15 +24,15 @@ Before we delve into manifold learning methods, let's review the simplest dimens
 <br><br>
 <strong>Principal Component Analysis:  </strong>
 <br>
-PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \\( D = \{ x\_1,x\_2,...,x\_n \} \\) where each \\( x\_i \in \mathbb{R}^m \\) is a *feature vector*. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a <em>linear subspace</em> of the feature space (\\( \mathbb{R}^m \\) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
+PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \\( D = { x\_1,x\_2,...,x\_n } \\) where each \\( x\_i \in \mathbb{R}^D \\) is a *feature vector*. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a <em>linear subspace</em> of the feature space (\\( \mathbb{R}^D \\) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
 <br><br>
 More accurately, PCA solves the following optimization problem :
 <br>
 <em>Given a matrix whose rows are m−dimensioanl data points -
 <br><br>
- $$ X = (x\_1,x\_2,\ldots,x\_n)^T \in \mathbb{R}^{n \times m}  $$
+ $$ X = (x\_1,x\_2,\ldots,x\_n)^T \in \mathbb{R}^{n \times D}  $$
 <br><br>
-Find \\( Y \subset \mathbb{R}^m \\) such that the data along this subspace has maximum variance.</em>
+Find \\( Y \subset \mathbb{R}^D \\) such that the data along this subspace has maximum variance.</em>
 <br>
 A solution of such optimization problem is obtained to computing the <em>Singular Value Decomposition</em> (SVD) of X.
 <br><br>
@@ -52,14 +52,14 @@ Next we will develop the mathematical machinery from differential topology and 
 <br><br>
 <strong>Basics of Geometry:  </strong>
 <br>
-<strong>Definition:</strong> Let \\( U \subset \mathbb{R}^{n} \\) and \\( V \subset \mathbb{R}^{k} \\) be open sets, and \\( f : U \rightarrow V \\) be a function. Then \\( f \\) is <strong>smooth</strong> if all of the partial derivatives of \\( f \\) are continous. i.e. for any \\( m \\)
-\\( \frac{\partial^{m}f}{\partial x\_i \ldots \partial x\_m} \hspace{5mm} \text{is smooth}. \\)
+<strong>Definition:</strong> Let \\( U \subset \mathbb{R}^{p} \\) and \\( V \subset \mathbb{R}^{k} \\) be open sets, and \\( f : U \rightarrow V \\) be a function. Then \\( f \\) is <strong>smooth</strong> if all of the partial derivatives of \\( f \\) are continous. i.e. for any \\( l \\),
+\\( \frac{\partial^{l}f}{\partial x\_i \ldots \partial x\_l} \hspace{5mm} \text{is smooth}. \\)
 <br><br>
 We have not rigorously defined open sets in a <em>topological space</em> (e.g. \\( \mathbb{R}^{n} \\), intuitively they are extensions of open intervals on real line. And we don't need the notion of continuity of a function in its full glory. In this article, we are restricting to sets in Euclidean spaces.
 <br><br>
 Smoothness of a function can be extended to arbitrary sets (not necessarily open) as follows.
 <br>
-<strong>Definition:</strong> Let \\( X \subset \mathbb{R}^{n} \\) and \\( Y \subset \mathbb{R}^{k} \\) be arbitrary subsets. A function \\( f : X \rightarrow Y \\) is <strong>smooth</strong> if for each \\( x \in X \\), there exists an open neighborhood \\( U \subset \mathbb{R}^n \\) and a smooth function \\( F: U \rightarrow \mathbb{R}^k \\) that coincides with \\( f \\) on \\( U \cap X \\).
+<strong>Definition:</strong> Let \\( X \subset \mathbb{R}^{p} \\) and \\( Y \subset \mathbb{R}^{k} \\) be arbitrary subsets. A function \\( f : X \rightarrow Y \\) is <strong>smooth</strong> if for each \\( x \in X \\), there exists an open neighborhood \\( U \subset \mathbb{R}^n \\) and a smooth function \\( F: U \rightarrow \mathbb{R}^k \\) that coincides with \\( f \\) on \\( U \cap X \\).
 <br><br>
 <strong>Definition:</strong> A function
 \\( f : X \rightarrow Y \\) is a  <strong>homeomorphism</strong> if it is a <em>bijection</em> of sets with both \\( f \\) and \\( f^{-1} \\) continous. A homeomorphism is called a<strong> diffeomorphism</strong> if both \\( f \\) and
@@ -67,14 +67,14 @@ Smoothness of a function can be extended to arbitrary sets (not necessarily open
 <br><br>
 Equipped with this terminology, we are now ready to define a manifold. <em>A manifold is a topological space which is locally diffeomorphic to some Euclidean space.</em> To be more precise,
 <br><br>
-<strong>Definition:</strong> Let \\( M \subset \mathbb{R}^{n} \\), then \\( M \\) is a <strong>smooth manifold</strong> of <strong>dimension d</strong> if for each \\( x \in M \\), there exists an open neighborhood \\( U \\) containing \\( x \\) and a diffeomorphism \\( f: U \rightarrow V \\) where \\( V \subset \mathbb{R}^{d} \\) plus some compatibility conditions.
+<strong>Definition:</strong> Let \\( M \subset \mathbb{R}^{D} \\), then \\( M \\) is a <strong>smooth manifold</strong> of <strong>dimension d</strong> if for each \\( x \in M \\), there exists an open neighborhood \\( U \\) containing \\( x \\) and a diffeomorphism \\( f: U \rightarrow V \\) where \\( V \subset \mathbb{R}^{d} \\) plus some compatibility conditions.
 <br>
 These open neighborhoods are called the <strong>coordinate patches</strong> and the diffeomorphisms are called <strong>coordinate charts</strong>.
 
 <br><br>
 <strong>Some abstract non-sense:</strong>
 <br>
-Based on previous discussions, we need to move to the next general <em>category</em> of <em>spaces</em> (The notion of space is intentionally left ambiguous). To extract linear subspaces, e.g. in PCA, we work in the category of vector spaces over the <em>field</em> of real numbers. These spaces are <em>globally flat</em> (no <em>curvature</em>). In fact, all the datasets we would encounter will be subsets of Euclidean spaces  \\( \mathbb{R}^n \\)). The next step in abstraction is to lift to the category of  <em>locally flat spaces </em>i.e. the spaces which look like vector spaces locally. Mathematically this is the category of smooth real manifolds <em>embedded</em> in \\( \mathbb{R}^n \\) and it includes vector spaces over reals as a <em>subcategory</em>. In the same spirit, we look for <em>submanifold embeddings</em> of original data manifold.
+Based on previous discussions, we need to move to the next general <em>category</em> of <em>spaces</em> (The notion of space is intentionally left ambiguous). To extract linear subspaces, e.g. in PCA, we work in the category of vector spaces over the <em>field</em> of real numbers. These spaces are <em>globally flat</em> (no <em>curvature</em>). In fact, all the datasets we would encounter will be subsets of Euclidean spaces  \\( \mathbb{R}^D \\)). The next step in abstraction is to lift to the category of  <em>locally flat spaces </em>i.e. the spaces which look like vector spaces locally. Mathematically this is the category of smooth real manifolds <em>embedded</em> in \\( \mathbb{R}^n \\) and it includes vector spaces over reals as a <em>subcategory</em>. In the same spirit, we look for <em>submanifold embeddings</em> of original data manifold.
 <br><br>
 Every real vector space is a real manifold.
 For more curious, there is a more general category of spaces called <em>topological spaces </em>and there is a very active of research called <strong><em>topological data analysis</em></strong>, where the data points are assumed to be sampled from a topological space. This is the most general category of mathematical spaces that the author is aware of. Evidently TDA has shown great progress in unraveling hidden structure in variety of datasets.
@@ -82,6 +82,22 @@ Schematically,
 <br><br>
 $$ Vect\_{\mathbb{R}} \subset Manifolds\_{\mathbb{R}} \subset Top\_{\mathbb{R}} $$
 
+<br><br>
+**Manifold Learning:**
+<br>
+Consider the data set containing \\( n \\) points
+<br>
+$$ D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} $$  
+<br>
+Manifold learning assumes that the data points lie in the \\( D \\)-dimensional Euclidean space only superficially, and they are actually points on a low dimensional manifold embedded in \\( \mathbb{R}^{D} \\) i.e. each \\( x\_i \in M^{d} \\), where \\( M \\) is a \\( d \\)-dimensional manifold. Recall the definition of a manifold, what this means that for each data point \\(x\_i \\), there is a coordinate patch \\(U\_i \\) and a coordinate chart \\(f\_i \\) such that
+<br>
+$$ f\_i : U\_i \simeq V\_i \subset \mathbb{R}^{d} $$
+<br>
+We also assume that the coordinate charts are all same i.e. each \\(f\_i = f).Then the problem of 'learning' the embedded manifold can be translated as finding the images of the data points under the coordinate charts \\( f \\). 
+<br>
+*Given \\(D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)*
+<br><br>
+It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \\( k \\) which characterizes the size of the nighborhood. The \\( k \\)-neighborhood of a data point \\( x \\) can be defined as the set of \\( k \\)-nearest neighbors of \\( x \\).
 <br><br>
 **PCA as manifold learning:**
 <br>
