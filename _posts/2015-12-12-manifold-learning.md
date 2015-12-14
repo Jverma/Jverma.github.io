@@ -95,7 +95,7 @@ $$ f\_i : U\_i \simeq V\_i \subset \mathbb{R}^{d} $$
 <br>
 We also assume that the coordinate charts are all same i.e. each \\(f\_i = f \\).Then the problem of 'learning' the embedded manifold can be translated as finding the images of the data points under the coordinate charts \\( f \\). 
 <br>
-Given \\(D = \\{ x\_1, x\_2, \ldots, x\_n \\} \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)
+Given \\(D = \\{ x\_1, x\_2, \ldots, x\_n \\} \subset \mathbb{R}^{D} \\), find \\( D^{\bar} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)
 <br><br>
 It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \\( k \\) which characterizes the size of the nighborhood. The \\( k \\)-neighborhood of a data point \\( x \\) can be defined as the set of \\( k \\)-nearest neighbors of \\( x \\).
 <br><br>
