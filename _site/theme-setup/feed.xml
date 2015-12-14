@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-14T16:41:50-05:00</updated>
+<updated>2015-12-14T16:43:56-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -115,7 +115,7 @@ $$ f_i : U_i \simeq V_i \subset \mathbb{R}^{d} $$
 &lt;br&gt;
 We also assume that the coordinate charts are all same i.e. each \(f_i = f \).Then the problem of &amp;#39;learning&amp;#39; the embedded manifold can be translated as finding the images of the data points under the coordinate charts \( f \). 
 &lt;br&gt;
-Given \(D = \{ x_1, x_2, \ldots, x_n \} \subset \mathbb{R}^{D} \), find \( D^{\bar} = { f(x_1), f(x_2), \ldots, f(x_n) } \subset \mathbb{R}^{d} \)
+Given \(D = \{ x_1, x_2, \ldots, x_n \} \subset \mathbb{R}^{D} \), find \( D = \{ f(x_1), f(x_2), \ldots, f(x_n) \} \subset \mathbb{R}^{d} \)
 &lt;br&gt;&lt;br&gt;
 It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \( k \) which characterizes the size of the nighborhood. The \( k \)-neighborhood of a data point \( x \) can be defined as the set of \( k \)-nearest neighbors of \( x \).
 &lt;br&gt;&lt;br&gt;
