@@ -24,7 +24,7 @@ Before we delve into manifold learning methods, let's review the simplest dimens
 <br><br>
 <strong>Principal Component Analysis:  </strong>
 <br>
-PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \\( D = { x\_1,x\_2,...,x\_n } \\) where each \\( x\_i \in \mathbb{R}^D \\) is a *feature vector*. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a <em>linear subspace</em> of the feature space (\\( \mathbb{R}^D \\) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
+PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \\( D = \\{ x\_1,x\_2,...,x\_n \\} \\) where each \\( x\_i \in \mathbb{R}^D \\) is a *feature vector*. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a <em>linear subspace</em> of the feature space (\\( \mathbb{R}^D \\) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
 <br><br>
 More accurately, PCA solves the following optimization problem :
 <br>
@@ -93,9 +93,9 @@ Manifold learning assumes that the data points lie in the \\( D \\)-dimensional 
 <br>
 $$ f\_i : U\_i \simeq V\_i \subset \mathbb{R}^{d} $$
 <br>
-We also assume that the coordinate charts are all same i.e. each \\(f\_i = f).Then the problem of 'learning' the embedded manifold can be translated as finding the images of the data points under the coordinate charts \\( f \\). 
+We also assume that the coordinate charts are all same i.e. each \\(f\_i = f \\).Then the problem of 'learning' the embedded manifold can be translated as finding the images of the data points under the coordinate charts \\( f \\). 
 <br>
-Given \\(D = { x\_1, x\_2, \ldots, x\_n } \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)
+Given \\(D = \\{ x\_1, x\_2, \ldots, x\_n \\} \subset \mathbb{R}^{D} \\), find \\( D^{\tilde} = { f(x\_1), f(x\_2), \ldots, f(x\_n) } \subset \mathbb{R}^{d} \\)
 <br><br>
 It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \\( k \\) which characterizes the size of the nighborhood. The \\( k \\)-neighborhood of a data point \\( x \\) can be defined as the set of \\( k \\)-nearest neighbors of \\( x \\).
 <br><br>

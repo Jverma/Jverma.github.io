@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-14T16:23:11-05:00</updated>
+<updated>2015-12-14T16:24:54-05:00</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -44,7 +44,7 @@ Before we delve into manifold learning methods, let&amp;#39;s review the simples
 &lt;br&gt;&lt;br&gt;
 &lt;strong&gt;Principal Component Analysis:  &lt;/strong&gt;
 &lt;br&gt;
-PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \( D = { x_1,x_2,...,x_n } \) where each \( x_i \in \mathbb{R}^D \) is a &lt;em&gt;feature vector&lt;/em&gt;. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a &lt;em&gt;linear subspace&lt;/em&gt; of the feature space (\( \mathbb{R}^D \) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
+PCA is the simplest and most popular dimensional reduction method. Consider a data set containing n points, \( D = \{ x_1,x_2,...,x_n \} \) where each \( x_i \in \mathbb{R}^D \) is a &lt;em&gt;feature vector&lt;/em&gt;. PCA attempts to find the directions along which the data has maximum variance. We then project the data vectors onto these directions (lesser in number than original dimensions) to obtain a low-dimensional representation of the data. PCA assumes that the data points lie on or near a &lt;em&gt;linear subspace&lt;/em&gt; of the feature space (\( \mathbb{R}^D \) ). This is a crucial assumption, one we will abandon later for more generality. If a sample of points drawn from 3-dimensional Euclidean space actually lie on a 2-dimensional plane, then projection on first two principle components will return the plane on which data lies.
 &lt;br&gt;&lt;br&gt;
 More accurately, PCA solves the following optimization problem :
 &lt;br&gt;
@@ -113,9 +113,9 @@ Manifold learning assumes that the data points lie in the \( D \)-dimensional Eu
 &lt;br&gt;
 $$ f_i : U_i \simeq V_i \subset \mathbb{R}^{d} $$
 &lt;br&gt;
-We also assume that the coordinate charts are all same i.e. each \(f_i = f).Then the problem of &amp;#39;learning&amp;#39; the embedded manifold can be translated as finding the images of the data points under the coordinate charts \( f \). 
+We also assume that the coordinate charts are all same i.e. each \(f_i = f \).Then the problem of &amp;#39;learning&amp;#39; the embedded manifold can be translated as finding the images of the data points under the coordinate charts \( f \). 
 &lt;br&gt;
-Given \(D = { x_1, x_2, \ldots, x_n } \subset \mathbb{R}^{D} \), find \( D^{\tilde} = { f(x_1), f(x_2), \ldots, f(x_n) } \subset \mathbb{R}^{d} \)
+Given \(D = \{ x_1, x_2, \ldots, x_n \} \subset \mathbb{R}^{D} \), find \( D^{\tilde} = { f(x_1), f(x_2), \ldots, f(x_n) } \subset \mathbb{R}^{d} \)
 &lt;br&gt;&lt;br&gt;
 It is important to notice that the data sets we find in reality all consists of only a finite points. So to define the notion of neighborhood for discrete sets, we choose a parameter \( k \) which characterizes the size of the nighborhood. The \( k \)-neighborhood of a data point \( x \) can be defined as the set of \( k \)-nearest neighbors of \( x \).
 &lt;br&gt;&lt;br&gt;
