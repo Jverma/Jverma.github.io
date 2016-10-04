@@ -4,7 +4,7 @@
 <generator uri="https://github.com/jekyll/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="http://jverma.github.io//feed.xml" />
 <link rel="alternate" type="text/html" href="http://jverma.github.io/" />
-<updated>2015-12-14T16:45:02-05:00</updated>
+<updated>2016-10-04T20:18:30+05:30</updated>
 <id>http://jverma.github.io//</id>
 <author>
   <name>Janu Verma</name>
@@ -19,8 +19,8 @@
   <title type="html"><![CDATA[Manifold learning: Introduction]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//manifold-learning/" />
   <id>http://jverma.github.io//manifold-learning</id>
-  <published>2015-12-12T00:00:00-05:00</published>
-  <updated>2015-12-12T00:00:00-05:00</updated>
+  <published>2015-12-12T00:00:00+05:30</published>
+  <updated>2015-12-12T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -140,8 +140,8 @@ In future posts, we will talk about various manifold learning methods. &lt;/p&gt
   <title type="html"><![CDATA[Bloom Filters]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//bloom-filter/" />
   <id>http://jverma.github.io//bloom-filter</id>
-  <published>2015-11-05T00:00:00-05:00</published>
-  <updated>2015-11-05T00:00:00-05:00</updated>
+  <published>2015-11-05T00:00:00+05:30</published>
+  <updated>2015-11-05T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -298,8 +298,8 @@ This completes our implementation of a bloom filter. Surely one can add more met
   <title type="html"><![CDATA[Community Detection in networks]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//community-in-graphs/" />
   <id>http://jverma.github.io//community-in-graphs</id>
-  <published>2015-10-14T00:00:00-04:00</published>
-  <updated>2015-10-14T00:00:00-04:00</updated>
+  <published>2015-10-14T00:00:00+05:30</published>
+  <updated>2015-10-14T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -374,8 +374,8 @@ An implementation of GN algorithm in python can be found &lt;a href=&quot;https:
   <title type="html"><![CDATA[What do physicists mean by field theory]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//qft/" />
   <id>http://jverma.github.io//qft</id>
-  <published>2015-08-03T00:00:00-04:00</published>
-  <updated>2015-08-03T00:00:00-04:00</updated>
+  <published>2015-08-03T00:00:00+05:30</published>
+  <updated>2015-08-03T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -462,8 +462,8 @@ This post is full of mathematical (differential geometric, to be more accurate) 
   <title type="html"><![CDATA[How GATK Haplotypecaller works]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//gatk/" />
   <id>http://jverma.github.io//gatk</id>
-  <published>2015-07-21T00:00:00-04:00</published>
-  <updated>2015-07-21T00:00:00-04:00</updated>
+  <published>2015-07-21T00:00:00+05:30</published>
+  <updated>2015-07-21T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -582,8 +582,8 @@ A BASH script which implements the GATK variant calling pipeline using Haplotype
   <title type="html"><![CDATA[de Bruijn graphs and genomic assembly]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//debruijn-graphs/" />
   <id>http://jverma.github.io//debruijn-graphs</id>
-  <published>2015-05-16T00:00:00-04:00</published>
-  <updated>2015-05-16T00:00:00-04:00</updated>
+  <published>2015-05-16T00:00:00+05:30</published>
+  <updated>2015-05-16T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -660,8 +660,8 @@ Most of the times, sequencing doesn’t give us all the data. We have a lot of m
   <title type="html"><![CDATA[Gibbs Sampling]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//gibbs-sampling/" />
   <id>http://jverma.github.io//gibbs-sampling</id>
-  <published>2015-03-24T00:00:00-04:00</published>
-  <updated>2015-03-24T00:00:00-04:00</updated>
+  <published>2015-03-24T00:00:00+05:30</published>
+  <updated>2015-03-24T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -768,8 +768,8 @@ A nice implementation of the basic idea of Gibbs sampling can be found on &lt;a 
   <title type="html"><![CDATA[Twitter Sentiment Analysis]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//twitter-sentiment-analysis/" />
   <id>http://jverma.github.io//twitter-sentiment-analysis</id>
-  <published>2015-02-24T00:00:00-05:00</published>
-  <updated>2015-02-24T00:00:00-05:00</updated>
+  <published>2015-02-24T00:00:00+05:30</published>
+  <updated>2015-02-24T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
@@ -872,8 +872,8 @@ Facebook performed an experiment to measure the effect of removing positive (or 
   <title type="html"><![CDATA[Linear Regression : Frequentist and Bayesian]]></title>
   <link rel="alternate" type="text/html" href="http://jverma.github.io//regression-freq-bayesian/" />
   <id>http://jverma.github.io//regression-freq-bayesian</id>
-  <published>2015-02-03T00:00:00-05:00</published>
-  <updated>2015-02-03T00:00:00-05:00</updated>
+  <published>2015-02-03T00:00:00+05:30</published>
+  <updated>2015-02-03T00:00:00+05:30</updated>
   <author>
     <name>Janu Verma</name>
     <uri>http://jverma.github.io/</uri>
