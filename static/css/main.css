@@ -1,0 +1,133 @@
+.rotate90 {
+    -webkit-transform: rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
+
+@font-face{
+	font-family:King Basil;
+	src:url(../images/King-Basil.41221e7e.ttf)
+}
+
+.head{
+	margin-top: 2%;
+	margin-left: 5%;
+	margin-right: 5%
+}
+.head img {
+	width: 100%;
+	height: auto;
+}
+
+.social{
+	margin-top: 5%;
+	text-align: center;
+	font: 20px palatino
+}
+
+
+
+.name{
+	font: 30px palatino;
+}
+
+.name1{
+	font-family:King Basil;
+}
+
+
+.affiliation{
+	font: 20px palatino;
+}
+
+.king-basil{
+	font-family:King Basil;
+	color: steelblue;
+}
+
+.about{
+	/*font-family:Baskerville sans-serif;*/
+	font-size:18px;
+	color:#44535d;
+	/*margin:0;*/
+	font-family: palatino;
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+.research{
+	font-size: 18px;
+	font-family: palatino;
+	color:#44535d;
+	/*font-family:Baskerville sans-serif;*/
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+/*.project_left{
+	margin-left: 5%;
+	margin-right: 20%
+}*/
+
+/*.project_right{
+	margin-left: 60%;
+}*/
+
+.project_name{
+	font: 22px palatino;
+	color: steelblue
+	/*color: #999966;*/
+}
+
+.projects{
+	font-size: 18px;
+	font-family: palatino;
+	color:#44535d;
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+.writing{
+	font-size: 18px;
+	font-family: palatino;
+	color:#44535d;
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+.talks{
+	font-size: 18px;
+	font-family: palatino;
+	color:#44535d;
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+
+.misc{
+	font-size: 18px;
+	font-family: palatino;
+	color:#44535d;
+	margin-left: 20%;
+	margin-right: 20%
+}
+
+
+.pdf{
+	font-family:King Basil;
+	color: steelblue;
+	margin-left: 10px;
+}
+
+
+.proj_link{
+	font-family:King Basil;
+	font-size: 25px;
+	color: steelblue;
+	margin-left: 10px;
+}
+
+.paper{
+}

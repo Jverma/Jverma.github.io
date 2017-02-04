@@ -1,1 +1,0 @@
-This is the repository for my [blog](http://jverma.github.io//)
